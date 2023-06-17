@@ -148,6 +148,12 @@ class _EventWidgetState extends State<EventWidget> {
                                   height: 160.0,
                                   decoration: BoxDecoration(
                                     color: FlutterFlowTheme.of(context).primary,
+                                    image: DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: Image.network(
+                                        rowEventsRow.pictureUrl!,
+                                      ).image,
+                                    ),
                                     borderRadius: BorderRadius.circular(16.0),
                                   ),
                                   child: Padding(
