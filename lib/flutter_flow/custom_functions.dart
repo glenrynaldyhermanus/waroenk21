@@ -19,3 +19,7 @@ double getLatitude(LatLng latLng) {
 double getLongitude(LatLng latLng) {
   return latLng.longitude;
 }
+
+String getNameForGreeting(String name) {
+  return name.split(" ").first;
+}
