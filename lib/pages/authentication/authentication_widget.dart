@@ -210,13 +210,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                       filled: true,
                                                       fillColor:
                                                           Color(0x67342F2F),
-                                                      contentPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  20.0,
-                                                                  24.0,
-                                                                  20.0,
-                                                                  24.0),
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -306,13 +299,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                       filled: true,
                                                       fillColor:
                                                           Color(0x67342F2F),
-                                                      contentPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  20.0,
-                                                                  24.0,
-                                                                  20.0,
-                                                                  24.0),
                                                       suffixIcon: InkWell(
                                                         onTap: () => setState(
                                                           () => _model
@@ -532,13 +518,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                       filled: true,
                                                       fillColor:
                                                           Color(0x67342F2F),
-                                                      contentPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  20.0,
-                                                                  24.0,
-                                                                  20.0,
-                                                                  24.0),
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -629,13 +608,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                       filled: true,
                                                       fillColor:
                                                           Color(0x67342F2F),
-                                                      contentPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  20.0,
-                                                                  24.0,
-                                                                  20.0,
-                                                                  24.0),
                                                     ),
                                                     style: FlutterFlowTheme.of(
                                                             context)
@@ -729,13 +701,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                       filled: true,
                                                       fillColor:
                                                           Color(0x67342F2F),
-                                                      contentPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  20.0,
-                                                                  24.0,
-                                                                  20.0,
-                                                                  24.0),
                                                       suffixIcon: InkWell(
                                                         onTap: () => setState(
                                                           () => _model
@@ -855,13 +820,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                       filled: true,
                                                       fillColor:
                                                           Color(0x67342F2F),
-                                                      contentPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  20.0,
-                                                                  24.0,
-                                                                  20.0,
-                                                                  24.0),
                                                       suffixIcon: InkWell(
                                                         onTap: () => setState(
                                                           () => _model
