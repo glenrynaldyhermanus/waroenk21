@@ -25,6 +25,10 @@ class CreateEventModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? textControllerValidator;
   DateTime? datePicked1;
   DateTime? datePicked2;
+  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
+  EventsRow? event;
+  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
+  EventRolesRow? eventRoles;
 
   /// Initialization and disposal methods.
 

@@ -624,6 +624,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
+                    var _shouldSetState = false;
                     if (_model.isDataUploading == false) {
                       if ((_model.uploadedFileUrl != null &&
                               _model.uploadedFileUrl != '') &&
@@ -633,7 +634,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                           (_model.datePicked2 != null) &&
                           (FFAppState().eventAddress != null &&
                               FFAppState().eventAddress != '')) {
-                        await EventsTable().insert({
+                        _model.event = await EventsTable().insert({
                           'name': _model.textController.text,
                           'start_date':
                               supaSerialize<DateTime>(_model.datePicked1),
@@ -647,11 +648,28 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                           'longitude':
                               functions.getLongitude(FFAppState().eventLatLng!),
                         });
+                        _shouldSetState = true;
+                        _model.eventRoles = await EventRolesTable().insert({
+                          'name': 'Creator',
+                          'level': 0,
+                          'description': 'Creator of this event',
+                          'event_id': _model.event?.id,
+                          'can_add': true,
+                          'is_editable': false,
+                        });
+                        _shouldSetState = true;
+                        await EventCrewsTable().insert({
+                          'user_id': FFAppState().authedProfile.id,
+                          'event_id': _model.event?.id,
+                          'is_pic': false,
+                          'role_id': _model.eventRoles?.id,
+                        });
                         if (Navigator.of(context).canPop()) {
                           context.pop();
                         }
                         context.pushNamed('PostEventCreation');
 
+                        if (_shouldSetState) setState(() {});
                         return;
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -671,6 +689,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                 FlutterFlowTheme.of(context).primaryText,
                           ),
                         );
+                        if (_shouldSetState) setState(() {});
                         return;
                       }
                     } else {
@@ -691,8 +710,11 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                               FlutterFlowTheme.of(context).primaryText,
                         ),
                       );
+                      if (_shouldSetState) setState(() {});
                       return;
                     }
+
+                    if (_shouldSetState) setState(() {});
                   },
                   text: 'Buat Event',
                   options: FFButtonOptions(

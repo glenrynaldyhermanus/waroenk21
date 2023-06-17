@@ -37,4 +37,7 @@ class EventRolesRow extends SupabaseDataRow {
 
   bool get canAdd => getField<bool>('can_add')!;
   set canAdd(bool value) => setField<bool>('can_add', value);
+
+  bool get isEditable => getField<bool>('is_editable')!;
+  set isEditable(bool value) => setField<bool>('is_editable', value);
 }

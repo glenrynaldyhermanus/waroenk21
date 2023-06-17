@@ -7,12 +7,21 @@ import '/flutter_flow/flutter_flow_util.dart';
 
 class ProfileStruct extends BaseStruct {
   ProfileStruct({
+    int? id,
     String? uuid,
     String? name,
     String? pictureUrl,
-  })  : _uuid = uuid,
+  })  : _id = id,
+        _uuid = uuid,
         _name = name,
         _pictureUrl = pictureUrl;
+
+  // "id" field.
+  int? _id;
+  int get id => _id ?? 0;
+  set id(int? val) => _id = val;
+  void incrementId(int amount) => _id = id + amount;
+  bool hasId() => _id != null;
 
   // "uuid" field.
   String? _uuid;
@@ -33,6 +42,7 @@ class ProfileStruct extends BaseStruct {
   bool hasPictureUrl() => _pictureUrl != null;
 
   static ProfileStruct fromMap(Map<String, dynamic> data) => ProfileStruct(
+        id: data['id'] as int?,
         uuid: data['uuid'] as String?,
         name: data['name'] as String?,
         pictureUrl: data['picture_url'] as String?,
@@ -42,6 +52,7 @@ class ProfileStruct extends BaseStruct {
       data is Map<String, dynamic> ? ProfileStruct.fromMap(data) : null;
 
   Map<String, dynamic> toMap() => {
+        'id': _id,
         'uuid': _uuid,
         'name': _name,
         'picture_url': _pictureUrl,
@@ -49,6 +60,10 @@ class ProfileStruct extends BaseStruct {
 
   @override
   Map<String, dynamic> toSerializableMap() => {
+        'id': serializeParam(
+          _id,
+          ParamType.int,
+        ),
         'uuid': serializeParam(
           _uuid,
           ParamType.String,
@@ -65,6 +80,11 @@ class ProfileStruct extends BaseStruct {
 
   static ProfileStruct fromSerializableMap(Map<String, dynamic> data) =>
       ProfileStruct(
+        id: deserializeParam(
+          data['id'],
+          ParamType.int,
+          false,
+        ),
         uuid: deserializeParam(
           data['uuid'],
           ParamType.String,
@@ -88,21 +108,24 @@ class ProfileStruct extends BaseStruct {
   @override
   bool operator ==(Object other) {
     return other is ProfileStruct &&
+        id == other.id &&
         uuid == other.uuid &&
         name == other.name &&
         pictureUrl == other.pictureUrl;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([uuid, name, pictureUrl]);
+  int get hashCode => const ListEquality().hash([id, uuid, name, pictureUrl]);
 }
 
 ProfileStruct createProfileStruct({
+  int? id,
   String? uuid,
   String? name,
   String? pictureUrl,
 }) =>
     ProfileStruct(
+      id: id,
       uuid: uuid,
       name: name,
       pictureUrl: pictureUrl,

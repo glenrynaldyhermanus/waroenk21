@@ -87,7 +87,7 @@ class _PostEventCreationWidgetState extends State<PostEventCreationWidget> {
                         Expanded(
                           child: Lottie.network(
                             'https://assets9.lottiefiles.com/private_files/lf30_fup2uejx.json',
-                            width: 150.0,
+                            width: MediaQuery.of(context).size.width * 1.0,
                             height: 130.0,
                             fit: BoxFit.cover,
                             animate: true,
@@ -129,7 +129,7 @@ class _PostEventCreationWidgetState extends State<PostEventCreationWidget> {
                                 ),
                           ),
                           Text(
-                            'Kami akan menginformasikan kembali jika event sudah ter',
+                            'Kami akan menginformasikan kembali jika event sudah terpublish',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium
@@ -154,8 +154,8 @@ class _PostEventCreationWidgetState extends State<PostEventCreationWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                context.safePop();
                               },
                               text: 'Kembali Ke Home',
                               options: FFButtonOptions(
