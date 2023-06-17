@@ -3,7 +3,7 @@ import '/components/event_menu_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/events/empty_live_event/empty_live_event_widget.dart';
+import '/pages/events/empty_activity/empty_activity_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -114,7 +114,12 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                                       .requestFocus(_model.unfocusNode),
                                   child: Padding(
                                     padding: MediaQuery.of(context).viewInsets,
-                                    child: EventMenuWidget(),
+                                    child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.8,
+                                      child: EventMenuWidget(),
+                                    ),
                                   ),
                                 );
                               },
@@ -293,7 +298,7 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                                       rowEventActivitiesRowList =
                                       snapshot.data!;
                                   if (rowEventActivitiesRowList.isEmpty) {
-                                    return EmptyLiveEventWidget();
+                                    return EmptyActivityWidget();
                                   }
                                   return SingleChildScrollView(
                                     scrollDirection: Axis.horizontal,
