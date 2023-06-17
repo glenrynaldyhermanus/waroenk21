@@ -153,16 +153,30 @@ class _HomeWidgetState extends State<HomeWidget> {
                               },
                             ),
                           ),
-                          Container(
-                            width: 32.0,
-                            height: 32.0,
-                            clipBehavior: Clip.antiAlias,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.network(
-                              'https://i.ibb.co/wMKW8G4/user-placeholder.png',
-                              fit: BoxFit.cover,
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              GoRouter.of(context).prepareAuthEvent();
+                              await authManager.signOut();
+                              GoRouter.of(context).clearRedirectLocation();
+
+                              context.goNamedAuth(
+                                  'Authentication', context.mounted);
+                            },
+                            child: Container(
+                              width: 32.0,
+                              height: 32.0,
+                              clipBehavior: Clip.antiAlias,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.network(
+                                'https://i.ibb.co/wMKW8G4/user-placeholder.png',
+                                fit: BoxFit.cover,
+                              ),
                             ),
                           ),
                         ],
