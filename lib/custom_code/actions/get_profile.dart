@@ -20,7 +20,10 @@ Future<ProfileStruct?> getProfile(String userUuid) async {
   if (result.isNotEmpty) {
     final user = result[0];
     return ProfileStruct(
-        uuid: user.userUuid, name: user.name, pictureUrl: user.pictureUrl);
+        id: user.id,
+        uuid: user.userUuid,
+        name: user.name,
+        pictureUrl: user.pictureUrl);
   }
 
   return null;
