@@ -288,6 +288,34 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                         initialDate: getCurrentTimestamp,
                                         firstDate: DateTime(1900),
                                         lastDate: DateTime(2050),
+                                        builder: (context, child) {
+                                          return Theme(
+                                            data: Theme.of(context).copyWith(
+                                              colorScheme: ColorScheme.light(
+                                                primary:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                // <-- SEE HERE
+                                                onPrimary:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary,
+                                                // <-- SEE HERE
+                                                onSurface: FlutterFlowTheme.of(
+                                                        context)
+                                                    .primaryText, // <-- SEE HERE
+                                              ),
+                                              textButtonTheme:
+                                                  TextButtonThemeData(
+                                                style: TextButton.styleFrom(
+                                                  foregroundColor: FlutterFlowTheme
+                                                          .of(context)
+                                                      .primary, // button text color
+                                                ),
+                                              ),
+                                            ),
+                                            child: child!,
+                                          );
+                                        },
                                       );
 
                                       if (_datePicked1Date != null) {
@@ -378,6 +406,34 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                         initialDate: getCurrentTimestamp,
                                         firstDate: getCurrentTimestamp,
                                         lastDate: DateTime(2050),
+                                        builder: (context, child) {
+                                          return Theme(
+                                            data: Theme.of(context).copyWith(
+                                              colorScheme: ColorScheme.light(
+                                                primary:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                // <-- SEE HERE
+                                                onPrimary:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary,
+                                                // <-- SEE HERE
+                                                onSurface: FlutterFlowTheme.of(
+                                                        context)
+                                                    .primaryText, // <-- SEE HERE
+                                              ),
+                                              textButtonTheme:
+                                                  TextButtonThemeData(
+                                                style: TextButton.styleFrom(
+                                                  foregroundColor: FlutterFlowTheme
+                                                          .of(context)
+                                                      .primary, // button text color
+                                                ),
+                                              ),
+                                            ),
+                                            child: child!,
+                                          );
+                                        },
                                       );
 
                                       if (_datePicked2Date != null) {
