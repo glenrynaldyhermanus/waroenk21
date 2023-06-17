@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -94,10 +95,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                               style: FlutterFlowTheme.of(context).titleLarge,
                             ),
                             Text(
-                              valueOrDefault<String>(
-                                FFAppState().authedProfile.name,
-                                'Sobat XXI',
-                              ),
+                              functions.getNameForGreeting(
+                                  FFAppState().authedProfile.name),
                               style: FlutterFlowTheme.of(context)
                                   .titleLarge
                                   .override(
@@ -174,7 +173,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 shape: BoxShape.circle,
                               ),
                               child: Image.network(
-                                'https://i.ibb.co/wMKW8G4/user-placeholder.png',
+                                valueOrDefault<String>(
+                                  FFAppState().authedProfile.pictureUrl,
+                                  'https://i.ibb.co/wMKW8G4/user-placeholder.png',
+                                ),
                                 fit: BoxFit.cover,
                               ),
                             ),
