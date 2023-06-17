@@ -121,6 +121,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'EventDetail',
           path: '/eventDetail',
+          requireAuth: true,
           builder: (context, params) => EventDetailWidget(
             event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
           ),
