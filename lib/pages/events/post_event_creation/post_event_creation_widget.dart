@@ -89,7 +89,7 @@ class _PostEventCreationWidgetState extends State<PostEventCreationWidget> {
                             'https://assets9.lottiefiles.com/private_files/lf30_fup2uejx.json',
                             width: MediaQuery.of(context).size.width * 1.0,
                             height: 130.0,
-                            fit: BoxFit.cover,
+                            fit: BoxFit.fitWidth,
                             animate: true,
                           ),
                         ),

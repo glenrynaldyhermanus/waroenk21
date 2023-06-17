@@ -9,3 +9,5 @@ export '/pages/events/create_event_location/create_event_location_widget.dart'
     show CreateEventLocationWidget;
 export '/pages/events/post_event_creation/post_event_creation_widget.dart'
     show PostEventCreationWidget;
+export '/pages/events/event_detail/event_detail_widget.dart'
+    show EventDetailWidget;
