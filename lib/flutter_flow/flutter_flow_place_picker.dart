@@ -68,7 +68,7 @@ class _FFPlacePickerState extends State<FlutterFlowPlacePicker> {
                     '\n${response.errorMessage}'),
             mode: Mode.overlay,
             types: [],
-            components: [],
+            components: [Component(Component.country, "id")],
             strictbounds: false,
             proxyBaseUrl: widget.proxyBaseUrl,
           );
