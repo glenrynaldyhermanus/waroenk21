@@ -117,6 +117,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'PostEventCreation',
           path: '/postEventCreation',
           builder: (context, params) => PostEventCreationWidget(),
+        ),
+        FFRoute(
+          name: 'EventDetail',
+          path: '/eventDetail',
+          builder: (context, params) => EventDetailWidget(
+            event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

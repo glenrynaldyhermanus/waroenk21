@@ -131,13 +131,30 @@ class _EventWidgetState extends State<EventWidget> {
                               children: List.generate(rowEventsRowList.length,
                                       (rowIndex) {
                                 final rowEventsRow = rowEventsRowList[rowIndex];
-                                return ClipRRect(
-                                  borderRadius: BorderRadius.circular(16.0),
-                                  child: Image.network(
-                                    rowEventsRow.pictureUrl!,
-                                    width: 320.0,
-                                    height: 160.0,
-                                    fit: BoxFit.cover,
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'EventDetail',
+                                      queryParameters: {
+                                        'event': serializeParam(
+                                          rowEventsRow,
+                                          ParamType.SupabaseRow,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(16.0),
+                                    child: Image.network(
+                                      rowEventsRow.pictureUrl!,
+                                      width: 320.0,
+                                      height: 160.0,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
                                 );
                               })
