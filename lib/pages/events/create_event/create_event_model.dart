@@ -29,6 +29,8 @@ class CreateEventModel extends FlutterFlowModel {
   EventsRow? event;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   EventRolesRow? eventRoles;
+  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
+  EventRolesRow? eventRoleParticipant;
 
   /// Initialization and disposal methods.
 

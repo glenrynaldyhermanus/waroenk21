@@ -658,6 +658,16 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                           'is_editable': false,
                         });
                         _shouldSetState = true;
+                        _model.eventRoleParticipant =
+                            await EventRolesTable().insert({
+                          'name': 'Participant',
+                          'level': 0,
+                          'description': 'Participant of this event',
+                          'event_id': _model.event?.id,
+                          'can_add': false,
+                          'is_editable': false,
+                        });
+                        _shouldSetState = true;
                         await EventCrewsTable().insert({
                           'user_id': FFAppState().authedProfile.id,
                           'event_id': _model.event?.id,
