@@ -114,7 +114,12 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                                       .requestFocus(_model.unfocusNode),
                                   child: Padding(
                                     padding: MediaQuery.of(context).viewInsets,
-                                    child: EventMenuWidget(),
+                                    child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.8,
+                                      child: EventMenuWidget(),
+                                    ),
                                   ),
                                 );
                               },
