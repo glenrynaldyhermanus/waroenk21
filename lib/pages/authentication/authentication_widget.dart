@@ -109,9 +109,9 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                     FlutterFlowTheme.of(context).titleMedium,
                                 unselectedLabelStyle:
                                     FlutterFlowTheme.of(context).titleMedium,
-                                labelColor: Colors.white,
-                                unselectedLabelColor:
-                                    FlutterFlowTheme.of(context).accent2,
+                                labelColor:
+                                    FlutterFlowTheme.of(context).tertiary,
+                                unselectedLabelColor: Color(0x67FCE8D4),
                                 borderWidth: 0.0,
                                 borderRadius: 0.0,
                                 elevation: 0.0,
@@ -145,16 +145,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 .emailAddressLoginController,
                                             obscureText: false,
                                             decoration: InputDecoration(
-                                              labelStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               hintText: 'Email',
-                                              hintStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: Color(0x00000000),
+                                                  color: Color(0x80FCE8D4),
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
@@ -186,14 +180,20 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: Colors.white,
+                                              fillColor: Color(0x67342F2F),
                                               contentPadding:
                                                   EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
                                                           20.0, 24.0),
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                ),
                                             maxLines: null,
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
@@ -213,16 +213,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             obscureText:
                                                 !_model.passwordLoginVisibility,
                                             decoration: InputDecoration(
-                                              labelStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               hintText: 'Password',
-                                              hintStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: Color(0x00000000),
+                                                  color: Color(0x80FCE8D4),
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
@@ -254,7 +248,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: Colors.white,
+                                              fillColor: Color(0x67342F2F),
                                               contentPadding:
                                                   EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
@@ -274,13 +268,21 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           .visibility_outlined
                                                       : Icons
                                                           .visibility_off_outlined,
-                                                  color: Color(0xFF95A1AC),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
                                                   size: 20.0,
                                                 ),
                                               ),
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
+                                                ),
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
                                                     .primaryText,
@@ -325,7 +327,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .secondary,
+                                                      .primary,
                                               textStyle: FlutterFlowTheme.of(
                                                       context)
                                                   .titleSmall
@@ -400,16 +402,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 _model.emailAddressController1,
                                             obscureText: false,
                                             decoration: InputDecoration(
-                                              labelStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               hintText: 'Email',
-                                              hintStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: Color(0x00000000),
+                                                  color: Color(0x80FCE8D4),
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
@@ -441,14 +437,20 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: Colors.white,
+                                              fillColor: Color(0x67342F2F),
                                               contentPadding:
                                                   EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
                                                           20.0, 24.0),
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
+                                                ),
                                             maxLines: null,
                                             keyboardType:
                                                 TextInputType.emailAddress,
@@ -469,16 +471,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 _model.emailAddressController2,
                                             obscureText: false,
                                             decoration: InputDecoration(
-                                              labelStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               hintText: 'Nama Lengkap',
-                                              hintStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: Color(0x00000000),
+                                                  color: Color(0x7FFCEBD4),
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
@@ -510,14 +506,20 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: Colors.white,
+                                              fillColor: Color(0x67342F2F),
                                               contentPadding:
                                                   EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
                                                           20.0, 24.0),
                                             ),
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
+                                                ),
                                             maxLines: null,
                                             cursorColor:
                                                 FlutterFlowTheme.of(context)
@@ -537,16 +539,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             obscureText:
                                                 !_model.passwordVisibility,
                                             decoration: InputDecoration(
-                                              labelStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               hintText: 'Password',
-                                              hintStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: Color(0x00000000),
+                                                  color: Color(0x80FCF6EA),
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
@@ -578,7 +574,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: Colors.white,
+                                              fillColor: Color(0x67342F2F),
                                               contentPadding:
                                                   EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
@@ -598,7 +594,9 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           .visibility_outlined
                                                       : Icons
                                                           .visibility_off_outlined,
-                                                  color: Color(0xFF95A1AC),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
                                                   size: 20.0,
                                                 ),
                                               ),
@@ -607,7 +605,9 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Lexend Deca',
-                                                  color: Color(0xFF14181B),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
                                                   fontSize: 14.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
@@ -629,16 +629,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             obscureText: !_model
                                                 .passwordConfirmVisibility,
                                             decoration: InputDecoration(
-                                              labelStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               hintText: 'Password Confirmation',
-                                              hintStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
-                                                  color: Color(0x00000000),
+                                                  color: Color(0x80FCE8D4),
                                                   width: 1.0,
                                                 ),
                                                 borderRadius:
@@ -670,7 +664,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     BorderRadius.circular(8.0),
                                               ),
                                               filled: true,
-                                              fillColor: Colors.white,
+                                              fillColor: Color(0x67342F2F),
                                               contentPadding:
                                                   EdgeInsetsDirectional
                                                       .fromSTEB(20.0, 24.0,
@@ -699,7 +693,9 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 .bodyMedium
                                                 .override(
                                                   fontFamily: 'Lexend Deca',
-                                                  color: Color(0xFF14181B),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .tertiary,
                                                   fontSize: 14.0,
                                                   fontWeight: FontWeight.normal,
                                                 ),
