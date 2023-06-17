@@ -223,6 +223,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Nama Event',
+                            labelStyle: FlutterFlowTheme.of(context).bodyMedium,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).primary,
@@ -253,6 +254,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                             ),
                           ),
                           style: FlutterFlowTheme.of(context).bodyMedium,
+                          keyboardType: TextInputType.name,
                           cursorColor: FlutterFlowTheme.of(context).primary,
                           validator: _model.textControllerValidator
                               .asValidator(context),
