@@ -146,6 +146,16 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               hintText: 'Email',
+                                              hintStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Rubik',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                      ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x80FCE8D4),
@@ -192,7 +202,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                   fontFamily: 'Rubik',
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primaryBackground,
+                                                      .tertiary,
                                                 ),
                                             maxLines: null,
                                             cursorColor:
@@ -214,6 +224,16 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 !_model.passwordLoginVisibility,
                                             decoration: InputDecoration(
                                               hintText: 'Password',
+                                              hintStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Rubik',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                      ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x80FCE8D4),
@@ -403,6 +423,16 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               hintText: 'Email',
+                                              hintStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Rubik',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                      ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x80FCE8D4),
@@ -472,6 +502,16 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             obscureText: false,
                                             decoration: InputDecoration(
                                               hintText: 'Nama Lengkap',
+                                              hintStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Rubik',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                      ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x7FFCEBD4),
@@ -540,6 +580,18 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 !_model.passwordVisibility,
                                             decoration: InputDecoration(
                                               hintText: 'Password',
+                                              hintStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
+                                                    fontSize: 14.0,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x80FCF6EA),
@@ -629,7 +681,19 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             obscureText: !_model
                                                 .passwordConfirmVisibility,
                                             decoration: InputDecoration(
-                                              hintText: 'Password Confirmation',
+                                              hintText: 'Konfirmasi Password',
+                                              hintStyle: FlutterFlowTheme.of(
+                                                      context)
+                                                  .bodyMedium
+                                                  .override(
+                                                    fontFamily: 'Lexend Deca',
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .tertiary,
+                                                    fontSize: 14.0,
+                                                    fontWeight:
+                                                        FontWeight.normal,
+                                                  ),
                                               enabledBorder: OutlineInputBorder(
                                                 borderSide: BorderSide(
                                                   color: Color(0x80FCE8D4),
