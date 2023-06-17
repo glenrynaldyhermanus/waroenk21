@@ -151,52 +151,91 @@ class _EventWidgetState extends State<EventWidget> {
                               children: List.generate(rowEventsRowList.length,
                                       (rowIndex) {
                                 final rowEventsRow = rowEventsRowList[rowIndex];
-                                return Container(
-                                  width: 320.0,
-                                  height: 160.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    image: DecorationImage(
-                                      fit: BoxFit.cover,
-                                      image: Image.network(
-                                        rowEventsRow.pictureUrl!,
-                                      ).image,
+                                return Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 24.0),
+                                  child: Container(
+                                    width: 320.0,
+                                    height: 188.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: Image.network(
+                                          rowEventsRow.pictureUrl!,
+                                        ).image,
+                                      ),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 4.0,
+                                          color: Color(0x19000000),
+                                          offset: Offset(0.0, 2.0),
+                                        )
+                                      ],
+                                      borderRadius: BorderRadius.circular(16.0),
                                     ),
-                                    borderRadius: BorderRadius.circular(16.0),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        24.0, 0.0, 24.0, 24.0),
                                     child: Column(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment: MainAxisAlignment.end,
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          rowEventsRow.name,
-                                          style: FlutterFlowTheme.of(context)
-                                              .titleMedium
-                                              .override(
-                                                fontFamily: 'Rubik',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                              ),
-                                        ),
-                                        Text(
-                                          valueOrDefault<String>(
-                                            rowEventsRow.location,
-                                            'Lokasi',
+                                        Expanded(
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(0.0),
+                                              bottomRight: Radius.circular(0.0),
+                                              topLeft: Radius.circular(16.0),
+                                              topRight: Radius.circular(16.0),
+                                            ),
+                                            child: Image.network(
+                                              rowEventsRow.pictureUrl!,
+                                              width: double.infinity,
+                                              height: 200.0,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Rubik',
-                                                color:
+                                        ),
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 16.0, 16.0, 16.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.stretch,
+                                            children: [
+                                              Text(
+                                                rowEventsRow.name,
+                                                style:
                                                     FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
+                                                        .titleMedium
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                        ),
                                               ),
+                                              Text(
+                                                valueOrDefault<String>(
+                                                  rowEventsRow.location,
+                                                  'Lokasi',
+                                                ),
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                        ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -296,7 +335,7 @@ class _EventWidgetState extends State<EventWidget> {
                 ],
               ),
             ].divide(SizedBox(
-              height: 48.0,
+              height: 32.0,
             )),
           ),
         ),
