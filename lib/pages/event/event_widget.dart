@@ -1,6 +1,8 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/events/empty_event/empty_event_widget.dart';
+import '/pages/events/empty_live_event/empty_live_event_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -136,6 +138,9 @@ class _EventWidgetState extends State<EventWidget> {
                             );
                           }
                           List<EventsRow> rowEventsRowList = snapshot.data!;
+                          if (rowEventsRowList.isEmpty) {
+                            return EmptyLiveEventWidget();
+                          }
                           return SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
                             child: Row(
@@ -257,6 +262,11 @@ class _EventWidgetState extends State<EventWidget> {
                           );
                         }
                         List<EventsRow> columnEventsRowList = snapshot.data!;
+                        if (columnEventsRowList.isEmpty) {
+                          return Center(
+                            child: EmptyEventWidget(),
+                          );
+                        }
                         return Column(
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.stretch,
