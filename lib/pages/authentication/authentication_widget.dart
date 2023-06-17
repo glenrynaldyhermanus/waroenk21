@@ -226,7 +226,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .emailAddressLoginControllerValidator
                                                         .asValidator(context),
@@ -336,7 +336,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .passwordLoginControllerValidator
                                                         .asValidator(context),
@@ -536,7 +536,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .emailAddressController1Validator
                                                         .asValidator(context),
@@ -626,7 +626,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .emailAddressController2Validator
                                                         .asValidator(context),
@@ -744,7 +744,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .passwordControllerValidator
                                                         .asValidator(context),
@@ -863,7 +863,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .passwordConfirmControllerValidator
                                                         .asValidator(context),
