@@ -209,83 +209,82 @@ class _EventWidgetState extends State<EventWidget> {
                   ],
                 ),
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Event Selanjutnya',
-                            style: FlutterFlowTheme.of(context).titleMedium,
-                          ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
+                        child: Text(
+                          'Event Selanjutnya',
+                          style: FlutterFlowTheme.of(context).titleMedium,
                         ),
-                      ],
-                    ),
-                    Padding(
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 24.0, 0.0),
-                      child: FutureBuilder<List<EventsRow>>(
-                        future: EventsTable().queryRows(
-                          queryFn: (q) => q
-                              .eq(
-                                'is_active',
-                                true,
-                              )
-                              .gt(
-                                'start_date',
-                                supaSerialize<DateTime>(getCurrentTimestamp),
-                              )
-                              .order('start_date', ascending: true),
-                        ),
-                        builder: (context, snapshot) {
-                          // Customize what your widget looks like when it's loading.
-                          if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                ),
+                      ),
+                    ],
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 24.0, 0.0),
+                    child: FutureBuilder<List<EventsRow>>(
+                      future: EventsTable().queryRows(
+                        queryFn: (q) => q
+                            .eq(
+                              'is_active',
+                              true,
+                            )
+                            .gt(
+                              'start_date',
+                              supaSerialize<DateTime>(getCurrentTimestamp),
+                            )
+                            .order('start_date', ascending: true),
+                      ),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50.0,
+                              height: 50.0,
+                              child: CircularProgressIndicator(
+                                color: FlutterFlowTheme.of(context).primary,
+                              ),
+                            ),
+                          );
+                        }
+                        List<EventsRow> columnEventsRowList = snapshot.data!;
+                        return Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: List.generate(columnEventsRowList.length,
+                              (columnIndex) {
+                            final columnEventsRow =
+                                columnEventsRowList[columnIndex];
+                            return ClipRRect(
+                              borderRadius: BorderRadius.circular(16.0),
+                              child: Image.network(
+                                columnEventsRow.pictureUrl!,
+                                width: 320.0,
+                                height: 160.0,
+                                fit: BoxFit.cover,
                               ),
                             );
-                          }
-                          List<EventsRow> columnEventsRowList = snapshot.data!;
-                          return Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: List.generate(columnEventsRowList.length,
-                                (columnIndex) {
-                              final columnEventsRow =
-                                  columnEventsRowList[columnIndex];
-                              return ClipRRect(
-                                borderRadius: BorderRadius.circular(16.0),
-                                child: Image.network(
-                                  columnEventsRow.pictureUrl!,
-                                  width: 320.0,
-                                  height: 160.0,
-                                  fit: BoxFit.cover,
-                                ),
-                              );
-                            }).divide(SizedBox(
-                              height: 16.0,
-                            )),
-                          );
-                        },
-                      ),
+                          }).divide(SizedBox(
+                            height: 16.0,
+                          )),
+                        );
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ].divide(SizedBox(
+              height: 48.0,
+            )),
           ),
         ),
       ),
