@@ -1,6 +1,5 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -58,35 +57,36 @@ class _EmptyEventWidgetState extends State<EmptyEventWidget> {
               color: Color(0x4D736A6A),
               size: 120.0,
             ),
-            Text(
-              'Tidak ada event dalam waktu dekat',
-              textAlign: TextAlign.center,
-              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                    fontFamily: 'Rubik',
-                    color: FlutterFlowTheme.of(context).secondaryText,
-                  ),
-            ),
-            FFButtonWidget(
-              onPressed: () async {
-                context.pushNamed('CreateEvent');
-              },
-              text: 'Buat Event',
-              options: FFButtonOptions(
-                height: 40.0,
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: FlutterFlowTheme.of(context).primaryBackground,
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Rubik',
-                      color: FlutterFlowTheme.of(context).primary,
-                    ),
-                elevation: 0.0,
-                borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).primary,
-                  width: 2.0,
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Text(
+                  'Tidak ada event dalam waktu dekat.',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).titleMedium.override(
+                        fontFamily: 'Rubik',
+                        color: Color(0xBE342F2F),
+                      ),
                 ),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
+                Text(
+                  'Ada acara makan-makan? Futsal mingguan atau olahraga lainnya?',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).labelLarge.override(
+                        fontFamily: 'Rubik',
+                        color: Color(0x80342F2F),
+                      ),
+                ),
+                Text(
+                  'Buat event kamu sekarang!',
+                  textAlign: TextAlign.center,
+                  style: FlutterFlowTheme.of(context).labelLarge.override(
+                        fontFamily: 'Rubik',
+                        color: Color(0xBE342F2F),
+                      ),
+                ),
+              ].divide(SizedBox(
+                height: 4.0,
+              )),
             ),
           ].divide(SizedBox(
             height: 16.0,
