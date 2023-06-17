@@ -223,6 +223,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Nama Event',
+                            labelStyle: FlutterFlowTheme.of(context).bodyMedium,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: FlutterFlowTheme.of(context).primary,
@@ -253,6 +254,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                             ),
                           ),
                           style: FlutterFlowTheme.of(context).bodyMedium,
+                          keyboardType: TextInputType.name,
                           cursorColor: FlutterFlowTheme.of(context).primary,
                           validator: _model.textControllerValidator
                               .asValidator(context),
@@ -541,14 +543,14 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                 child: Container(
                                   width: 100.0,
                                   decoration: BoxDecoration(
-                                    color: Color(0xFFD9F1EA),
+                                    color: Color(0x1A811D21),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
                                         16.0, 16.0, 16.0, 16.0),
                                     child: Text(
-                                      'Informasi\n\nUntuk kenyamanan dan keamanan. Sebelum terpublish, event yang dibuat akan di-review terlebih dahulu oleh Administrator.',
+                                      'Informasi\n\nUntuk kenyamanan dan keamanan. Sebelum di-publish, event yang dibuat akan di-review terlebih dahulu oleh Administrator.',
                                       style: FlutterFlowTheme.of(context)
                                           .bodyMedium,
                                     ),
