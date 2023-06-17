@@ -1,8 +1,6 @@
 import '/backend/supabase/supabase.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -45,6 +43,26 @@ class _EventWidgetState extends State<EventWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () async {
+            context.pushNamed('CreateEvent');
+          },
+          backgroundColor: FlutterFlowTheme.of(context).primary,
+          icon: Icon(
+            Icons.event_note,
+            color: FlutterFlowTheme.of(context).tertiary,
+            size: 16.0,
+          ),
+          elevation: 8.0,
+          label: Text(
+            'Buat Event',
+            textAlign: TextAlign.center,
+            style: FlutterFlowTheme.of(context).bodyMedium.override(
+                  fontFamily: 'Rubik',
+                  color: FlutterFlowTheme.of(context).tertiary,
+                ),
+          ),
+        ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
@@ -78,27 +96,8 @@ class _EventWidgetState extends State<EventWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            'Event Kamu',
+                            'Sedang Berlangsung',
                             style: FlutterFlowTheme.of(context).titleMedium,
-                          ),
-                        ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 24.0, 0.0),
-                          child: FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 16.0,
-                            borderWidth: 1.0,
-                            buttonSize: 32.0,
-                            fillColor: FlutterFlowTheme.of(context).primary,
-                            icon: Icon(
-                              Icons.arrow_forward,
-                              color: FlutterFlowTheme.of(context).tertiary,
-                              size: 16.0,
-                            ),
-                            onPressed: () {
-                              print('IconButton pressed ...');
-                            },
                           ),
                         ),
                       ],
@@ -108,7 +107,20 @@ class _EventWidgetState extends State<EventWidget> {
                           EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                       child: FutureBuilder<List<EventsRow>>(
                         future: EventsTable().queryRows(
-                          queryFn: (q) => q,
+                          queryFn: (q) => q
+                              .lte(
+                                'start_date',
+                                supaSerialize<DateTime>(getCurrentTimestamp),
+                              )
+                              .gte(
+                                'end_date',
+                                supaSerialize<DateTime>(getCurrentTimestamp),
+                              )
+                              .eq(
+                                'is_active',
+                                true,
+                              )
+                              .order('end_date', ascending: true),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -131,29 +143,48 @@ class _EventWidgetState extends State<EventWidget> {
                               children: List.generate(rowEventsRowList.length,
                                       (rowIndex) {
                                 final rowEventsRow = rowEventsRowList[rowIndex];
-                                return InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    context.pushNamed(
-                                      'EventDetail',
-                                      queryParameters: {
-                                        'event': serializeParam(
-                                          rowEventsRow,
-                                          ParamType.SupabaseRow,
-                                        ),
-                                      }.withoutNulls,
-                                    );
-                                  },
-                                  child: ClipRRect(
+                                return Container(
+                                  width: 320.0,
+                                  height: 160.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context).primary,
                                     borderRadius: BorderRadius.circular(16.0),
-                                    child: Image.network(
-                                      rowEventsRow.pictureUrl!,
-                                      width: 320.0,
-                                      height: 160.0,
-                                      fit: BoxFit.cover,
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 24.0, 24.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          rowEventsRow.name,
+                                          style: FlutterFlowTheme.of(context)
+                                              .titleMedium
+                                              .override(
+                                                fontFamily: 'Rubik',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                              ),
+                                        ),
+                                        Text(
+                                          valueOrDefault<String>(
+                                            rowEventsRow.location,
+                                            'Lokasi',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Rubik',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                              ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 );
@@ -190,37 +221,6 @@ class _EventWidgetState extends State<EventWidget> {
                             style: FlutterFlowTheme.of(context).titleMedium,
                           ),
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 24.0, 0.0),
-                          child: FFButtonWidget(
-                            onPressed: () async {
-                              context.pushNamed('CreateEvent');
-                            },
-                            text: 'Buat Event',
-                            options: FFButtonOptions(
-                              height: 32.0,
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 0.0),
-                              color: FlutterFlowTheme.of(context).primary,
-                              textStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Rubik',
-                                    color:
-                                        FlutterFlowTheme.of(context).tertiary,
-                                  ),
-                              elevation: 3.0,
-                              borderSide: BorderSide(
-                                color: Colors.transparent,
-                                width: 1.0,
-                              ),
-                              borderRadius: BorderRadius.circular(24.0),
-                            ),
-                          ),
-                        ),
                       ],
                     ),
                     Padding(
@@ -232,6 +232,10 @@ class _EventWidgetState extends State<EventWidget> {
                               .eq(
                                 'is_active',
                                 true,
+                              )
+                              .gt(
+                                'start_date',
+                                supaSerialize<DateTime>(getCurrentTimestamp),
                               )
                               .order('start_date', ascending: true),
                         ),
