@@ -160,12 +160,6 @@ class _EventWidgetState extends State<EventWidget> {
                                     decoration: BoxDecoration(
                                       color: FlutterFlowTheme.of(context)
                                           .secondaryBackground,
-                                      image: DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: Image.network(
-                                          rowEventsRow.pictureUrl!,
-                                        ).image,
-                                      ),
                                       boxShadow: [
                                         BoxShadow(
                                           blurRadius: 4.0,
