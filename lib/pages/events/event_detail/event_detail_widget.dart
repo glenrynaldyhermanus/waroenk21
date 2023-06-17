@@ -56,8 +56,9 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
             children: [
               Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
+                  Hero(
+                    tag: widget.event!.pictureUrl!,
+                    transitionOnUserGestures: true,
                     child: Image.network(
                       widget.event!.pictureUrl!,
                       width: double.infinity,
