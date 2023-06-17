@@ -167,7 +167,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x80FCE8D4),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -178,7 +178,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -221,6 +221,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                               .tertiary,
                                                         ),
                                                     maxLines: null,
+                                                    keyboardType: TextInputType
+                                                        .emailAddress,
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -256,7 +258,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x80FCE8D4),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -267,7 +269,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -475,7 +477,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x80FCE8D4),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -486,7 +488,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -565,7 +567,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x7FFCEBD4),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -576,7 +578,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -619,6 +621,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                               .tertiary,
                                                         ),
                                                     maxLines: null,
+                                                    keyboardType:
+                                                        TextInputType.name,
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -658,7 +662,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x80FCF6EA),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -669,7 +673,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -777,7 +781,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x80FCE8D4),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -788,7 +792,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -836,8 +840,9 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                                   .visibility_outlined
                                                               : Icons
                                                                   .visibility_off_outlined,
-                                                          color:
-                                                              Color(0xFF95A1AC),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
                                                           size: 20.0,
                                                         ),
                                                       ),
