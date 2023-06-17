@@ -167,7 +167,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x80FCE8D4),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -178,7 +178,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -221,10 +221,12 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                               .tertiary,
                                                         ),
                                                     maxLines: null,
+                                                    keyboardType: TextInputType
+                                                        .emailAddress,
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .emailAddressLoginControllerValidator
                                                         .asValidator(context),
@@ -256,7 +258,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x80FCE8D4),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -267,7 +269,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -334,7 +336,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .passwordLoginControllerValidator
                                                         .asValidator(context),
@@ -475,7 +477,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x80FCE8D4),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -486,7 +488,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -534,7 +536,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .emailAddressController1Validator
                                                         .asValidator(context),
@@ -565,7 +567,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x7FFCEBD4),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -576,7 +578,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -619,10 +621,12 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                               .tertiary,
                                                         ),
                                                     maxLines: null,
+                                                    keyboardType:
+                                                        TextInputType.name,
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .emailAddressController2Validator
                                                         .asValidator(context),
@@ -658,7 +662,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x80FCF6EA),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -669,7 +673,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -740,7 +744,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .passwordControllerValidator
                                                         .asValidator(context),
@@ -777,7 +781,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x80FCE8D4),
+                                                              Color(0x3FFCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -788,7 +792,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           OutlineInputBorder(
                                                         borderSide: BorderSide(
                                                           color:
-                                                              Color(0x00000000),
+                                                              Color(0x80FCE8D4),
                                                           width: 1.0,
                                                         ),
                                                         borderRadius:
@@ -836,8 +840,9 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                                   .visibility_outlined
                                                               : Icons
                                                                   .visibility_off_outlined,
-                                                          color:
-                                                              Color(0xFF95A1AC),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .tertiary,
                                                           size: 20.0,
                                                         ),
                                                       ),
@@ -858,7 +863,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     cursorColor:
                                                         FlutterFlowTheme.of(
                                                                 context)
-                                                            .primaryText,
+                                                            .tertiary,
                                                     validator: _model
                                                         .passwordConfirmControllerValidator
                                                         .asValidator(context),
