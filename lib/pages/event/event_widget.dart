@@ -43,24 +43,27 @@ class _EventWidgetState extends State<EventWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () async {
-            context.pushNamed('CreateEvent');
-          },
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          icon: Icon(
-            Icons.event_note,
-            color: FlutterFlowTheme.of(context).tertiary,
-            size: 16.0,
-          ),
-          elevation: 8.0,
-          label: Text(
-            'Buat Event',
-            textAlign: TextAlign.center,
-            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Rubik',
-                  color: FlutterFlowTheme.of(context).tertiary,
-                ),
+        floatingActionButton: Padding(
+          padding: const EdgeInsets.only(bottom: 64),
+          child: FloatingActionButton.extended(
+            onPressed: () async {
+              context.pushNamed('CreateEvent');
+            },
+            backgroundColor: FlutterFlowTheme.of(context).primary,
+            icon: Icon(
+              Icons.event_note,
+              color: FlutterFlowTheme.of(context).tertiary,
+              size: 16.0,
+            ),
+            elevation: 8.0,
+            label: Text(
+              'Buat Event',
+              textAlign: TextAlign.center,
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Rubik',
+                    color: FlutterFlowTheme.of(context).tertiary,
+                  ),
+            ),
           ),
         ),
         appBar: AppBar(
