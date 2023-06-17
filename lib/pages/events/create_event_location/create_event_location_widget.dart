@@ -123,20 +123,21 @@ class _CreateEventLocationWidgetState extends State<CreateEventLocationWidget> {
                   ),
                 ),
               ),
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
-                  child: Container(
-                    width: double.infinity,
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      borderRadius: BorderRadius.circular(8.0),
-                    ),
-                    child: Stack(
-                      children: [
-                        if (_model.placePickerValue.name != null &&
-                            _model.placePickerValue.name != '')
+              if (_model.placePickerValue.address != null &&
+                  _model.placePickerValue.address != '')
+                Expanded(
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 24.0),
+                    child: Container(
+                      width: double.infinity,
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      child: Stack(
+                        children: [
                           FlutterFlowGoogleMap(
                             controller: _model.googleMapsController,
                             onCameraIdle: (latLng) =>
@@ -156,23 +157,24 @@ class _CreateEventLocationWidgetState extends State<CreateEventLocationWidget> {
                             showTraffic: false,
                             centerMapOnMarkerTap: true,
                           ),
-                        Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 24.0),
-                            child: Icon(
-                              Icons.location_on_rounded,
-                              color: FlutterFlowTheme.of(context).secondaryText,
-                              size: 48.0,
+                          Align(
+                            alignment: AlignmentDirectional(0.0, 0.0),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 24.0),
+                              child: Icon(
+                                Icons.location_on_rounded,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 48.0,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
               if (_model.placePickerValue.name != null &&
                   _model.placePickerValue.name != '')
                 Padding(
