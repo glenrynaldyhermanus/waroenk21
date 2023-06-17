@@ -219,7 +219,6 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                             24.0, 32.0, 24.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController,
-                          autofocus: true,
                           obscureText: false,
                           decoration: InputDecoration(
                             labelText: 'Nama Event',
