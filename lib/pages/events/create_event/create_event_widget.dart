@@ -569,7 +569,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    if (_model.isDataUploading == true) {
+                    if (_model.isDataUploading == false) {
                       if ((_model.uploadedFileUrl != null &&
                               _model.uploadedFileUrl != '') &&
                           (_model.textController.text != null &&
