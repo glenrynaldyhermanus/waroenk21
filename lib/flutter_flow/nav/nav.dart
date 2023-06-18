@@ -140,6 +140,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => CreateRoleWidget(
             event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
           ),
+        ),
+        FFRoute(
+          name: 'CreateActivity',
+          path: '/createActivity',
+          builder: (context, params) => CreateActivityWidget(
+            event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

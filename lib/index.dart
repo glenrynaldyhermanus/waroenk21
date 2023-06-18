@@ -13,3 +13,5 @@ export '/pages/events/event_detail/event_detail_widget.dart'
     show EventDetailWidget;
 export '/pages/crews/crew_list/crew_list_widget.dart' show CrewListWidget;
 export '/pages/crews/create_role/create_role_widget.dart' show CreateRoleWidget;
+export '/pages/activities/create_activity/create_activity_widget.dart'
+    show CreateActivityWidget;
