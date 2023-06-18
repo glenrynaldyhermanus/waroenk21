@@ -173,8 +173,16 @@ class _CrewListWidgetState extends State<CrewListWidget> {
                                         ),
                                       ),
                                       FFButtonWidget(
-                                        onPressed: () {
-                                          print('Button pressed ...');
+                                        onPressed: () async {
+                                          context.pushNamed(
+                                            'CreateRole',
+                                            queryParameters: {
+                                              'event': serializeParam(
+                                                widget.event,
+                                                ParamType.SupabaseRow,
+                                              ),
+                                            }.withoutNulls,
+                                          );
                                         },
                                         text: 'Organize',
                                         options: FFButtonOptions(
