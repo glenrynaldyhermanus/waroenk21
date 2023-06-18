@@ -11,3 +11,5 @@ export '/pages/events/post_event_creation/post_event_creation_widget.dart'
     show PostEventCreationWidget;
 export '/pages/events/event_detail/event_detail_widget.dart'
     show EventDetailWidget;
+export '/pages/events/crews/crew_list/crew_list_widget.dart'
+    show CrewListWidget;

@@ -125,6 +125,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => EventDetailWidget(
             event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
           ),
+        ),
+        FFRoute(
+          name: 'CrewList',
+          path: '/crewList',
+          builder: (context, params) => CrewListWidget(
+            event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
