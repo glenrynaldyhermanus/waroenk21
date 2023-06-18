@@ -49,7 +49,12 @@ class _EventWidgetState extends State<EventWidget> {
           padding: const EdgeInsets.only(bottom: 64),
           child: FloatingActionButton.extended(
             onPressed: () async {
-              context.pushNamed('CreateEvent');
+              context.pushNamed('CreateEvent', extra: <String, dynamic>{
+                kTransitionInfoKey: TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.bottomToTop,
+                ),
+              },);
             },
             backgroundColor: FlutterFlowTheme.of(context).primary,
             icon: Icon(
