@@ -223,7 +223,6 @@ class _CreateRoleWidgetState extends State<CreateRoleWidget> {
                           ),
                           style: FlutterFlowTheme.of(context).bodyMedium,
                           maxLines: 4,
-                          keyboardType: TextInputType.name,
                           cursorColor: FlutterFlowTheme.of(context).primary,
                           validator: _model.textController2Validator
                               .asValidator(context),

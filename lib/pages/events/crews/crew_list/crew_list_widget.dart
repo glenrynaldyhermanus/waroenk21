@@ -1,5 +1,5 @@
 import '/backend/supabase/supabase.dart';
-import '/components/empties/empty_event/empty_event_widget.dart';
+import '/components/empties/empty_crew/empty_crew_widget.dart';
 import '/components/empties/empty_roles/empty_roles_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -166,8 +166,8 @@ class _CrewListWidgetState extends State<CrewListWidget> {
                                       Expanded(
                                         child: Text(
                                           containerEventRolesRowList.length > 0
-                                              ? '${containerEventRolesRowList.length.toString()} jabatan'
-                                              : 'Tidak memiliki jabatan',
+                                              ? '${containerEventRolesRowList.length.toString()} role untuk event ini'
+                                              : 'Tidak ada role untuk event ini',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium,
                                         ),
@@ -318,7 +318,7 @@ class _CrewListWidgetState extends State<CrewListWidget> {
                                         snapshot.data!;
                                     if (columnEventCrewsRowList.isEmpty) {
                                       return Center(
-                                        child: EmptyEventWidget(),
+                                        child: EmptyCrewWidget(),
                                       );
                                     }
                                     return Column(
