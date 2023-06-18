@@ -61,7 +61,7 @@ class _EmptyEventWidgetState extends State<EmptyEventWidget> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Text(
-                  'Tidak ada event dalam waktu dekat.',
+                  'Tidak ada aktivitas yang bisa kamu ikuti.',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).titleMedium.override(
                         fontFamily: 'Rubik',
@@ -77,7 +77,7 @@ class _EmptyEventWidgetState extends State<EmptyEventWidget> {
                       ),
                 ),
                 Text(
-                  'Buat event kamu sekarang!',
+                  'Buat aktivitas kamu sekarang!',
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).labelLarge.override(
                         fontFamily: 'Rubik',

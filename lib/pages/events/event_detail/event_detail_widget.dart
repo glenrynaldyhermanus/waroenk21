@@ -275,8 +275,8 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 8.0, 0.0, 0.0),
-                              child: FutureBuilder<List<EventActivitiesRow>>(
-                                future: EventActivitiesTable().queryRows(
+                              child: FutureBuilder<List<ActivitiesRow>>(
+                                future: ActivitiesTable().queryRows(
                                   queryFn: (q) => q.eq(
                                     'event_id',
                                     widget.event?.id,
@@ -296,10 +296,9 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                                       ),
                                     );
                                   }
-                                  List<EventActivitiesRow>
-                                      rowEventActivitiesRowList =
+                                  List<ActivitiesRow> rowActivitiesRowList =
                                       snapshot.data!;
-                                  if (rowEventActivitiesRowList.isEmpty) {
+                                  if (rowActivitiesRowList.isEmpty) {
                                     return EmptyActivityWidget();
                                   }
                                   return SingleChildScrollView(
@@ -307,10 +306,10 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                                     child: Row(
                                       mainAxisSize: MainAxisSize.max,
                                       children: List.generate(
-                                              rowEventActivitiesRowList.length,
+                                              rowActivitiesRowList.length,
                                               (rowIndex) {
-                                        final rowEventActivitiesRow =
-                                            rowEventActivitiesRowList[rowIndex];
+                                        final rowActivitiesRow =
+                                            rowActivitiesRowList[rowIndex];
                                         return Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
@@ -339,7 +338,7 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                                               children: [
                                                 Expanded(
                                                   child: Hero(
-                                                    tag: rowEventActivitiesRow
+                                                    tag: rowActivitiesRow
                                                         .pictureUrl!,
                                                     transitionOnUserGestures:
                                                         true,
@@ -360,7 +359,7 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                                                                 16.0),
                                                       ),
                                                       child: Image.network(
-                                                        rowEventActivitiesRow
+                                                        rowActivitiesRow
                                                             .pictureUrl!,
                                                         width: double.infinity,
                                                         height: 160.0,
@@ -383,8 +382,7 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                                                             .stretch,
                                                     children: [
                                                       Text(
-                                                        rowEventActivitiesRow
-                                                            .name,
+                                                        rowActivitiesRow.name,
                                                         maxLines: 1,
                                                         style:
                                                             FlutterFlowTheme.of(
