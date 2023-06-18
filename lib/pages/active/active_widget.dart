@@ -7,25 +7,25 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'activities_model.dart';
-export 'activities_model.dart';
+import 'active_model.dart';
+export 'active_model.dart';
 
-class ActivitiesWidget extends StatefulWidget {
-  const ActivitiesWidget({Key? key}) : super(key: key);
+class ActiveWidget extends StatefulWidget {
+  const ActiveWidget({Key? key}) : super(key: key);
 
   @override
-  _ActivitiesWidgetState createState() => _ActivitiesWidgetState();
+  _ActiveWidgetState createState() => _ActiveWidgetState();
 }
 
-class _ActivitiesWidgetState extends State<ActivitiesWidget> {
-  late ActivitiesModel _model;
+class _ActiveWidgetState extends State<ActiveWidget> {
+  late ActiveModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ActivitiesModel());
+    _model = createModel(context, () => ActiveModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -50,7 +50,7 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
-            'Activities',
+            'Active',
             style: FlutterFlowTheme.of(context).titleMedium.override(
                   fontFamily: 'Rubik',
                   color: FlutterFlowTheme.of(context).secondaryText,
@@ -313,7 +313,7 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                         child: Text(
-                          'Activities',
+                          'Aktivitas',
                           style: FlutterFlowTheme.of(context).titleMedium,
                         ),
                       ),
@@ -324,7 +324,7 @@ class _ActivitiesWidgetState extends State<ActivitiesWidget> {
                           onPressed: () {
                             print('Button pressed ...');
                           },
-                          text: 'Activity',
+                          text: 'Aktivitas',
                           icon: Icon(
                             Icons.add,
                             color: FlutterFlowTheme.of(context).tertiary,
