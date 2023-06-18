@@ -1,6 +1,6 @@
 import '/backend/supabase/supabase.dart';
-import '/components/events/empty_event/empty_event_widget.dart';
-import '/components/events/empty_live_event/empty_live_event_widget.dart';
+import '/components/empties/empty_event/empty_event_widget.dart';
+import '/components/empties/empty_live_event/empty_live_event_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,6 @@
 import '/backend/supabase/supabase.dart';
-import '/components/events/empty_event/empty_event_widget.dart';
+import '/components/empties/empty_event/empty_event_widget.dart';
+import '/components/empties/empty_roles/empty_roles_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -172,8 +173,16 @@ class _CrewListWidgetState extends State<CrewListWidget> {
                                         ),
                                       ),
                                       FFButtonWidget(
-                                        onPressed: () {
-                                          print('Button pressed ...');
+                                        onPressed: () async {
+                                          context.pushNamed(
+                                            'CreateRole',
+                                            queryParameters: {
+                                              'event': serializeParam(
+                                                widget.event,
+                                                ParamType.SupabaseRow,
+                                              ),
+                                            }.withoutNulls,
+                                          );
                                         },
                                         text: 'Organize',
                                         options: FFButtonOptions(
@@ -243,6 +252,9 @@ class _CrewListWidgetState extends State<CrewListWidget> {
                     }
                     List<EventRolesRow> columnEventRolesRowList =
                         snapshot.data!;
+                    if (columnEventRolesRowList.isEmpty) {
+                      return EmptyRolesWidget();
+                    }
                     return Column(
                       mainAxisSize: MainAxisSize.max,
                       children: List.generate(columnEventRolesRowList.length,

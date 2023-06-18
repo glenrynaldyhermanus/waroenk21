@@ -23,3 +23,7 @@ double getLongitude(LatLng latLng) {
 String getNameForGreeting(String name) {
   return name.split(" ").first;
 }
+
+int getLevel(String level) {
+  return int.parse(level);
+}

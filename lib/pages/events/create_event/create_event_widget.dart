@@ -654,8 +654,9 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                           'level': 0,
                           'description': 'Creator of this event',
                           'event_id': _model.event?.id,
-                          'can_add': true,
                           'is_editable': false,
+                          'can_add_crew': false,
+                          'can_add_activity': false,
                         });
                         _shouldSetState = true;
                         _model.eventRoleParticipant =
@@ -664,8 +665,9 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                           'level': 0,
                           'description': 'Participant of this event',
                           'event_id': _model.event?.id,
-                          'can_add': false,
                           'is_editable': false,
+                          'can_add_crew': false,
+                          'can_add_activity': false,
                         });
                         _shouldSetState = true;
                         await EventCrewsTable().insert({
