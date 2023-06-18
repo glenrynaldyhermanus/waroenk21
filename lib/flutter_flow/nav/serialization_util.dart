@@ -218,8 +218,8 @@ dynamic deserializeParam<T>(
             return EventCrewsRow(data);
           case EventsRow:
             return EventsRow(data);
-          case EventActivitiesRow:
-            return EventActivitiesRow(data);
+          case ActivitiesRow:
+            return ActivitiesRow(data);
           case UserStoresRow:
             return UserStoresRow(data);
           case ProductsRow:

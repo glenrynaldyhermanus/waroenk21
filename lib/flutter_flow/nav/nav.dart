@@ -98,10 +98,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => AuthenticationWidget(),
         ),
         FFRoute(
-          name: 'Event',
-          path: '/event',
-          builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'Event') : EventWidget(),
+          name: 'Activities',
+          path: '/activities',
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'Activities')
+              : ActivitiesWidget(),
         ),
         FFRoute(
           name: 'CreateEvent',

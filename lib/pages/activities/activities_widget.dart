@@ -3,28 +3,29 @@ import '/components/empties/empty_event/empty_event_widget.dart';
 import '/components/empties/empty_live_event/empty_live_event_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'event_model.dart';
-export 'event_model.dart';
+import 'activities_model.dart';
+export 'activities_model.dart';
 
-class EventWidget extends StatefulWidget {
-  const EventWidget({Key? key}) : super(key: key);
+class ActivitiesWidget extends StatefulWidget {
+  const ActivitiesWidget({Key? key}) : super(key: key);
 
   @override
-  _EventWidgetState createState() => _EventWidgetState();
+  _ActivitiesWidgetState createState() => _ActivitiesWidgetState();
 }
 
-class _EventWidgetState extends State<EventWidget> {
-  late EventModel _model;
+class _ActivitiesWidgetState extends State<ActivitiesWidget> {
+  late ActivitiesModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EventModel());
+    _model = createModel(context, () => ActivitiesModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -45,39 +46,11 @@ class _EventWidgetState extends State<EventWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        floatingActionButton: FloatingActionButton.extended(
-          onPressed: () async {
-            context.pushNamed(
-              'CreateEvent',
-              extra: <String, dynamic>{
-                kTransitionInfoKey: TransitionInfo(
-                  hasTransition: true,
-                  transitionType: PageTransitionType.bottomToTop,
-                ),
-              },
-            );
-          },
-          backgroundColor: FlutterFlowTheme.of(context).primary,
-          icon: Icon(
-            Icons.event_note,
-            color: FlutterFlowTheme.of(context).tertiary,
-            size: 16.0,
-          ),
-          elevation: 8.0,
-          label: Text(
-            'Buat Event',
-            textAlign: TextAlign.center,
-            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Rubik',
-                  color: FlutterFlowTheme.of(context).tertiary,
-                ),
-          ),
-        ),
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
-            'Event',
+            'Activities',
             style: FlutterFlowTheme.of(context).titleMedium.override(
                   fontFamily: 'Rubik',
                   color: FlutterFlowTheme.of(context).secondaryText,
@@ -106,8 +79,53 @@ class _EventWidgetState extends State<EventWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 0.0, 0.0),
                           child: Text(
-                            'Sedang Berlangsung',
+                            'Event Berlangsung',
                             style: FlutterFlowTheme.of(context).titleMedium,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 24.0, 0.0),
+                          child: FFButtonWidget(
+                            onPressed: () async {
+                              context.pushNamed(
+                                'CreateEvent',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType:
+                                        PageTransitionType.bottomToTop,
+                                  ),
+                                },
+                              );
+                            },
+                            text: 'Event',
+                            icon: Icon(
+                              Icons.add,
+                              color: FlutterFlowTheme.of(context).tertiary,
+                              size: 16.0,
+                            ),
+                            options: FFButtonOptions(
+                              height: 32.0,
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 0.0, 16.0, 0.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    color:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                  ),
+                              elevation: 3.0,
+                              borderSide: BorderSide(
+                                color: Colors.transparent,
+                                width: 1.0,
+                              ),
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
                           ),
                         ),
                       ],
@@ -295,8 +313,43 @@ class _EventWidgetState extends State<EventWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 0.0, 0.0),
                         child: Text(
-                          'Event Selanjutnya',
+                          'Activities',
                           style: FlutterFlowTheme.of(context).titleMedium,
+                        ),
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
+                        child: FFButtonWidget(
+                          onPressed: () {
+                            print('Button pressed ...');
+                          },
+                          text: 'Activity',
+                          icon: Icon(
+                            Icons.add,
+                            color: FlutterFlowTheme.of(context).tertiary,
+                            size: 16.0,
+                          ),
+                          options: FFButtonOptions(
+                            height: 32.0,
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 0.0, 0.0, 0.0),
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Rubik',
+                                  color: FlutterFlowTheme.of(context).tertiary,
+                                ),
+                            elevation: 3.0,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1.0,
+                            ),
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
                         ),
                       ),
                     ],

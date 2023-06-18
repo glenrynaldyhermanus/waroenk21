@@ -7,7 +7,7 @@ export 'table.dart';
 
 export 'tables/event_crews.dart';
 export 'tables/events.dart';
-export 'tables/event_activities.dart';
+export 'tables/activities.dart';
 export 'tables/user_stores.dart';
 export 'tables/products.dart';
 export 'tables/pre_orders.dart';

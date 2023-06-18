@@ -119,7 +119,7 @@ class _NavBarPageState extends State<NavBarPage> {
   Widget build(BuildContext context) {
     final tabs = {
       'Home': HomeWidget(),
-      'Event': EventWidget(),
+      'Activities': ActivitiesWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -185,7 +185,7 @@ class _NavBarPageState extends State<NavBarPage> {
                   size: 24.0,
                 ),
                 Text(
-                  'Event',
+                  'Activities',
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     color: currentIndex == 1

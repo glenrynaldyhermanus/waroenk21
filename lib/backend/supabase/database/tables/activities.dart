@@ -1,19 +1,18 @@
 import '../database.dart';
 
-class EventActivitiesTable extends SupabaseTable<EventActivitiesRow> {
+class ActivitiesTable extends SupabaseTable<ActivitiesRow> {
   @override
-  String get tableName => 'event_activities';
+  String get tableName => 'activities';
 
   @override
-  EventActivitiesRow createRow(Map<String, dynamic> data) =>
-      EventActivitiesRow(data);
+  ActivitiesRow createRow(Map<String, dynamic> data) => ActivitiesRow(data);
 }
 
-class EventActivitiesRow extends SupabaseDataRow {
-  EventActivitiesRow(Map<String, dynamic> data) : super(data);
+class ActivitiesRow extends SupabaseDataRow {
+  ActivitiesRow(Map<String, dynamic> data) : super(data);
 
   @override
-  SupabaseTable get table => EventActivitiesTable();
+  SupabaseTable get table => ActivitiesTable();
 
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);
@@ -27,8 +26,8 @@ class EventActivitiesRow extends SupabaseDataRow {
   bool get isActive => getField<bool>('is_active')!;
   set isActive(bool value) => setField<bool>('is_active', value);
 
-  int get eventId => getField<int>('event_id')!;
-  set eventId(int value) => setField<int>('event_id', value);
+  int? get eventId => getField<int>('event_id');
+  set eventId(int? value) => setField<int>('event_id', value);
 
   String get name => getField<String>('name')!;
   set name(String value) => setField<String>('name', value);
