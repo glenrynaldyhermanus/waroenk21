@@ -1,6 +1,7 @@
 import '/backend/supabase/supabase.dart';
 import '/components/empties/empty_crew/empty_crew_widget.dart';
 import '/components/empties/empty_roles/empty_roles_widget.dart';
+import '/components/forms/invite_crew/invite_crew_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -54,7 +55,24 @@ class _CrewListWidgetState extends State<CrewListWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
-            context.pushNamed('CreateEvent');
+            await showModalBottomSheet(
+              isScrollControlled: true,
+              backgroundColor: Colors.transparent,
+              enableDrag: false,
+              context: context,
+              builder: (context) {
+                return GestureDetector(
+                  onTap: () =>
+                      FocusScope.of(context).requestFocus(_model.unfocusNode),
+                  child: Padding(
+                    padding: MediaQuery.of(context).viewInsets,
+                    child: InviteCrewWidget(
+                      event: widget.event!,
+                    ),
+                  ),
+                );
+              },
+            ).then((value) => setState(() {}));
           },
           backgroundColor: FlutterFlowTheme.of(context).primary,
           icon: Icon(
@@ -318,7 +336,10 @@ class _CrewListWidgetState extends State<CrewListWidget> {
                                         snapshot.data!;
                                     if (columnEventCrewsRowList.isEmpty) {
                                       return Center(
-                                        child: EmptyCrewWidget(),
+                                        child: EmptyCrewWidget(
+                                          eventRole: columnEventRolesRow,
+                                          event: widget.event!,
+                                        ),
                                       );
                                     }
                                     return Column(

@@ -1,3 +1,5 @@
+import '/backend/supabase/supabase.dart';
+import '/components/forms/invite_crew/invite_crew_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -8,7 +10,14 @@ import 'empty_crew_model.dart';
 export 'empty_crew_model.dart';
 
 class EmptyCrewWidget extends StatefulWidget {
-  const EmptyCrewWidget({Key? key}) : super(key: key);
+  const EmptyCrewWidget({
+    Key? key,
+    required this.eventRole,
+    required this.event,
+  }) : super(key: key);
+
+  final EventRolesRow? eventRole;
+  final EventsRow? event;
 
   @override
   _EmptyCrewWidgetState createState() => _EmptyCrewWidgetState();
@@ -64,7 +73,21 @@ class _EmptyCrewWidgetState extends State<EmptyCrewWidget> {
             ),
             FFButtonWidget(
               onPressed: () async {
-                context.pushNamed('CreateEvent');
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  enableDrag: false,
+                  context: context,
+                  builder: (context) {
+                    return Padding(
+                      padding: MediaQuery.of(context).viewInsets,
+                      child: InviteCrewWidget(
+                        event: widget.event!,
+                        eventRole: widget.eventRole,
+                      ),
+                    );
+                  },
+                ).then((value) => setState(() {}));
               },
               text: 'Invite Pengurus Untuk Role Ini',
               options: FFButtonOptions(
