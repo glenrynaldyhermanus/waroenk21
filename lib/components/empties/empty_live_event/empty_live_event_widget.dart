@@ -64,7 +64,15 @@ class _EmptyLiveEventWidgetState extends State<EmptyLiveEventWidget> {
             ),
             FFButtonWidget(
               onPressed: () async {
-                context.pushNamed('CreateEvent');
+                context.pushNamed(
+                  'CreateEvent',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.bottomToTop,
+                    ),
+                  },
+                );
               },
               text: 'Buat Event',
               options: FFButtonOptions(

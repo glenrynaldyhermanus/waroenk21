@@ -53,20 +53,6 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).secondaryText,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pop();
-            },
-          ),
           title: Text(
             'Buat Event',
             style: FlutterFlowTheme.of(context).titleMedium.override(
@@ -74,7 +60,27 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                   color: FlutterFlowTheme.of(context).secondaryText,
                 ),
           ),
-          actions: [],
+          actions: [
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                FlutterFlowIconButton(
+                  borderColor: Colors.transparent,
+                  borderRadius: 30.0,
+                  borderWidth: 1.0,
+                  buttonSize: 60.0,
+                  icon: Icon(
+                    Icons.close,
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    size: 30.0,
+                  ),
+                  onPressed: () async {
+                    context.safePop();
+                  },
+                ),
+              ],
+            ),
+          ],
           centerTitle: true,
           elevation: 0.0,
         ),

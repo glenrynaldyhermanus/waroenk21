@@ -47,7 +47,15 @@ class _EventWidgetState extends State<EventWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () async {
-            context.pushNamed('CreateEvent');
+            context.pushNamed(
+              'CreateEvent',
+              extra: <String, dynamic>{
+                kTransitionInfoKey: TransitionInfo(
+                  hasTransition: true,
+                  transitionType: PageTransitionType.bottomToTop,
+                ),
+              },
+            );
           },
           backgroundColor: FlutterFlowTheme.of(context).primary,
           icon: Icon(
