@@ -18,7 +18,7 @@ export 'create_activity_model.dart';
 class CreateActivityWidget extends StatefulWidget {
   const CreateActivityWidget({
     Key? key,
-    required this.event,
+    this.event,
   }) : super(key: key);
 
   final EventsRow? event;
