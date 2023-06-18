@@ -49,4 +49,8 @@ class EventsRow extends SupabaseDataRow {
 
   String? get pictureUrl => getField<String>('picture_url');
   set pictureUrl(String? value) => setField<String>('picture_url', value);
+
+  String? get locationAddress => getField<String>('location_address');
+  set locationAddress(String? value) =>
+      setField<String>('location_address', value);
 }

@@ -9,26 +9,25 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'create_event_location_model.dart';
-export 'create_event_location_model.dart';
+import 'form_location_model.dart';
+export 'form_location_model.dart';
 
-class CreateEventLocationWidget extends StatefulWidget {
-  const CreateEventLocationWidget({Key? key}) : super(key: key);
+class FormLocationWidget extends StatefulWidget {
+  const FormLocationWidget({Key? key}) : super(key: key);
 
   @override
-  _CreateEventLocationWidgetState createState() =>
-      _CreateEventLocationWidgetState();
+  _FormLocationWidgetState createState() => _FormLocationWidgetState();
 }
 
-class _CreateEventLocationWidgetState extends State<CreateEventLocationWidget> {
-  late CreateEventLocationModel _model;
+class _FormLocationWidgetState extends State<FormLocationWidget> {
+  late FormLocationModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CreateEventLocationModel());
+    _model = createModel(context, () => FormLocationModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -68,7 +67,7 @@ class _CreateEventLocationWidgetState extends State<CreateEventLocationWidget> {
             },
           ),
           title: Text(
-            'Lokasi Event',
+            'Lokasi',
             style: FlutterFlowTheme.of(context).titleMedium.override(
                   fontFamily: 'Rubik',
                   color: FlutterFlowTheme.of(context).secondaryText,
@@ -187,9 +186,12 @@ class _CreateEventLocationWidgetState extends State<CreateEventLocationWidget> {
                           ? true
                           : true) {
                         FFAppState().update(() {
-                          FFAppState().eventAddress =
+                          FFAppState().selectedLatLng =
+                              FFAppState().selectedLatLng;
+                          FFAppState().selectedLocationName =
                               _model.placePickerValue.name;
-                          FFAppState().eventLatLng = _model.googleMapsCenter;
+                          FFAppState().selectedLocationAddress =
+                              _model.placePickerValue.address;
                         });
                         context.safePop();
                         return;

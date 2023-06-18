@@ -478,7 +478,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      context.pushNamed('CreateEventLocation');
+                                      context.pushNamed('FormLocation');
                                     },
                                     child: Container(
                                       height: 50.0,
@@ -504,10 +504,8 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                                 alignment: AlignmentDirectional(
                                                     -1.0, 0.0),
                                                 child: Text(
-                                                  valueOrDefault<String>(
-                                                    FFAppState().eventAddress,
-                                                    'Lokasi',
-                                                  ),
+                                                  FFAppState()
+                                                      .selectedLocationName,
                                                   maxLines: 1,
                                                   style: FlutterFlowTheme.of(
                                                           context)
@@ -582,21 +580,23 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                               _model.textController.text != '') &&
                           (_model.datePicked1 != null) &&
                           (_model.datePicked2 != null) &&
-                          (FFAppState().eventAddress != null &&
-                              FFAppState().eventAddress != '')) {
+                          (FFAppState().selectedLocationName != null &&
+                              FFAppState().selectedLocationName != '')) {
                         _model.event = await EventsTable().insert({
                           'name': _model.textController.text,
                           'start_date':
                               supaSerialize<DateTime>(_model.datePicked1),
                           'end_date':
                               supaSerialize<DateTime>(_model.datePicked2),
-                          'location': FFAppState().eventAddress,
+                          'location': FFAppState().selectedLocationName,
                           'created_by': currentUserUid,
                           'picture_url': _model.uploadedFileUrl,
-                          'latitude':
-                              functions.getLatitude(FFAppState().eventLatLng!),
-                          'longitude':
-                              functions.getLongitude(FFAppState().eventLatLng!),
+                          'latitude': functions
+                              .getLatitude(FFAppState().selectedLatLng!),
+                          'longitude': functions
+                              .getLongitude(FFAppState().selectedLatLng!),
+                          'location_address':
+                              FFAppState().selectedLocationAddress,
                         });
                         _shouldSetState = true;
                         _model.eventRoles = await EventRolesTable().insert({

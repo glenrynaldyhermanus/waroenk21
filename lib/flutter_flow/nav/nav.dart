@@ -110,9 +110,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => CreateEventWidget(),
         ),
         FFRoute(
-          name: 'CreateEventLocation',
-          path: '/createEventLocation',
-          builder: (context, params) => CreateEventLocationWidget(),
+          name: 'FormLocation',
+          path: '/formLocation',
+          builder: (context, params) => FormLocationWidget(),
         ),
         FFRoute(
           name: 'PostEventCreation',
