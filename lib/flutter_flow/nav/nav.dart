@@ -147,6 +147,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => CreateActivityWidget(
             event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
           ),
+        ),
+        FFRoute(
+          name: 'Activation',
+          path: '/activation',
+          builder: (context, params) => ActivationWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
