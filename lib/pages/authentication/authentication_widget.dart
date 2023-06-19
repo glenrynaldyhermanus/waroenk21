@@ -29,8 +29,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
 
     _model.emailAddressLoginController ??= TextEditingController();
     _model.passwordLoginController ??= TextEditingController();
-    _model.emailAddressController1 ??= TextEditingController();
-    _model.emailAddressController2 ??= TextEditingController();
+    _model.emailAddressController ??= TextEditingController();
+    _model.fullNameController ??= TextEditingController();
     _model.passwordController ??= TextEditingController();
     _model.passwordConfirmController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -458,7 +458,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           0.0, 20.0, 0.0, 0.0),
                                                   child: TextFormField(
                                                     controller: _model
-                                                        .emailAddressController1,
+                                                        .emailAddressController,
                                                     obscureText: false,
                                                     decoration: InputDecoration(
                                                       hintText: 'Email',
@@ -538,7 +538,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                                 context)
                                                             .tertiary,
                                                     validator: _model
-                                                        .emailAddressController1Validator
+                                                        .emailAddressControllerValidator
                                                         .asValidator(context),
                                                   ),
                                                 ),
@@ -548,7 +548,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           0.0, 12.0, 0.0, 0.0),
                                                   child: TextFormField(
                                                     controller: _model
-                                                        .emailAddressController2,
+                                                        .fullNameController,
                                                     obscureText: false,
                                                     decoration: InputDecoration(
                                                       hintText: 'Nama Lengkap',
@@ -628,7 +628,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                                 context)
                                                             .tertiary,
                                                     validator: _model
-                                                        .emailAddressController2Validator
+                                                        .fullNameControllerValidator
                                                         .asValidator(context),
                                                   ),
                                                 ),
@@ -900,24 +900,19 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 .createAccountWithEmail(
                                               context,
                                               _model
-                                                  .emailAddressController1.text,
+                                                  .emailAddressController.text,
                                               _model.passwordController.text,
                                             );
                                             if (user == null) {
                                               return;
                                             }
 
-                                            await UsersTable().update(
-                                              data: {
-                                                'name': _model
-                                                    .emailAddressController2
-                                                    .text,
-                                              },
-                                              matchingRows: (rows) => rows.eq(
-                                                'user_uuid',
-                                                currentUserUid,
-                                              ),
-                                            );
+                                            await UsersTable().insert({
+                                              'name': _model
+                                                  .fullNameController.text,
+                                              'user_uuid': currentUserUid,
+                                              'email': currentUserEmail,
+                                            });
 
                                             context.goNamedAuth(
                                                 'Home', context.mounted);
