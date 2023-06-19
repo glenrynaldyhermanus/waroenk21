@@ -904,6 +904,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                               _model.passwordController.text,
                                             );
                                             if (user == null) {
+                                              print("OUT >> ");
                                               return;
                                             }
 
