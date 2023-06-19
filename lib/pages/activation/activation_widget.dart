@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'activation_model.dart';
 export 'activation_model.dart';
@@ -60,17 +59,7 @@ class _ActivationWidgetState extends State<ActivationWidget> {
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Lottie.network(
-                            'https://assets3.lottiefiles.com/packages/lf20_cUG5w8.json',
-                            width: MediaQuery.of(context).size.width * 1.0,
-                            height: 160.0,
-                            fit: BoxFit.fitWidth,
-                            animate: true,
-                          ),
-                        ),
-                      ],
+                      children: [],
                     ),
                     Padding(
                       padding:
