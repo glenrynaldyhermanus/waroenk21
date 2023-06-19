@@ -20,11 +20,11 @@ class AuthenticationModel extends FlutterFlowModel {
   late bool passwordLoginVisibility;
   String? Function(BuildContext, String?)? passwordLoginControllerValidator;
   // State field(s) for emailAddress widget.
-  TextEditingController? emailAddressController1;
-  String? Function(BuildContext, String?)? emailAddressController1Validator;
-  // State field(s) for emailAddress widget.
-  TextEditingController? emailAddressController2;
-  String? Function(BuildContext, String?)? emailAddressController2Validator;
+  TextEditingController? emailAddressController;
+  String? Function(BuildContext, String?)? emailAddressControllerValidator;
+  // State field(s) for fullName widget.
+  TextEditingController? fullNameController;
+  String? Function(BuildContext, String?)? fullNameControllerValidator;
   // State field(s) for password widget.
   TextEditingController? passwordController;
   late bool passwordVisibility;
@@ -46,8 +46,8 @@ class AuthenticationModel extends FlutterFlowModel {
     unfocusNode.dispose();
     emailAddressLoginController?.dispose();
     passwordLoginController?.dispose();
-    emailAddressController1?.dispose();
-    emailAddressController2?.dispose();
+    emailAddressController?.dispose();
+    fullNameController?.dispose();
     passwordController?.dispose();
     passwordConfirmController?.dispose();
   }
