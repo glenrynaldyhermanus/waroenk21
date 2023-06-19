@@ -54,16 +54,22 @@ class FFAppState extends ChangeNotifier {
     secureStorage.setString('ff_authedProfile', _authedProfile.serialize());
   }
 
-  String _eventAddress = '';
-  String get eventAddress => _eventAddress;
-  set eventAddress(String _value) {
-    _eventAddress = _value;
+  LatLng? _selectedLatLng = LatLng(-6.186909600000001, 106.8276708);
+  LatLng? get selectedLatLng => _selectedLatLng;
+  set selectedLatLng(LatLng? _value) {
+    _selectedLatLng = _value;
   }
 
-  LatLng? _eventLatLng = LatLng(-6.186909600000001, 106.8276708);
-  LatLng? get eventLatLng => _eventLatLng;
-  set eventLatLng(LatLng? _value) {
-    _eventLatLng = _value;
+  String _selectedLocationName = '';
+  String get selectedLocationName => _selectedLocationName;
+  set selectedLocationName(String _value) {
+    _selectedLocationName = _value;
+  }
+
+  String _selectedLocationAddress = '';
+  String get selectedLocationAddress => _selectedLocationAddress;
+  set selectedLocationAddress(String _value) {
+    _selectedLocationAddress = _value;
   }
 }
 

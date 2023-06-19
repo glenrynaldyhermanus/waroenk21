@@ -1,36 +1,45 @@
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
+import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
-import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'create_event_model.dart';
-export 'create_event_model.dart';
+import 'create_activity_model.dart';
+export 'create_activity_model.dart';
 
-class CreateEventWidget extends StatefulWidget {
-  const CreateEventWidget({Key? key}) : super(key: key);
+class CreateActivityWidget extends StatefulWidget {
+  const CreateActivityWidget({
+    Key? key,
+    this.event,
+  }) : super(key: key);
+
+  final EventsRow? event;
 
   @override
-  _CreateEventWidgetState createState() => _CreateEventWidgetState();
+  _CreateActivityWidgetState createState() => _CreateActivityWidgetState();
 }
 
-class _CreateEventWidgetState extends State<CreateEventWidget> {
-  late CreateEventModel _model;
+class _CreateActivityWidgetState extends State<CreateActivityWidget> {
+  late CreateActivityModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => CreateEventModel());
+    _model = createModel(context, () => CreateActivityModel());
 
-    _model.textController ??= TextEditingController();
+    _model.textController1 ??= TextEditingController();
+    _model.textController2 ??= TextEditingController();
+    _model.textController3 ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -54,7 +63,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
           title: Text(
-            'Buat Event',
+            'Buat Aktivitas',
             style: FlutterFlowTheme.of(context).titleMedium.override(
                   fontFamily: 'Rubik',
                   color: FlutterFlowTheme.of(context).secondaryText,
@@ -107,7 +116,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                             final selectedMedia =
                                 await selectMediaWithSourceBottomSheet(
                               context: context,
-                              storageFolderPath: 'activities/${currentUserUid}',
+                              storageFolderPath: 'events/${currentUserUid}',
                               allowPhoto: true,
                               includeBlurHash: true,
                               backgroundColor: FlutterFlowTheme.of(context)
@@ -224,10 +233,10 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                         padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 32.0, 24.0, 0.0),
                         child: TextFormField(
-                          controller: _model.textController,
+                          controller: _model.textController1,
                           obscureText: false,
                           decoration: InputDecoration(
-                            labelText: 'Nama Event',
+                            labelText: 'Nama Aktivitas',
                             labelStyle: FlutterFlowTheme.of(context).bodyMedium,
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
@@ -261,8 +270,64 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                           style: FlutterFlowTheme.of(context).bodyMedium,
                           keyboardType: TextInputType.name,
                           cursorColor: FlutterFlowTheme.of(context).primary,
-                          validator: _model.textControllerValidator
+                          validator: _model.textController1Validator
                               .asValidator(context),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 16.0, 24.0, 0.0),
+                        child: FutureBuilder<List<ActivityTypesRow>>(
+                          future: ActivityTypesTable().queryRows(
+                            queryFn: (q) => q,
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              );
+                            }
+                            List<ActivityTypesRow>
+                                dropDownActivityTypesRowList = snapshot.data!;
+                            return FlutterFlowDropDown<String>(
+                              controller: _model.dropDownValueController ??=
+                                  FormFieldController<String>(null),
+                              options: dropDownActivityTypesRowList
+                                  .map((e) => e.name)
+                                  .toList(),
+                              onChanged: (val) =>
+                                  setState(() => _model.dropDownValue = val),
+                              width: double.infinity,
+                              height: 50.0,
+                              textStyle:
+                                  FlutterFlowTheme.of(context).bodyMedium,
+                              hintText: 'Jenis Aktivitas',
+                              icon: Icon(
+                                Icons.keyboard_arrow_down_rounded,
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                size: 24.0,
+                              ),
+                              fillColor: FlutterFlowTheme.of(context)
+                                  .secondaryBackground,
+                              elevation: 2.0,
+                              borderColor:
+                                  FlutterFlowTheme.of(context).alternate,
+                              borderWidth: 2.0,
+                              borderRadius: 8.0,
+                              margin: EdgeInsetsDirectional.fromSTEB(
+                                  12.0, 4.0, 16.0, 4.0),
+                              hidesUnderline: true,
+                              isSearchable: false,
+                            );
+                          },
                         ),
                       ),
                       Padding(
@@ -277,7 +342,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Text(
-                                    'Mulai',
+                                    'Tanggal',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
@@ -287,48 +352,20 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                     hoverColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     onTap: () async {
-                                      final _datePicked1Date =
+                                      final _datePickedDate =
                                           await showDatePicker(
                                         context: context,
                                         initialDate: getCurrentTimestamp,
                                         firstDate: DateTime(1900),
                                         lastDate: DateTime(2050),
-                                        builder: (context, child) {
-                                          return Theme(
-                                            data: Theme.of(context).copyWith(
-                                              colorScheme: ColorScheme.light(
-                                                primary:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                // <-- SEE HERE
-                                                onPrimary:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiary,
-                                                // <-- SEE HERE
-                                                onSurface: FlutterFlowTheme.of(
-                                                        context)
-                                                    .primaryText, // <-- SEE HERE
-                                              ),
-                                              textButtonTheme:
-                                                  TextButtonThemeData(
-                                                style: TextButton.styleFrom(
-                                                  foregroundColor: FlutterFlowTheme
-                                                          .of(context)
-                                                      .primary, // button text color
-                                                ),
-                                              ),
-                                            ),
-                                            child: child!,
-                                          );
-                                        },
                                       );
 
-                                      if (_datePicked1Date != null) {
+                                      if (_datePickedDate != null) {
                                         setState(() {
-                                          _model.datePicked1 = DateTime(
-                                            _datePicked1Date.year,
-                                            _datePicked1Date.month,
-                                            _datePicked1Date.day,
+                                          _model.datePicked = DateTime(
+                                            _datePickedDate.year,
+                                            _datePickedDate.month,
+                                            _datePickedDate.day,
                                           );
                                         });
                                       }
@@ -360,125 +397,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                                   valueOrDefault<String>(
                                                     dateTimeFormat(
                                                       'd/M/y',
-                                                      _model.datePicked1,
-                                                      locale:
-                                                          FFLocalizations.of(
-                                                                  context)
-                                                              .languageCode,
-                                                    ),
-                                                    'Tanggal',
-                                                  ),
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium,
-                                                ),
-                                              ),
-                                            ),
-                                            Icon(
-                                              Icons.date_range,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              size: 24.0,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Text(
-                                    'Selesai',
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                                  InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      final _datePicked2Date =
-                                          await showDatePicker(
-                                        context: context,
-                                        initialDate: getCurrentTimestamp,
-                                        firstDate: getCurrentTimestamp,
-                                        lastDate: DateTime(2050),
-                                        builder: (context, child) {
-                                          return Theme(
-                                            data: Theme.of(context).copyWith(
-                                              colorScheme: ColorScheme.light(
-                                                primary:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                // <-- SEE HERE
-                                                onPrimary:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiary,
-                                                // <-- SEE HERE
-                                                onSurface: FlutterFlowTheme.of(
-                                                        context)
-                                                    .primaryText, // <-- SEE HERE
-                                              ),
-                                              textButtonTheme:
-                                                  TextButtonThemeData(
-                                                style: TextButton.styleFrom(
-                                                  foregroundColor: FlutterFlowTheme
-                                                          .of(context)
-                                                      .primary, // button text color
-                                                ),
-                                              ),
-                                            ),
-                                            child: child!,
-                                          );
-                                        },
-                                      );
-
-                                      if (_datePicked2Date != null) {
-                                        setState(() {
-                                          _model.datePicked2 = DateTime(
-                                            _datePicked2Date.year,
-                                            _datePicked2Date.month,
-                                            _datePicked2Date.day,
-                                          );
-                                        });
-                                      }
-                                    },
-                                    child: Container(
-                                      height: 50.0,
-                                      decoration: BoxDecoration(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 2.0,
-                                        ),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 8.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Align(
-                                                alignment: AlignmentDirectional(
-                                                    -1.0, 0.0),
-                                                child: Text(
-                                                  valueOrDefault<String>(
-                                                    dateTimeFormat(
-                                                      'd/M/y',
-                                                      _model.datePicked2,
+                                                      _model.datePicked,
                                                       locale:
                                                           FFLocalizations.of(
                                                                   context)
@@ -590,34 +509,120 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                         ),
                       ),
                       Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 16.0, 24.0, 0.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    24.0, 0.0, 24.0, 0.0),
-                                child: Container(
-                                  width: 100.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0x1A811D21),
+                              child: TextFormField(
+                                controller: _model.textController2,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Min. Peserta',
+                                  labelStyle:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  hintStyle:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  child: Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 16.0, 16.0, 16.0),
-                                    child: Text(
-                                      'Informasi\n\nUntuk kenyamanan dan keamanan. Sebelum di-publish, event yang dibuat akan di-review terlebih dahulu oleh Administrator.',
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium,
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      width: 2.0,
                                     ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
                                   ),
                                 ),
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                keyboardType: TextInputType.number,
+                                cursorColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                validator: _model.textController2Validator
+                                    .asValidator(context),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp('[0-9]'))
+                                ],
                               ),
                             ),
-                          ],
+                            Expanded(
+                              child: TextFormField(
+                                controller: _model.textController3,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  labelText: 'Max. Peserta',
+                                  labelStyle:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  hintStyle:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondary,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  errorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                  focusedErrorBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: FlutterFlowTheme.of(context).error,
+                                      width: 2.0,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
+                                ),
+                                style: FlutterFlowTheme.of(context).bodyMedium,
+                                keyboardType: TextInputType.number,
+                                cursorColor:
+                                    FlutterFlowTheme.of(context).primary,
+                                validator: _model.textController3Validator
+                                    .asValidator(context),
+                                inputFormatters: [
+                                  FilteringTextInputFormatter.allow(
+                                      RegExp('[0-9]'))
+                                ],
+                              ),
+                            ),
+                          ].divide(SizedBox(
+                            width: 16.0,
+                          )),
                         ),
                       ),
                     ],
@@ -632,56 +637,24 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                     if (_model.isDataUploading == false) {
                       if ((_model.uploadedFileUrl != null &&
                               _model.uploadedFileUrl != '') &&
-                          (_model.textController.text != null &&
-                              _model.textController.text != '') &&
-                          (_model.datePicked1 != null) &&
-                          (_model.datePicked2 != null) &&
+                          (_model.textController1.text != null &&
+                              _model.textController1.text != '') &&
+                          (_model.dropDownValue != null &&
+                              _model.dropDownValue != '') &&
+                          (_model.datePicked != null) &&
                           (FFAppState().selectedLocationName != null &&
-                              FFAppState().selectedLocationName != '')) {
-                        _model.event = await EventsTable().insert({
-                          'name': _model.textController.text,
-                          'start_date':
-                              supaSerialize<DateTime>(_model.datePicked1),
-                          'end_date':
-                              supaSerialize<DateTime>(_model.datePicked2),
-                          'location': FFAppState().selectedLocationName,
-                          'created_by': currentUserUid,
+                              FFAppState().selectedLocationName != '') &&
+                          (_model.textController2.text != null &&
+                              _model.textController2.text != '') &&
+                          (_model.textController3.text != null &&
+                              _model.textController3.text != '')) {
+                        _model.event = await ActivitiesTable().insert({
+                          'name': _model.textController1.text,
                           'picture_url': _model.uploadedFileUrl,
-                          'latitude': functions
-                              .getLatitude(FFAppState().selectedLatLng!),
-                          'longitude': functions
-                              .getLongitude(FFAppState().selectedLatLng!),
-                          'location_address':
-                              FFAppState().selectedLocationAddress,
+                          'type_id': 1,
+                          'event_id': widget.event?.id,
                         });
                         _shouldSetState = true;
-                        _model.eventRoles = await EventRolesTable().insert({
-                          'name': 'Creator',
-                          'level': 0,
-                          'description': 'Creator of this event',
-                          'event_id': _model.event?.id,
-                          'is_editable': false,
-                          'can_add_crew': false,
-                          'can_add_activity': false,
-                        });
-                        _shouldSetState = true;
-                        _model.eventRoleParticipant =
-                            await EventRolesTable().insert({
-                          'name': 'Participant',
-                          'level': 0,
-                          'description': 'Participant of this event',
-                          'event_id': _model.event?.id,
-                          'is_editable': false,
-                          'can_add_crew': false,
-                          'can_add_activity': false,
-                        });
-                        _shouldSetState = true;
-                        await EventCrewsTable().insert({
-                          'user_id': FFAppState().authedProfile.id,
-                          'event_id': _model.event?.id,
-                          'is_pic': false,
-                          'role_id': _model.eventRoles?.id,
-                        });
                         if (Navigator.of(context).canPop()) {
                           context.pop();
                         }
@@ -734,7 +707,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
 
                     if (_shouldSetState) setState(() {});
                   },
-                  text: 'Buat Event',
+                  text: 'Buat Aktivitas',
                   options: FFButtonOptions(
                     height: 48.0,
                     padding:

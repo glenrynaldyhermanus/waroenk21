@@ -907,13 +907,17 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                               return;
                                             }
 
-                                            await UsersTable().insert({
-                                              'user_uuid': currentUserUid,
-                                              'name': _model
-                                                  .emailAddressController2.text,
-                                              'email': _model
-                                                  .emailAddressController1.text,
-                                            });
+                                            await UsersTable().update(
+                                              data: {
+                                                'name': _model
+                                                    .emailAddressController2
+                                                    .text,
+                                              },
+                                              matchingRows: (rows) => rows.eq(
+                                                'user_uuid',
+                                                '',
+                                              ),
+                                            );
 
                                             context.goNamedAuth(
                                                 'Home', context.mounted);

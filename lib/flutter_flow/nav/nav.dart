@@ -110,9 +110,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => CreateEventWidget(),
         ),
         FFRoute(
-          name: 'CreateEventLocation',
-          path: '/createEventLocation',
-          builder: (context, params) => CreateEventLocationWidget(),
+          name: 'FormLocation',
+          path: '/formLocation',
+          builder: (context, params) => FormLocationWidget(),
         ),
         FFRoute(
           name: 'PostEventCreation',
@@ -138,6 +138,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'CreateRole',
           path: '/createRole',
           builder: (context, params) => CreateRoleWidget(
+            event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
+          ),
+        ),
+        FFRoute(
+          name: 'CreateActivity',
+          path: '/createActivity',
+          builder: (context, params) => CreateActivityWidget(
             event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
           ),
         )

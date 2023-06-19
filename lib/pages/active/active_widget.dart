@@ -321,8 +321,17 @@ class _ActiveWidgetState extends State<ActiveWidget> {
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
                         child: FFButtonWidget(
-                          onPressed: () {
-                            print('Button pressed ...');
+                          onPressed: () async {
+                            context.pushNamed(
+                              'CreateActivity',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType:
+                                      PageTransitionType.bottomToTop,
+                                ),
+                              },
+                            );
                           },
                           text: 'Aktivitas',
                           icon: Icon(
