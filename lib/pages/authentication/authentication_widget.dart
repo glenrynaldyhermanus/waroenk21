@@ -915,7 +915,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                               },
                                               matchingRows: (rows) => rows.eq(
                                                 'user_uuid',
-                                                '',
+                                                currentUserUid,
                                               ),
                                             );
 
