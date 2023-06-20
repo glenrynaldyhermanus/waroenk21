@@ -52,87 +52,117 @@ class _EventMenuWidgetState extends State<EventMenuWidget> {
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
-      child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 24.0),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 0.0, 0.0),
-              child: Text(
-                'Menu Event',
-                style: FlutterFlowTheme.of(context).headlineSmall,
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-              child: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  context.pushNamed(
-                    'CrewList',
-                    queryParameters: {
-                      'event': serializeParam(
-                        widget.event,
-                        ParamType.SupabaseRow,
-                      ),
-                    }.withoutNulls,
-                  );
-                },
+      child: Column(
+        mainAxisSize: MainAxisSize.max,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                 child: Container(
-                  width: double.infinity,
-                  height: 60.0,
-                  decoration: BoxDecoration(),
-                  child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Card(
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          color: FlutterFlowTheme.of(context).tertiary,
-                          elevation: 0.0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                8.0, 8.0, 8.0, 8.0),
-                            child: Icon(
-                              Icons.people,
-                              color: FlutterFlowTheme.of(context).primary,
-                              size: 20.0,
-                            ),
-                          ),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                12.0, 0.0, 0.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  'Pengurus',
-                                  style: FlutterFlowTheme.of(context).bodyLarge,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
+                  width: 50.0,
+                  height: 4.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).alternate,
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 0.0, 0.0),
+            child: Text(
+              'Menu Event',
+              style: FlutterFlowTheme.of(context).headlineSmall,
+            ),
+          ),
+          Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
+            child: InkWell(
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              onTap: () async {
+                context.pushNamed(
+                  'CrewList',
+                  queryParameters: {
+                    'event': serializeParam(
+                      widget.event,
+                      ParamType.SupabaseRow,
                     ),
+                  }.withoutNulls,
+                );
+              },
+              child: Container(
+                width: double.infinity,
+                height: 60.0,
+                decoration: BoxDecoration(),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Card(
+                        clipBehavior: Clip.antiAliasWithSaveLayer,
+                        color: FlutterFlowTheme.of(context).tertiary,
+                        elevation: 0.0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(40.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              8.0, 8.0, 8.0, 8.0),
+                          child: Icon(
+                            Icons.people,
+                            color: FlutterFlowTheme.of(context).primary,
+                            size: 20.0,
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              12.0, 0.0, 0.0, 0.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Pengurus',
+                                style: FlutterFlowTheme.of(context).bodyLarge,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
             ),
-            Container(
+          ),
+          InkWell(
+            splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            onTap: () async {
+              context.pushNamed(
+                'CreateActivity',
+                queryParameters: {
+                  'event': serializeParam(
+                    widget.event,
+                    ParamType.SupabaseRow,
+                  ),
+                }.withoutNulls,
+              );
+            },
+            child: Container(
               width: double.infinity,
               height: 60.0,
               decoration: BoxDecoration(),
@@ -178,100 +208,100 @@ class _EventMenuWidgetState extends State<EventMenuWidget> {
                 ),
               ),
             ),
-            Container(
-              width: double.infinity,
-              height: 60.0,
-              decoration: BoxDecoration(),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).tertiary,
-                      elevation: 0.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
-                      ),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                        child: Icon(
-                          Icons.mode_edit,
-                          color: FlutterFlowTheme.of(context).primary,
-                          size: 20.0,
-                        ),
+          ),
+          Container(
+            width: double.infinity,
+            height: 60.0,
+            decoration: BoxDecoration(),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: FlutterFlowTheme.of(context).tertiary,
+                    elevation: 0.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40.0),
+                    ),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                      child: Icon(
+                        Icons.mode_edit,
+                        color: FlutterFlowTheme.of(context).primary,
+                        size: 20.0,
                       ),
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Edit',
-                              style: FlutterFlowTheme.of(context).bodyLarge,
-                            ),
-                          ],
-                        ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Edit',
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            Container(
-              width: double.infinity,
-              height: 60.0,
-              decoration: BoxDecoration(),
-              child: Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Card(
-                      clipBehavior: Clip.antiAliasWithSaveLayer,
-                      color: FlutterFlowTheme.of(context).tertiary,
-                      elevation: 0.0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(40.0),
-                      ),
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
-                        child: Icon(
-                          Icons.delete_outline,
-                          color: FlutterFlowTheme.of(context).primary,
-                          size: 20.0,
-                        ),
+          ),
+          Container(
+            width: double.infinity,
+            height: 60.0,
+            decoration: BoxDecoration(),
+            child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(12.0, 8.0, 12.0, 8.0),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                children: [
+                  Card(
+                    clipBehavior: Clip.antiAliasWithSaveLayer,
+                    color: FlutterFlowTheme.of(context).tertiary,
+                    elevation: 0.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40.0),
+                    ),
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 8.0, 8.0),
+                      child: Icon(
+                        Icons.delete_outline,
+                        color: FlutterFlowTheme.of(context).primary,
+                        size: 20.0,
                       ),
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Delete',
-                              style: FlutterFlowTheme.of(context).bodyLarge,
-                            ),
-                          ],
-                        ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 0.0, 0.0),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Delete',
+                            style: FlutterFlowTheme.of(context).bodyLarge,
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
