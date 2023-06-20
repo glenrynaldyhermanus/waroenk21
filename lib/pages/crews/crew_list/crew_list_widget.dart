@@ -407,7 +407,7 @@ class _CrewListWidgetState extends State<CrewListWidget> {
                                                             .fromSTEB(16.0, 0.0,
                                                                 16.0, 0.0),
                                                     child: Text(
-                                                      rowUsersRow!.name,
+                                                      rowUsersRow!.name!,
                                                       style:
                                                           FlutterFlowTheme.of(
                                                                   context)

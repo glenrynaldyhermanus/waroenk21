@@ -648,18 +648,20 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                               _model.textController2.text != '') &&
                           (_model.textController3.text != null &&
                               _model.textController3.text != '')) {
-                        _model.event = await ActivitiesTable().insert({
+                        _model.activity = await ActivitiesTable().insert({
                           'name': _model.textController1.text,
                           'picture_url': _model.uploadedFileUrl,
                           'type_id': 1,
                           'event_id': widget.event?.id,
+                          'scheduled_at':
+                              supaSerialize<DateTime>(_model.datePicked),
+                          'min_participants':
+                              int.tryParse(_model.textController2.text),
+                          'max_participants':
+                              int.tryParse(_model.textController3.text),
                         });
                         _shouldSetState = true;
-                        if (Navigator.of(context).canPop()) {
-                          context.pop();
-                        }
-                        context.pushNamed('PostEventCreation');
-
+                        context.safePop();
                         if (_shouldSetState) setState(() {});
                         return;
                       } else {

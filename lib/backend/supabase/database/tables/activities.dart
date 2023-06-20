@@ -37,4 +37,16 @@ class ActivitiesRow extends SupabaseDataRow {
 
   int? get typeId => getField<int>('type_id');
   set typeId(int? value) => setField<int>('type_id', value);
+
+  DateTime get scheduledAt => getField<DateTime>('scheduled_at')!;
+  set scheduledAt(DateTime value) => setField<DateTime>('scheduled_at', value);
+
+  int get minParticipants => getField<int>('min_participants')!;
+  set minParticipants(int value) => setField<int>('min_participants', value);
+
+  int get maxParticipants => getField<int>('max_participants')!;
+  set maxParticipants(int value) => setField<int>('max_participants', value);
+
+  bool get isPublic => getField<bool>('is_public')!;
+  set isPublic(bool value) => setField<bool>('is_public', value);
 }
