@@ -23,8 +23,8 @@ class UsersRow extends SupabaseDataRow {
   String get userUuid => getField<String>('user_uuid')!;
   set userUuid(String value) => setField<String>('user_uuid', value);
 
-  String get name => getField<String>('name')!;
-  set name(String value) => setField<String>('name', value);
+  String? get name => getField<String>('name');
+  set name(String? value) => setField<String>('name', value);
 
   String? get address => getField<String>('address');
   set address(String? value) => setField<String>('address', value);

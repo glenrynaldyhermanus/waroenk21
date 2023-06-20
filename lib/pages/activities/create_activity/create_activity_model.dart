@@ -36,7 +36,7 @@ class CreateActivityModel extends FlutterFlowModel {
   TextEditingController? textController3;
   String? Function(BuildContext, String?)? textController3Validator;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
-  ActivitiesRow? event;
+  ActivitiesRow? activity;
 
   /// Initialization and disposal methods.
 
