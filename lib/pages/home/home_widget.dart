@@ -602,13 +602,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   columnActivitiesRowList[columnIndex];
                               return Row(
                                 mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   ClipRRect(
-                                    borderRadius: BorderRadius.circular(16.0),
+                                    borderRadius: BorderRadius.circular(8.0),
                                     child: Image.network(
                                       columnActivitiesRow.pictureUrl!,
-                                      width: 72.0,
-                                      height: 88.0,
+                                      width: 52.0,
+                                      height: 64.0,
                                       fit: BoxFit.cover,
                                     ),
                                   ),
@@ -622,7 +623,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             CrossAxisAlignment.start,
                                         children: [
                                           Text(
-                                            'Name',
+                                            columnActivitiesRow.name,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyLarge,
+                                          ),
+                                          Text(
+                                            dateTimeFormat(
+                                              'MMMMEEEEd',
+                                              columnActivitiesRow.scheduledAt,
+                                              locale:
+                                                  FFLocalizations.of(context)
+                                                      .languageCode,
+                                            ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
                                           ),
