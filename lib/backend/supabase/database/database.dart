@@ -13,6 +13,7 @@ export 'tables/products.dart';
 export 'tables/pre_orders.dart';
 export 'tables/transactions.dart';
 export 'tables/pre_orders_products.dart';
+export 'tables/app_configs.dart';
 export 'tables/users.dart';
 export 'tables/promotions.dart';
 export 'tables/categories.dart';
