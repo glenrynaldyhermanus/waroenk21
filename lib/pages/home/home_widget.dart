@@ -3,6 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/empties/empty_event/empty_event_widget.dart';
 import '/components/empties/empty_live_event/empty_live_event_widget.dart';
+import '/components/home_event_loading_skeleton/home_event_loading_skeleton_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -307,13 +308,13 @@ class _HomeWidgetState extends State<HomeWidget> {
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
-                            return Center(
-                              child: SizedBox(
-                                width: 50.0,
-                                height: 50.0,
-                                child: CircularProgressIndicator(
-                                  color: FlutterFlowTheme.of(context).primary,
-                                ),
+                            return Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  24.0, 0.0, 0.0, 0.0),
+                              child: Container(
+                                width: MediaQuery.of(context).size.width * 1.0,
+                                height: 188.0,
+                                child: HomeEventLoadingSkeletonWidget(),
                               ),
                             );
                           }
@@ -583,14 +584,19 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 (columnIndex) {
                               final columnEventsRow =
                                   columnEventsRowList[columnIndex];
-                              return ClipRRect(
-                                borderRadius: BorderRadius.circular(16.0),
-                                child: Image.network(
-                                  columnEventsRow.pictureUrl!,
-                                  width: 320.0,
-                                  height: 160.0,
-                                  fit: BoxFit.cover,
-                                ),
+                              return Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(16.0),
+                                    child: Image.network(
+                                      columnEventsRow.pictureUrl!,
+                                      width: 72.0,
+                                      height: 88.0,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ],
                               );
                             }).divide(SizedBox(
                               height: 16.0,
