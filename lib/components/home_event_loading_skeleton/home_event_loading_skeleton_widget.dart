@@ -48,7 +48,7 @@ class _HomeEventLoadingSkeletonWidgetState
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 1.88,
       child: custom_widgets.HorizontalSkeleton(
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 1.88,
       ),
     );
