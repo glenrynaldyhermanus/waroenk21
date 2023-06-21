@@ -230,6 +230,8 @@ dynamic deserializeParam<T>(
             return TransactionsRow(data);
           case PreOrdersProductsRow:
             return PreOrdersProductsRow(data);
+          case AppConfigsRow:
+            return AppConfigsRow(data);
           case UsersRow:
             return UsersRow(data);
           case PromotionsRow:
