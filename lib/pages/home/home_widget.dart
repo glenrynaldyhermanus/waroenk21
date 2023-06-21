@@ -564,18 +564,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(24.0, 8.0, 24.0, 0.0),
-                      child: FutureBuilder<List<EventsRow>>(
-                        future: EventsTable().queryRows(
+                      child: FutureBuilder<List<ActivitiesRow>>(
+                        future: ActivitiesTable().queryRows(
                           queryFn: (q) => q
-                              .eq(
-                                'is_active',
-                                true,
-                              )
-                              .gt(
-                                'start_date',
+                              .gte(
+                                'scheduled_at',
                                 supaSerialize<DateTime>(getCurrentTimestamp),
                               )
-                              .order('start_date', ascending: true),
+                              .order('scheduled_at', ascending: true),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
@@ -590,8 +586,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                               ),
                             );
                           }
-                          List<EventsRow> columnEventsRowList = snapshot.data!;
-                          if (columnEventsRowList.isEmpty) {
+                          List<ActivitiesRow> columnActivitiesRowList =
+                              snapshot.data!;
+                          if (columnActivitiesRowList.isEmpty) {
                             return Center(
                               child: EmptyEventWidget(),
                             );
@@ -599,20 +596,38 @@ class _HomeWidgetState extends State<HomeWidget> {
                           return Column(
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: List.generate(columnEventsRowList.length,
-                                (columnIndex) {
-                              final columnEventsRow =
-                                  columnEventsRowList[columnIndex];
+                            children: List.generate(
+                                columnActivitiesRowList.length, (columnIndex) {
+                              final columnActivitiesRow =
+                                  columnActivitiesRowList[columnIndex];
                               return Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
                                   ClipRRect(
                                     borderRadius: BorderRadius.circular(16.0),
                                     child: Image.network(
-                                      columnEventsRow.pictureUrl!,
+                                      columnActivitiesRow.pictureUrl!,
                                       width: 72.0,
                                       height: 88.0,
                                       fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 0.0, 0.0),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Name',
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ],
