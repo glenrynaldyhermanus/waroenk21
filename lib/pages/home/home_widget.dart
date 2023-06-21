@@ -506,7 +506,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 style: FlutterFlowTheme.of(context).titleMedium,
                               ),
                             ),
-                            if (rowAppConfigsRow?.value ?? true)
+                            if (rowAppConfigsRow?.value == true)
                               Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 24.0, 0.0),
