@@ -4,18 +4,20 @@ import '/custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'loading_skeleton_model.dart';
-export 'loading_skeleton_model.dart';
+import 'home_event_loading_skeleton_model.dart';
+export 'home_event_loading_skeleton_model.dart';
 
-class LoadingSkeletonWidget extends StatefulWidget {
-  const LoadingSkeletonWidget({Key? key}) : super(key: key);
+class HomeEventLoadingSkeletonWidget extends StatefulWidget {
+  const HomeEventLoadingSkeletonWidget({Key? key}) : super(key: key);
 
   @override
-  _LoadingSkeletonWidgetState createState() => _LoadingSkeletonWidgetState();
+  _HomeEventLoadingSkeletonWidgetState createState() =>
+      _HomeEventLoadingSkeletonWidgetState();
 }
 
-class _LoadingSkeletonWidgetState extends State<LoadingSkeletonWidget> {
-  late LoadingSkeletonModel _model;
+class _HomeEventLoadingSkeletonWidgetState
+    extends State<HomeEventLoadingSkeletonWidget> {
+  late HomeEventLoadingSkeletonModel _model;
 
   @override
   void setState(VoidCallback callback) {
@@ -26,7 +28,7 @@ class _LoadingSkeletonWidgetState extends State<LoadingSkeletonWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => LoadingSkeletonModel());
+    _model = createModel(context, () => HomeEventLoadingSkeletonModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -44,10 +46,10 @@ class _LoadingSkeletonWidgetState extends State<LoadingSkeletonWidget> {
 
     return Container(
       width: double.infinity,
-      height: MediaQuery.of(context).size.height * 1.0,
-      child: custom_widgets.Skeleton(
+      height: MediaQuery.of(context).size.height * 1.88,
+      child: custom_widgets.HorizontalSkeleton(
         width: double.infinity,
-        height: MediaQuery.of(context).size.height * 1.0,
+        height: MediaQuery.of(context).size.height * 1.88,
       ),
     );
   }

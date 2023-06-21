@@ -3,7 +3,7 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/empties/empty_event/empty_event_widget.dart';
 import '/components/empties/empty_live_event/empty_live_event_widget.dart';
-import '/components/loading_skeleton/loading_skeleton_widget.dart';
+import '/components/home_event_loading_skeleton/home_event_loading_skeleton_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -320,9 +320,9 @@ class _HomeWidgetState extends State<HomeWidget> {
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   24.0, 0.0, 0.0, 0.0),
                               child: Container(
-                                width: 188.0,
-                                height: 320.0,
-                                child: LoadingSkeletonWidget(),
+                                width: MediaQuery.of(context).size.width * 1.0,
+                                height: 188.0,
+                                child: HomeEventLoadingSkeletonWidget(),
                               ),
                             );
                           }
