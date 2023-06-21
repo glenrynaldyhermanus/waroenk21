@@ -78,31 +78,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? NavBarPage() : AuthenticationWidget(),
+          appStateNotifier.loggedIn ? HomeWidget() : AuthenticationWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? NavBarPage() : AuthenticationWidget(),
+              appStateNotifier.loggedIn ? HomeWidget() : AuthenticationWidget(),
         ),
         FFRoute(
           name: 'Home',
           path: '/home',
-          builder: (context, params) =>
-              params.isEmpty ? NavBarPage(initialPage: 'Home') : HomeWidget(),
+          builder: (context, params) => HomeWidget(),
         ),
         FFRoute(
           name: 'Authentication',
           path: '/authentication',
           builder: (context, params) => AuthenticationWidget(),
-        ),
-        FFRoute(
-          name: 'Active',
-          path: '/active',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'Active')
-              : ActiveWidget(),
         ),
         FFRoute(
           name: 'CreateEvent',
