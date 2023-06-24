@@ -162,6 +162,10 @@ class _ActivationWidgetState extends State<ActivationWidget> {
                                   'name': widget.name,
                                   'email': widget.email,
                                 });
+                                if (Navigator.of(context).canPop()) {
+                                  context.pop();
+                                }
+                                context.pushNamed('Home');
                               },
                               text: 'Go Active!',
                               options: FFButtonOptions(
