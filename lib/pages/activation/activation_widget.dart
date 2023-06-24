@@ -158,7 +158,7 @@ class _ActivationWidgetState extends State<ActivationWidget> {
                             child: FFButtonWidget(
                               onPressed: () async {
                                 final user = await authManager
-                                    .signInWithEmail(
+                                    .signInWithEmailOtp(
                                   context,
                                   widget.email!,
                                   _model

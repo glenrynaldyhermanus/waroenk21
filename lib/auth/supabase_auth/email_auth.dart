@@ -13,8 +13,12 @@ Future<User?> verifyOtp(
   String email,
   String otp,
 ) async {
+
+  print(email);
+  print(otp);
+
   final AuthResponse res = await SupaFlow.client.auth
-      .verifyOTP(email: email, token: otp, type: OtpType.magiclink);
+      .verifyOTP(email: email, token: otp, type: OtpType.signup);
   return res.user;
 }
 
