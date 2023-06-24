@@ -453,12 +453,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                 );
                               })
-                                  .divide(SizedBox(
-                                    width: 24.0,
-                                  ))
-                                  .around(SizedBox(
-                                    width: 24.0,
-                                  )),
+                                  .divide(SizedBox(width: 24.0))
+                                  .around(SizedBox(width: 24.0)),
                             ),
                           );
                         },
@@ -644,9 +640,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   ),
                                 ],
                               );
-                            }).divide(SizedBox(
-                              height: 16.0,
-                            )),
+                            }).divide(SizedBox(height: 16.0)),
                           );
                         },
                       ),

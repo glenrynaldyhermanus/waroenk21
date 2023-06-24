@@ -42,7 +42,7 @@ class ProfileStruct extends BaseStruct {
   bool hasPictureUrl() => _pictureUrl != null;
 
   static ProfileStruct fromMap(Map<String, dynamic> data) => ProfileStruct(
-        id: data['id'] as int?,
+        id: castToType<int>(data['id']),
         uuid: data['uuid'] as String?,
         name: data['name'] as String?,
         pictureUrl: data['picture_url'] as String?,

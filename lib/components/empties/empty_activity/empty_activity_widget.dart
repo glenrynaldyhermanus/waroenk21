@@ -61,9 +61,7 @@ class _EmptyActivityWidgetState extends State<EmptyActivityWidget> {
                     color: FlutterFlowTheme.of(context).secondaryText,
                   ),
             ),
-          ].divide(SizedBox(
-            height: 16.0,
-          )),
+          ].divide(SizedBox(height: 16.0)),
         ),
       ),
     );

@@ -442,9 +442,7 @@ class _CrewListWidgetState extends State<CrewListWidget> {
                                             );
                                           },
                                         );
-                                      }).divide(SizedBox(
-                                        height: 16.0,
-                                      )),
+                                      }).divide(SizedBox(height: 16.0)),
                                     );
                                   },
                                 ),

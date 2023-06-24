@@ -92,9 +92,7 @@ class _EmptyLiveEventWidgetState extends State<EmptyLiveEventWidget> {
                 borderRadius: BorderRadius.circular(8.0),
               ),
             ),
-          ].divide(SizedBox(
-            height: 16.0,
-          )),
+          ].divide(SizedBox(height: 16.0)),
         ),
       ),
     );
