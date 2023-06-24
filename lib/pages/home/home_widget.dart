@@ -1,3 +1,4 @@
+import '/auth/base_auth_user_provider.dart';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
@@ -97,16 +98,17 @@ class _HomeWidgetState extends State<HomeWidget> {
                               'Selamat datang',
                               style: FlutterFlowTheme.of(context).titleLarge,
                             ),
-                            Text(
-                              functions.getNameForGreeting(
-                                  FFAppState().authedProfile.name),
-                              style: FlutterFlowTheme.of(context)
-                                  .titleLarge
-                                  .override(
-                                    fontFamily: 'Rubik',
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
+                            if (loggedIn)
+                              Text(
+                                functions.getNameForGreeting(
+                                    FFAppState().authedProfile.name),
+                                style: FlutterFlowTheme.of(context)
+                                    .titleLarge
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                              ),
                           ],
                         ),
                       ),
