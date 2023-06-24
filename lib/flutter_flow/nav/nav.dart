@@ -148,7 +148,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Activation',
           path: '/activation',
-          builder: (context, params) => ActivationWidget(),
+          builder: (context, params) => ActivationWidget(
+            email: params.getParam('email', ParamType.String),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

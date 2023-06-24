@@ -9,7 +9,12 @@ import 'activation_model.dart';
 export 'activation_model.dart';
 
 class ActivationWidget extends StatefulWidget {
-  const ActivationWidget({Key? key}) : super(key: key);
+  const ActivationWidget({
+    Key? key,
+    required this.email,
+  }) : super(key: key);
+
+  final String? email;
 
   @override
   _ActivationWidgetState createState() => _ActivationWidgetState();
@@ -69,7 +74,18 @@ class _ActivationWidgetState extends State<ActivationWidget> {
                             style: FlutterFlowTheme.of(context).headlineSmall,
                           ),
                           Text(
-                            'Masukkan kode yang kami kirim ke email yang kamu daftarkan',
+                            'Masukkan kode yang kami kirim ke email yang kamu',
+                            textAlign: TextAlign.center,
+                            style: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Rubik',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryText,
+                                ),
+                          ),
+                          Text(
+                            widget.email!,
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium

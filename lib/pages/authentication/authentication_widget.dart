@@ -959,7 +959,16 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             // }
 
                                             context.pushNamedAuth(
-                                                'Activation', context.mounted);
+                                              'Activation',
+                                              context.mounted,
+                                              queryParameters: {
+                                                'email': serializeParam(
+                                                  _model.emailAddressController
+                                                      .text,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
                                           },
                                           text: 'Pendaftaran',
                                           options: FFButtonOptions(
@@ -985,6 +994,46 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                   fontWeight: FontWeight.normal,
                                                 ),
                                             elevation: 3.0,
+                                            borderSide: BorderSide(
+                                              color: Colors.transparent,
+                                              width: 1.0,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 20.0, 0.0, 24.0),
+                                        child: FFButtonWidget(
+                                          onPressed: () async {
+                                            if (Navigator.of(context)
+                                                .canPop()) {
+                                              context.pop();
+                                            }
+                                            context.pushNamed('Home');
+                                          },
+                                          text: 'Skip',
+                                          options: FFButtonOptions(
+                                            width: 170.0,
+                                            height: 40.0,
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            iconPadding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 0.0, 0.0),
+                                            color: Color(0x0039D2C0),
+                                            textStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleMedium
+                                                    .override(
+                                                      fontFamily: 'Rubik',
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryBtnText,
+                                                    ),
+                                            elevation: 0.0,
                                             borderSide: BorderSide(
                                               color: Colors.transparent,
                                               width: 1.0,
