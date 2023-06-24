@@ -1,3 +1,5 @@
+import 'package:waroenk21/auth/supabase_auth/auth_util.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -152,8 +154,20 @@ class _ActivationWidgetState extends State<ActivationWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                final user = await authManager
+                                    .signInWithEmail(
+                                  context,
+                                  widget.email!,
+                                  _model
+                                      .pinCodeController.text,
+                                );
+                                if (user == null) {
+                                  return;
+                                }
+
+                                context.goNamedAuth(
+                                    'Home', context.mounted);
                               },
                               text: 'Go Active!',
                               options: FFButtonOptions(
