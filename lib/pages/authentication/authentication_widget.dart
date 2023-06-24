@@ -961,6 +961,11 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                               'Activation',
                                               context.mounted,
                                               queryParameters: {
+                                                'name': serializeParam(
+                                                  _model
+                                                      .fullNameController.text,
+                                                  ParamType.String,
+                                                ),
                                                 'email': serializeParam(
                                                   _model.emailAddressController
                                                       .text,

@@ -1,3 +1,5 @@
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -12,9 +14,11 @@ class ActivationWidget extends StatefulWidget {
   const ActivationWidget({
     Key? key,
     required this.email,
+    required this.name,
   }) : super(key: key);
 
   final String? email;
+  final String? name;
 
   @override
   _ActivationWidgetState createState() => _ActivationWidgetState();
@@ -152,8 +156,12 @@ class _ActivationWidgetState extends State<ActivationWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
                             child: FFButtonWidget(
-                              onPressed: () {
-                                print('Button pressed ...');
+                              onPressed: () async {
+                                await UsersTable().insert({
+                                  'user_uuid': currentUserUid,
+                                  'name': widget.name,
+                                  'email': widget.email,
+                                });
                               },
                               text: 'Go Active!',
                               options: FFButtonOptions(
