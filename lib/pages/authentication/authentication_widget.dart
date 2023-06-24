@@ -966,7 +966,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                               return;
                                             } else {
                                               GoRouter.of(context)
-                                                  .prepareAuthEvent();
+                                                  .prepareAuthEvent(true);
                                               if (_model.passwordController
                                                       .text !=
                                                   _model
@@ -991,6 +991,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 _model.passwordController.text,
                                               );
 
+                                              if (Navigator.of(context)
+                                                  .canPop()) {
+                                                context.pop();
+                                              }
                                               context.pushNamedAuth(
                                                 'Activation',
                                                 context.mounted,
@@ -1007,6 +1011,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     ParamType.String,
                                                   ),
                                                 }.withoutNulls,
+                                                ignoreRedirect: true,
                                               );
 
                                               if (_shouldSetState)
