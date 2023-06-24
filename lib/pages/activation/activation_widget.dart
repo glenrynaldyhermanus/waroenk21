@@ -136,8 +136,8 @@ class _ActivationWidgetState extends State<ActivationWidget> {
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 24.0, 0.0, 24.0, 0.0),
                             child: FFButtonWidget(
-                              onPressed: () async {
-                                await launchURL('waroenk21://');
+                              onPressed: () {
+                                print('Button pressed ...');
                               },
                               text: 'Go Active!',
                               options: FFButtonOptions(

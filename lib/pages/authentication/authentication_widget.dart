@@ -341,6 +341,54 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                         .asValidator(context),
                                                   ),
                                                 ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 20.0, 0.0, 24.0),
+                                                  child: FFButtonWidget(
+                                                    onPressed: () {
+                                                      print(
+                                                          'Button-ForgotPassword pressed ...');
+                                                    },
+                                                    text: 'Lupa Password?',
+                                                    options: FFButtonOptions(
+                                                      width: 170.0,
+                                                      height: 40.0,
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color: Color(0x0039D2C0),
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Rubik',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBtnText,
+                                                              ),
+                                                      elevation: 0.0,
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -348,7 +396,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 24.0, 0.0, 0.0),
+                                            0.0, 24.0, 0.0, 24.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             GoRouter.of(context)
@@ -404,11 +452,14 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 24.0),
                                         child: FFButtonWidget(
-                                          onPressed: () {
-                                            print(
-                                                'Button-ForgotPassword pressed ...');
+                                          onPressed: () async {
+                                            if (Navigator.of(context)
+                                                .canPop()) {
+                                              context.pop();
+                                            }
+                                            context.pushNamed('Home');
                                           },
-                                          text: 'Lupa Password?',
+                                          text: 'Skip',
                                           options: FFButtonOptions(
                                             width: 170.0,
                                             height: 40.0,
