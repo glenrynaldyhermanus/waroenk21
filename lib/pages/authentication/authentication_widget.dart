@@ -958,7 +958,16 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             }
 
                                             context.pushNamedAuth(
-                                                'Activation', context.mounted);
+                                              'Activation',
+                                              context.mounted,
+                                              queryParameters: {
+                                                'email': serializeParam(
+                                                  _model.emailAddressController
+                                                      .text,
+                                                  ParamType.String,
+                                                ),
+                                              }.withoutNulls,
+                                            );
                                           },
                                           text: 'Pendaftaran',
                                           options: FFButtonOptions(
