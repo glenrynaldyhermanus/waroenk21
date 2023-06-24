@@ -36,19 +36,23 @@ class _HomeWidgetState extends State<HomeWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.profile = await actions.getProfile(
-        currentUserUid,
-      );
-      if (_model.profile != null) {
-        setState(() {
-          FFAppState().authedProfile = _model.profile!;
-        });
-        return;
-      } else {
-        GoRouter.of(context).prepareAuthEvent();
-        await authManager.signOut();
-        GoRouter.of(context).clearRedirectLocation();
+      if (loggedIn) {
+        _model.profile = await actions.getProfile(
+          currentUserUid,
+        );
+        if (_model.profile != null) {
+          setState(() {
+            FFAppState().authedProfile = _model.profile!;
+          });
+          return;
+        } else {
+          GoRouter.of(context).prepareAuthEvent();
+          await authManager.signOut();
+          GoRouter.of(context).clearRedirectLocation();
 
+          return;
+        }
+      } else {
         return;
       }
 
