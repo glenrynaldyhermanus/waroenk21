@@ -173,9 +173,10 @@ class _ActivationWidgetState extends State<ActivationWidget> {
                                   'name': widget.name,
                                   'email': widget.email,
                                 });
-
-                                context.goNamedAuth(
-                                    'Home', context.mounted);
+                                if (Navigator.of(context).canPop()) {
+                                  context.pop();
+                                }
+                                context.pushNamed('Home');
                               },
                               text: 'Go Active!',
                               options: FFButtonOptions(
