@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -929,50 +930,95 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                             0.0, 24.0, 0.0, 24.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
-                                            GoRouter.of(context)
-                                                .prepareAuthEvent();
-                                            if (_model
-                                                    .passwordController.text !=
-                                                _model.passwordConfirmController
-                                                    .text) {
+                                            var _shouldSetState = false;
+                                            _model.isEmailExists =
+                                                await actions.isRegistered(
+                                              _model
+                                                  .emailAddressController.text,
+                                            );
+                                            _shouldSetState = true;
+                                            if (_model.isEmailExists!) {
                                               ScaffoldMessenger.of(context)
                                                   .showSnackBar(
                                                 SnackBar(
                                                   content: Text(
-                                                    'Passwords don\'t match!',
+                                                    'Email sudah terdaftar',
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
                                                   ),
+                                                  duration: Duration(
+                                                      milliseconds: 4000),
+                                                  backgroundColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .primaryText,
                                                 ),
                                               );
+                                              if (_shouldSetState)
+                                                setState(() {});
                                               return;
-                                            }
-
-                                            final user = await authManager
-                                                .createAccountWithEmail(
-                                              context,
-                                              _model
-                                                  .emailAddressController.text,
-                                              _model.passwordController.text,
-                                            );
-                                            if (user == null) {
-                                              return;
-                                            }
-
-                                            context.pushNamedAuth(
-                                              'Activation',
-                                              context.mounted,
-                                              queryParameters: {
-                                                'name': serializeParam(
+                                            } else {
+                                              GoRouter.of(context)
+                                                  .prepareAuthEvent();
+                                              if (_model.passwordController
+                                                      .text !=
                                                   _model
-                                                      .fullNameController.text,
-                                                  ParamType.String,
-                                                ),
-                                                'email': serializeParam(
-                                                  _model.emailAddressController
-                                                      .text,
-                                                  ParamType.String,
-                                                ),
-                                              }.withoutNulls,
-                                            );
+                                                      .passwordConfirmController
+                                                      .text) {
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Passwords don\'t match!',
+                                                    ),
+                                                  ),
+                                                );
+                                                return;
+                                              }
+
+                                              final user = await authManager
+                                                  .createAccountWithEmail(
+                                                context,
+                                                _model.emailAddressController
+                                                    .text,
+                                                _model.passwordController.text,
+                                              );
+                                              if (user == null) {
+                                                return;
+                                              }
+
+                                              context.pushNamedAuth(
+                                                'Activation',
+                                                context.mounted,
+                                                queryParameters: {
+                                                  'name': serializeParam(
+                                                    _model.fullNameController
+                                                        .text,
+                                                    ParamType.String,
+                                                  ),
+                                                  'email': serializeParam(
+                                                    _model
+                                                        .emailAddressController
+                                                        .text,
+                                                    ParamType.String,
+                                                  ),
+                                                }.withoutNulls,
+                                              );
+
+                                              if (_shouldSetState)
+                                                setState(() {});
+                                              return;
+                                            }
+
+                                            if (_shouldSetState)
+                                              setState(() {});
                                           },
                                           text: 'Pendaftaran',
                                           options: FFButtonOptions(
