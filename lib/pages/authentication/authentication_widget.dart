@@ -1,5 +1,4 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -71,7 +70,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
               color: Color(0x990F1113),
             ),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 70.0, 0.0, 0.0),
+              padding: EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
               child: Column(
                 mainAxisSize: MainAxisSize.max,
                 children: [
@@ -85,7 +84,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                         Image.asset(
                           'assets/images/xxi_logo.png',
                           width: 240.0,
-                          height: 56.0,
+                          height: 48.0,
                           fit: BoxFit.fitHeight,
                         ),
                       ],
@@ -94,7 +93,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                   Expanded(
                     child: Padding(
                       padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 32.0, 0.0, 0.0),
+                          EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                       child: DefaultTabController(
                         length: 2,
                         initialIndex: 0,
@@ -342,6 +341,54 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                         .asValidator(context),
                                                   ),
                                                 ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          0.0, 20.0, 0.0, 24.0),
+                                                  child: FFButtonWidget(
+                                                    onPressed: () {
+                                                      print(
+                                                          'Button-ForgotPassword pressed ...');
+                                                    },
+                                                    text: 'Lupa Password?',
+                                                    options: FFButtonOptions(
+                                                      width: 170.0,
+                                                      height: 40.0,
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color: Color(0x0039D2C0),
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Rubik',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryBtnText,
+                                                              ),
+                                                      elevation: 0.0,
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        width: 1.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
                                               ],
                                             ),
                                           ),
@@ -349,7 +396,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                       ),
                                       Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 24.0, 0.0, 0.0),
+                                            0.0, 24.0, 0.0, 24.0),
                                         child: FFButtonWidget(
                                           onPressed: () async {
                                             GoRouter.of(context)
@@ -405,11 +452,14 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 20.0, 0.0, 24.0),
                                         child: FFButtonWidget(
-                                          onPressed: () {
-                                            print(
-                                                'Button-ForgotPassword pressed ...');
+                                          onPressed: () async {
+                                            if (Navigator.of(context)
+                                                .canPop()) {
+                                              context.pop();
+                                            }
+                                            context.pushNamed('Home');
                                           },
-                                          text: 'Lupa Password?',
+                                          text: 'Skip',
                                           options: FFButtonOptions(
                                             width: 170.0,
                                             height: 40.0,
@@ -908,15 +958,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                               return;
                                             }
 
-                                            await UsersTable().insert({
-                                              'name': _model
-                                                  .fullNameController.text,
-                                              'user_uuid': currentUserUid,
-                                              'email': currentUserEmail,
-                                            });
-
-                                            context.goNamedAuth(
-                                                'Home', context.mounted);
+                                            context.pushNamedAuth(
+                                                'Activation', context.mounted);
                                           },
                                           text: 'Pendaftaran',
                                           options: FFButtonOptions(

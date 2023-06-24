@@ -397,12 +397,8 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                                           ),
                                         );
                                       })
-                                          .divide(SizedBox(
-                                            width: 24.0,
-                                          ))
-                                          .around(SizedBox(
-                                            width: 24.0,
-                                          )),
+                                          .divide(SizedBox(width: 24.0))
+                                          .around(SizedBox(width: 24.0)),
                                     ),
                                   );
                                 },

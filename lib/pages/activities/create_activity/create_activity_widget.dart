@@ -218,9 +218,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                                         .tertiary,
                                               ),
                                         ),
-                                      ].divide(SizedBox(
-                                        height: 8.0,
-                                      )),
+                                      ].divide(SizedBox(height: 8.0)),
                                     ),
                                   ),
                                 );
@@ -426,9 +424,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                 ],
                               ),
                             ),
-                          ].divide(SizedBox(
-                            width: 16.0,
-                          )),
+                          ].divide(SizedBox(width: 16.0)),
                         ),
                       ),
                       Padding(
@@ -503,9 +499,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                 ],
                               ),
                             ),
-                          ].divide(SizedBox(
-                            width: 16.0,
-                          )),
+                          ].divide(SizedBox(width: 16.0)),
                         ),
                       ),
                       Padding(
@@ -620,9 +614,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                 ],
                               ),
                             ),
-                          ].divide(SizedBox(
-                            width: 16.0,
-                          )),
+                          ].divide(SizedBox(width: 16.0)),
                         ),
                       ),
                     ],

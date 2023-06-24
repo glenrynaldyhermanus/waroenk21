@@ -84,13 +84,9 @@ class _EmptyEventWidgetState extends State<EmptyEventWidget> {
                         color: Color(0xBE342F2F),
                       ),
                 ),
-              ].divide(SizedBox(
-                height: 4.0,
-              )),
+              ].divide(SizedBox(height: 4.0)),
             ),
-          ].divide(SizedBox(
-            height: 16.0,
-          )),
+          ].divide(SizedBox(height: 16.0)),
         ),
       ),
     );

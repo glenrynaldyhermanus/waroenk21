@@ -209,9 +209,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                                         .tertiary,
                                               ),
                                         ),
-                                      ].divide(SizedBox(
-                                        height: 8.0,
-                                      )),
+                                      ].divide(SizedBox(height: 8.0)),
                                     ),
                                   ),
                                 );
@@ -507,9 +505,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                 ],
                               ),
                             ),
-                          ].divide(SizedBox(
-                            width: 16.0,
-                          )),
+                          ].divide(SizedBox(width: 16.0)),
                         ),
                       ),
                       Padding(
@@ -584,9 +580,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                                 ],
                               ),
                             ),
-                          ].divide(SizedBox(
-                            width: 16.0,
-                          )),
+                          ].divide(SizedBox(width: 16.0)),
                         ),
                       ),
                       Padding(

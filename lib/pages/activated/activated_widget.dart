@@ -1,31 +1,28 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'post_event_creation_model.dart';
-export 'post_event_creation_model.dart';
+import 'activated_model.dart';
+export 'activated_model.dart';
 
-class PostEventCreationWidget extends StatefulWidget {
-  const PostEventCreationWidget({Key? key}) : super(key: key);
+class ActivatedWidget extends StatefulWidget {
+  const ActivatedWidget({Key? key}) : super(key: key);
 
   @override
-  _PostEventCreationWidgetState createState() =>
-      _PostEventCreationWidgetState();
+  _ActivatedWidgetState createState() => _ActivatedWidgetState();
 }
 
-class _PostEventCreationWidgetState extends State<PostEventCreationWidget> {
-  late PostEventCreationModel _model;
+class _ActivatedWidgetState extends State<ActivatedWidget> {
+  late ActivatedModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => PostEventCreationModel());
+    _model = createModel(context, () => ActivatedModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -46,27 +43,6 @@ class _PostEventCreationWidgetState extends State<PostEventCreationWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        appBar: AppBar(
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-          automaticallyImplyLeading: false,
-          leading: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30.0,
-            borderWidth: 1.0,
-            buttonSize: 60.0,
-            icon: Icon(
-              Icons.arrow_back_rounded,
-              color: FlutterFlowTheme.of(context).secondaryText,
-              size: 30.0,
-            ),
-            onPressed: () async {
-              context.pop();
-            },
-          ),
-          actions: [],
-          centerTitle: true,
-          elevation: 0.0,
-        ),
         body: SafeArea(
           top: true,
           child: Row(
@@ -80,21 +56,6 @@ class _PostEventCreationWidgetState extends State<PostEventCreationWidget> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Spacer(),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          child: Lottie.network(
-                            'https://assets9.lottiefiles.com/private_files/lf30_fup2uejx.json',
-                            width: MediaQuery.of(context).size.width * 1.0,
-                            height: 130.0,
-                            fit: BoxFit.fitWidth,
-                            animate: true,
-                          ),
-                        ),
-                      ],
-                    ),
                     Padding(
                       padding:
                           EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
@@ -103,33 +64,11 @@ class _PostEventCreationWidgetState extends State<PostEventCreationWidget> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Event Sedang Di-review',
+                            'Now! Get Active!',
                             style: FlutterFlowTheme.of(context).headlineSmall,
                           ),
                           Text(
-                            'Administrator akan melakukan review terlebih dahulu untuk event yang baru saja kamu buat.',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Rubik',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                ),
-                          ),
-                          Text(
-                            'Silahkan meninggalkan halaman ini.',
-                            textAlign: TextAlign.center,
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Rubik',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                ),
-                          ),
-                          Text(
-                            'Kami akan menginformasikan kembali jika event sudah terpublish',
+                            'Akun kamu sudah aktif, selamat beraktivitas!',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium
@@ -153,9 +92,9 @@ class _PostEventCreationWidgetState extends State<PostEventCreationWidget> {
                                 24.0, 0.0, 24.0, 0.0),
                             child: FFButtonWidget(
                               onPressed: () async {
-                                context.safePop();
+                                await launchURL('waroenk21://');
                               },
-                              text: 'Kembali Ke Home',
+                              text: 'Let\'s Go',
                               options: FFButtonOptions(
                                 height: 50.0,
                                 padding: EdgeInsetsDirectional.fromSTEB(
