@@ -150,6 +150,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: '/activation',
           builder: (context, params) => ActivationWidget(
             email: params.getParam('email', ParamType.String),
+            name: params.getParam('name', ParamType.String),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),

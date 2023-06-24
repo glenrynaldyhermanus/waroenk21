@@ -1,5 +1,5 @@
-import 'package:waroenk21/auth/supabase_auth/auth_util.dart';
-
+import '/auth/supabase_auth/auth_util.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -14,9 +14,11 @@ class ActivationWidget extends StatefulWidget {
   const ActivationWidget({
     Key? key,
     required this.email,
+    required this.name,
   }) : super(key: key);
 
   final String? email;
+  final String? name;
 
   @override
   _ActivationWidgetState createState() => _ActivationWidgetState();
@@ -165,6 +167,12 @@ class _ActivationWidgetState extends State<ActivationWidget> {
                                 if (user == null) {
                                   return;
                                 }
+
+                                await UsersTable().insert({
+                                  'user_uuid': currentUserUid,
+                                  'name': widget.name,
+                                  'email': widget.email,
+                                });
 
                                 context.goNamedAuth(
                                     'Home', context.mounted);
