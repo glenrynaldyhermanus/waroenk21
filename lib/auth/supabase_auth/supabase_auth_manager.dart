@@ -61,6 +61,17 @@ class SupabaseAuthManager extends AuthManager with EmailSignInManager {
       );
 
   @override
+  Future<BaseAuthUser?> signInWithEmailOtp(
+      BuildContext context,
+      String email,
+      String otp,
+      ) =>
+      _signInOrCreateAccount(
+        context,
+            () => verifyOtp(email, otp),
+      );
+
+  @override
   Future<BaseAuthUser?> createAccountWithEmail(
     BuildContext context,
     String email,

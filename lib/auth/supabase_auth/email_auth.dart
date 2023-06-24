@@ -9,6 +9,15 @@ Future<User?> emailSignInFunc(
   return res.user;
 }
 
+Future<User?> verifyOtp(
+  String email,
+  String otp,
+) async {
+  final AuthResponse res = await SupaFlow.client.auth
+      .verifyOTP(email: email, token: otp, type: OtpType.magiclink);
+  return res.user;
+}
+
 Future<User?> emailCreateAccountFunc(
   String email,
   String password,

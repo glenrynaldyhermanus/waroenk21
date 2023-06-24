@@ -953,10 +953,10 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                   .emailAddressController.text,
                                               _model.passwordController.text,
                                             );
-                                            if (user == null) {
-                                              print("OUT >> ");
-                                              return;
-                                            }
+                                            // if (user == null) {
+                                            //   print("OUT >> ");
+                                            //   return;
+                                            // }
 
                                             context.pushNamedAuth(
                                                 'Activation', context.mounted);
