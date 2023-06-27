@@ -1,3 +1,7 @@
+import 'package:waroenk21/components/loadings/home_activity_loading_widget.dart';
+import 'package:waroenk21/components/loadings/home_event_loading_widget.dart';
+import 'package:waroenk21/components/loadings/home_section_title_loading_widget.dart';
+
 import '/auth/base_auth_user_provider.dart';
 import '/auth/supabase_auth/auth_util.dart';
 import '/backend/schema/structs/index.dart';
@@ -216,15 +220,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: CircularProgressIndicator(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                  ),
-                                ),
-                              );
+                              return HomeSectionTitleLoadingWidget();
                             }
                             List<AppConfigsRow> rowAppConfigsRowList =
                                 snapshot.data!;
@@ -324,20 +320,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
-                              return Center(
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 0.0, 0.0),
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                    ),
-                                  ),
-                                ),
-                              );
+                              return HomeEventLoadingWidget();
                             }
                             List<EventsRow> rowEventsRowList = snapshot.data!;
                             if (rowEventsRowList.isEmpty) {
@@ -489,7 +472,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
-                            return Center();
+                            return HomeSectionTitleLoadingWidget();
                           }
                           List<AppConfigsRow> rowAppConfigsRowList =
                               snapshot.data!;
@@ -578,15 +561,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
                             if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: CircularProgressIndicator(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                  ),
-                                ),
-                              );
+                              return HomeActivityLoadingWidget();
                             }
                             List<ActivitiesRow> columnActivitiesRowList =
                                 snapshot.data!;
