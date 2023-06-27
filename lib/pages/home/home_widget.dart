@@ -198,108 +198,102 @@ class _HomeWidgetState extends State<HomeWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
-                        child: FutureBuilder<List<AppConfigsRow>>(
-                          future: AppConfigsTable().querySingleRow(
-                            queryFn: (q) => q.eq(
-                              'name',
-                              'can_add_event',
-                            ),
+                      FutureBuilder<List<AppConfigsRow>>(
+                        future: AppConfigsTable().querySingleRow(
+                          queryFn: (q) => q.eq(
+                            'name',
+                            'can_add_event',
                           ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: CircularProgressIndicator(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                  ),
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50.0,
+                                height: 50.0,
+                                child: CircularProgressIndicator(
+                                  color: FlutterFlowTheme.of(context).primary,
                                 ),
-                              );
-                            }
-                            List<AppConfigsRow> rowAppConfigsRowList =
-                                snapshot.data!;
-                            final rowAppConfigsRow =
-                                rowAppConfigsRowList.isNotEmpty
-                                    ? rowAppConfigsRowList.first
-                                    : null;
-                            return Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
+                              ),
+                            );
+                          }
+                          List<AppConfigsRow> rowAppConfigsRowList =
+                              snapshot.data!;
+                          final rowAppConfigsRow =
+                              rowAppConfigsRowList.isNotEmpty
+                                  ? rowAppConfigsRowList.first
+                                  : null;
+                          return Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    24.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Event Berlangsung',
+                                  style:
+                                      FlutterFlowTheme.of(context).titleMedium,
+                                ),
+                              ),
+                              if (rowAppConfigsRow?.value == true)
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      24.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    'Event Berlangsung',
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleMedium,
-                                  ),
-                                ),
-                                if (rowAppConfigsRow?.value == true)
-                                  Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 24.0, 0.0),
-                                    child: FFButtonWidget(
-                                      onPressed: () async {
-                                        context.pushNamed(
-                                          'CreateEvent',
-                                          extra: <String, dynamic>{
-                                            kTransitionInfoKey: TransitionInfo(
-                                              hasTransition: true,
-                                              transitionType: PageTransitionType
-                                                  .bottomToTop,
-                                            ),
-                                          },
-                                        );
-                                      },
-                                      text: 'Event',
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: FlutterFlowTheme.of(context)
-                                            .tertiary,
-                                        size: 16.0,
+                                      0.0, 0.0, 24.0, 0.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      context.pushNamed(
+                                        'CreateEvent',
+                                        extra: <String, dynamic>{
+                                          kTransitionInfoKey: TransitionInfo(
+                                            hasTransition: true,
+                                            transitionType:
+                                                PageTransitionType.bottomToTop,
+                                          ),
+                                        },
+                                      );
+                                    },
+                                    text: 'Event',
+                                    icon: Icon(
+                                      Icons.add,
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                      size: 16.0,
+                                    ),
+                                    options: FFButtonOptions(
+                                      height: 32.0,
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
+                                      iconPadding:
+                                          EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Rubik',
+                                            color: FlutterFlowTheme.of(context)
+                                                .tertiary,
+                                          ),
+                                      elevation: 3.0,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1.0,
                                       ),
-                                      options: FFButtonOptions(
-                                        height: 32.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 0.0, 16.0, 0.0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Rubik',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .tertiary,
-                                            ),
-                                        elevation: 3.0,
-                                        borderSide: BorderSide(
-                                          color: Colors.transparent,
-                                          width: 1.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(16.0),
-                                      ),
+                                      borderRadius: BorderRadius.circular(16.0),
                                     ),
                                   ),
-                              ],
-                            );
-                          },
-                        ),
+                                ),
+                            ],
+                          );
+                        },
                       ),
                       Padding(
                         padding:
@@ -613,7 +607,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                     columnActivitiesRowList[columnIndex];
                                 return Row(
                                   mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     ClipRRect(
                                       borderRadius: BorderRadius.circular(8.0),
@@ -630,8 +624,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             16.0, 0.0, 0.0, 0.0),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                              CrossAxisAlignment.stretch,
                                           children: [
                                             Text(
                                               columnActivitiesRow.name,
@@ -655,36 +651,46 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         ),
                                       ),
                                     ),
-                                    FFButtonWidget(
-                                      onPressed: () {
-                                        print('Button pressed ...');
-                                      },
-                                      text: 'View',
-                                      options: FFButtonOptions(
-                                        height: 32.0,
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            8.0, 0.0, 8.0, 0.0),
-                                        iconPadding:
-                                            EdgeInsetsDirectional.fromSTEB(
-                                                0.0, 0.0, 0.0, 0.0),
+                                    Container(
+                                      height: 64.0,
+                                      decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
-                                            .primaryBackground,
-                                        textStyle: FlutterFlowTheme.of(context)
-                                            .labelMedium
-                                            .override(
-                                              fontFamily: 'Rubik',
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                            ),
-                                        elevation: 0.0,
-                                        borderSide: BorderSide(
+                                            .secondaryBackground,
+                                      ),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () {
+                                          print('Button pressed ...');
+                                        },
+                                        text: 'View',
+                                        options: FFButtonOptions(
+                                          height: 32.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  8.0, 0.0, 8.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
                                           color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          width: 2.0,
+                                              .primaryBackground,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Rubik',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                              ),
+                                          elevation: 0.0,
+                                          borderSide: BorderSide(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            width: 2.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(16.0),
                                       ),
                                     ),
                                   ],
