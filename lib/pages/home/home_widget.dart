@@ -655,7 +655,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                       height: 64.0,
                                       decoration: BoxDecoration(
                                         color: FlutterFlowTheme.of(context)
-                                            .secondaryBackground,
+                                            .primaryBackground,
                                       ),
                                       alignment: AlignmentDirectional(0.0, 0.0),
                                       child: FFButtonWidget(
