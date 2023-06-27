@@ -17,7 +17,7 @@ class HomeSectionTitleLoadingWidget extends StatelessWidget {
       child: // Generated code for this Column Widget...
           // Generated code for this Row Widget...
           Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(0, 24, 0, 0),
+        padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
