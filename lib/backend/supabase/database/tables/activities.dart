@@ -49,4 +49,13 @@ class ActivitiesRow extends SupabaseDataRow {
 
   bool get isPublic => getField<bool>('is_public')!;
   set isPublic(bool value) => setField<bool>('is_public', value);
+
+  String get location => getField<String>('location')!;
+  set location(String value) => setField<String>('location', value);
+
+  double get latitude => getField<double>('latitude')!;
+  set latitude(double value) => setField<double>('latitude', value);
+
+  double get longitude => getField<double>('longitude')!;
+  set longitude(double value) => setField<double>('longitude', value);
 }

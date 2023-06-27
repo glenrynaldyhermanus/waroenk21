@@ -651,6 +651,9 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                               int.tryParse(_model.textController2.text),
                           'max_participants':
                               int.tryParse(_model.textController3.text),
+                          'location': 'Tamansari Param Office',
+                          'latitude': -6.1869096,
+                          'longitude': 106.8276708,
                         });
                         _shouldSetState = true;
                         context.safePop();
