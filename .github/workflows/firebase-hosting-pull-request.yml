@@ -12,7 +12,7 @@ jobs:
       - name: build web
         uses: steebchen/flutter@v1.1.0
         with:
-          args: flutter build
+          args: flutter build web
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
