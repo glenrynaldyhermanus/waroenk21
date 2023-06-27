@@ -561,7 +561,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 snapshot.data!;
                             if (columnActivitiesRowList.isEmpty) {
                               return Center(
-                                child: EmptyEventWidget(),
+                                child: EmptyEventWidget(), 
                               );
                             }
                             return Column(
