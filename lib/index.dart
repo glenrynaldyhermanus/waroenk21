@@ -17,3 +17,5 @@ export '/pages/activities/create_activity/create_activity_widget.dart'
 export '/pages/activation/activation_widget.dart' show ActivationWidget;
 export '/pages/activities/activity_detail/activity_detail_widget.dart'
     show ActivityDetailWidget;
+export '/pages/activities/activity_brief/activity_brief_widget.dart'
+    show ActivityBriefWidget;

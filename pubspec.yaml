@@ -39,6 +39,7 @@ dependencies:
     git:
       url: https://github.com/fluttercommunity/flutter_google_places
       ref: v0.3.2
+  flutter_html: 3.0.0-alpha.5
   flutter_plugin_android_lifecycle: 2.0.9
   flutter_secure_storage: 8.0.0
   font_awesome_flutter: 10.1.0
