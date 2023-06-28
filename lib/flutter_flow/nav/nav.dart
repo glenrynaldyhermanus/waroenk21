@@ -141,11 +141,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'Activated',
-          path: '/activated',
-          builder: (context, params) => ActivatedWidget(),
-        ),
-        FFRoute(
           name: 'Activation',
           path: '/activation',
           builder: (context, params) => ActivationWidget(

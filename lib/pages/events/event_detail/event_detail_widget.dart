@@ -277,10 +277,13 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                                   0.0, 8.0, 0.0, 0.0),
                               child: FutureBuilder<List<ActivitiesRow>>(
                                 future: ActivitiesTable().queryRows(
-                                  queryFn: (q) => q.eq(
-                                    'event_id',
-                                    widget.event?.id,
-                                  ),
+                                  queryFn: (q) => q
+                                      .eq(
+                                        'event_id',
+                                        widget.event?.id,
+                                      )
+                                      .order('start_date', ascending: true)
+                                      .order('name', ascending: true),
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
