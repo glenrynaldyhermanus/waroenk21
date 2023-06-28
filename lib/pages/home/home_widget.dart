@@ -9,7 +9,6 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/empties/empty_event/empty_event_widget.dart';
 import '/components/empties/empty_live_event/empty_live_event_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -136,48 +135,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 8.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              fillColor: Colors.transparent,
-                              icon: Icon(
-                                Icons.chat_rounded,
-                                color: FlutterFlowTheme
-                                    .of(context)
-                                    .primary,
-                                size: 20.0,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 8.0, 0.0),
-                            child: FlutterFlowIconButton(
-                              borderColor: Colors.transparent,
-                              borderRadius: 20.0,
-                              borderWidth: 1.0,
-                              buttonSize: 40.0,
-                              fillColor: Colors.transparent,
-                              icon: Icon(
-                                Icons.notifications_rounded,
-                                color: FlutterFlowTheme
-                                    .of(context)
-                                    .primary,
-                                size: 24.0,
-                              ),
-                              onPressed: () {
-                                print('IconButton pressed ...');
-                              },
-                            ),
-                          ),
                           InkWell(
                             splashColor: Colors.transparent,
                             focusColor: Colors.transparent,
