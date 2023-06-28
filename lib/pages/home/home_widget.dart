@@ -678,21 +678,67 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Hero(
-                                              tag: columnActivitiesRow
-                                                  .pictureUrl!,
-                                              transitionOnUserGestures: true,
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.network(
-                                                  columnActivitiesRow
+                                            Stack(
+                                              children: [
+                                                Hero(
+                                                  tag: columnActivitiesRow
                                                       .pictureUrl!,
-                                                  width: 52.0,
-                                                  height: 64.0,
-                                                  fit: BoxFit.cover,
+                                                  transitionOnUserGestures:
+                                                      true,
+                                                  child: ClipRRect(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                    child: Image.network(
+                                                      columnActivitiesRow
+                                                          .pictureUrl!,
+                                                      width: 52.0,
+                                                      height: 64.0,
+                                                      fit: BoxFit.cover,
+                                                    ),
+                                                  ),
                                                 ),
-                                              ),
+                                                if ((getCurrentTimestamp >=
+                                                        columnActivitiesRow
+                                                            .startDate) &&
+                                                    (getCurrentTimestamp <=
+                                                        columnActivitiesRow
+                                                            .endDate))
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primary,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  4.0,
+                                                                  8.0,
+                                                                  4.0),
+                                                      child: Text(
+                                                        'Live',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Rubik',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .tertiary,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                              ],
                                             ),
                                             Expanded(
                                               child: Padding(
