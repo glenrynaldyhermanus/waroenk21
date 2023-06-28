@@ -657,6 +657,8 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                               .getLatitude(FFAppState().selectedLatLng!),
                           'longitude': functions
                               .getLongitude(FFAppState().selectedLatLng!),
+                          'end_date':
+                              supaSerialize<DateTime>(_model.datePicked),
                         });
                         _shouldSetState = true;
                         context.safePop();

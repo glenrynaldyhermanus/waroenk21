@@ -620,7 +620,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 future: ActivitiesTable().queryRows(
                                   queryFn: (q) => q
                                       .gte(
-                                        'start_date',
+                                        'end_date',
                                         supaSerialize<DateTime>(
                                             getCurrentTimestamp),
                                       )

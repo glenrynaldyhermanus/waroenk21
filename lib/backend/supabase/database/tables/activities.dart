@@ -59,6 +59,6 @@ class ActivitiesRow extends SupabaseDataRow {
   double get longitude => getField<double>('longitude')!;
   set longitude(double value) => setField<double>('longitude', value);
 
-  DateTime? get endDate => getField<DateTime>('end_date');
-  set endDate(DateTime? value) => setField<DateTime>('end_date', value);
+  DateTime get endDate => getField<DateTime>('end_date')!;
+  set endDate(DateTime value) => setField<DateTime>('end_date', value);
 }
