@@ -597,7 +597,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         supaSerialize<DateTime>(
                                             getCurrentTimestamp),
                                       )
-                                      .order('start_date', ascending: true),
+                                      .order('start_date', ascending: true)
+                                      .order('name', ascending: true),
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
