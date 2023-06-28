@@ -808,7 +808,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 return dateTimeFormat(
                                                                   'MMMEd',
                                                                   columnActivitiesRow
-                                                                      .startTime!,
+                                                                      .endDate,
                                                                   locale: FFLocalizations.of(
                                                                           context)
                                                                       .languageCode,
