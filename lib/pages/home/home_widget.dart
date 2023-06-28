@@ -749,16 +749,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   ),
                                               ],
                                             ),
-                                            Container(
-                                              width: double.infinity,
-                                              constraints: BoxConstraints(
-                                                maxWidth: 476.0,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryBackground,
-                                              ),
+                                            Expanded(
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
