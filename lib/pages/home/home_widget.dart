@@ -1,3 +1,4 @@
+import 'package:shimmer/shimmer.dart';
 import 'package:waroenk21/components/loadings/home_activity_loading_widget.dart';
 import 'package:waroenk21/components/loadings/home_event_loading_widget.dart';
 import 'package:waroenk21/components/loadings/home_section_title_loading_widget.dart';
@@ -668,29 +669,74 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     (getCurrentTimestamp <=
                                                         columnActivitiesRow
                                                             .endDate))
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  8.0,
-                                                                  4.0,
-                                                                  8.0,
-                                                                  4.0),
-                                                      child: Text(
-                                                        'Live',
-                                                        style:
+                                                  Stack(
+                                                    children: [
+                                                      Shimmer.fromColors(
+                                                        baseColor:
                                                             FlutterFlowTheme.of(
                                                                     context)
+                                                                .primary,
+                                                        highlightColor:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        4.0,
+                                                                        8.0,
+                                                                        4.0),
+                                                            child: Text(
+                                                              'Live',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodySmall
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Rubik',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .tertiary,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors
+                                                              .transparent,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      8.0,
+                                                                      4.0,
+                                                                      8.0,
+                                                                      4.0),
+                                                          child: Text(
+                                                            'Live',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
                                                                 .bodySmall
                                                                 .override(
                                                                   fontFamily:
@@ -699,8 +745,10 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                           context)
                                                                       .tertiary,
                                                                 ),
+                                                          ),
+                                                        ),
                                                       ),
-                                                    ),
+                                                    ],
                                                   ),
                                               ],
                                             ),
