@@ -784,6 +784,34 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                               .primary,
                                                           size: 16.0,
                                                         ),
+                                                        Text(
+                                                          () {
+                                                            if ((columnActivitiesRow
+                                                                        .openRegistrationDate !=
+                                                                    null) &&
+                                                                (getCurrentTimestamp <=
+                                                                    columnActivitiesRow
+                                                                        .openRegistrationDate!)) {
+                                                              return 'Pendaftaran buka : ';
+                                                            } else if ((columnActivitiesRow
+                                                                        .closeRegistrationDate !=
+                                                                    null) &&
+                                                                (getCurrentTimestamp <=
+                                                                    columnActivitiesRow
+                                                                        .closeRegistrationDate!)) {
+                                                              return 'Pendaftaran tutup : ';
+                                                            } else if (getCurrentTimestamp <=
+                                                                columnActivitiesRow
+                                                                    .startDate) {
+                                                              return 'Mulai : ';
+                                                            } else {
+                                                              return 'Berakhir :';
+                                                            }
+                                                          }(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall,
+                                                        ),
                                                         Expanded(
                                                           child: Text(
                                                             dateTimeFormat(

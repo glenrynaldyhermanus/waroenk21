@@ -61,4 +61,14 @@ class ActivitiesRow extends SupabaseDataRow {
 
   DateTime get endDate => getField<DateTime>('end_date')!;
   set endDate(DateTime value) => setField<DateTime>('end_date', value);
+
+  DateTime? get openRegistrationDate =>
+      getField<DateTime>('open_registration_date');
+  set openRegistrationDate(DateTime? value) =>
+      setField<DateTime>('open_registration_date', value);
+
+  DateTime? get closeRegistrationDate =>
+      getField<DateTime>('close_registration_date');
+  set closeRegistrationDate(DateTime? value) =>
+      setField<DateTime>('close_registration_date', value);
 }
