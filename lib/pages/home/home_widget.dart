@@ -754,14 +754,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
-                                                        Icon(
-                                                          Icons
-                                                              .date_range_rounded,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          size: 16.0,
-                                                        ),
                                                         Text(
                                                           () {
                                                             if ((columnActivitiesRow
@@ -805,8 +797,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 .bodySmall,
                                                           ),
                                                         ),
-                                                      ].divide(
-                                                          SizedBox(width: 4.0)),
+                                                      ],
                                                     ),
                                                     Padding(
                                                       padding:
