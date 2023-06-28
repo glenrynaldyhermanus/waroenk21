@@ -315,11 +315,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                               child: FutureBuilder<List<EventsRow>>(
                                 future: EventsTable().queryRows(
                                   queryFn: (q) => q
-                                      .lte(
-                                        'start_date',
-                                        supaSerialize<DateTime>(
-                                            getCurrentTimestamp),
-                                      )
                                       .gte(
                                         'end_date',
                                         supaSerialize<DateTime>(
