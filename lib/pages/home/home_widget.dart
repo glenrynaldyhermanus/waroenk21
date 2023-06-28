@@ -693,36 +693,46 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(8.0, 4.0,
-                                                                8.0, 4.0),
-                                                    child: Text(
-                                                      'Live',
-                                                      style:
+                                                if ((getCurrentTimestamp >=
+                                                        columnActivitiesRow
+                                                            .startDate) &&
+                                                    (getCurrentTimestamp <=
+                                                        columnActivitiesRow
+                                                            .endDate))
+                                                  Container(
+                                                    decoration: BoxDecoration(
+                                                      color:
                                                           FlutterFlowTheme.of(
                                                                   context)
-                                                              .bodySmall
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Rubik',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .tertiary,
-                                                              ),
+                                                              .primary,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              8.0),
+                                                    ),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  4.0,
+                                                                  8.0,
+                                                                  4.0),
+                                                      child: Text(
+                                                        'Live',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Rubik',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .tertiary,
+                                                                ),
+                                                      ),
                                                     ),
                                                   ),
-                                                ),
                                               ],
                                             ),
                                             Expanded(
