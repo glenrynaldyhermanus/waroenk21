@@ -62,13 +62,26 @@ class ActivitiesRow extends SupabaseDataRow {
   DateTime get endDate => getField<DateTime>('end_date')!;
   set endDate(DateTime value) => setField<DateTime>('end_date', value);
 
-  DateTime? get openRegistrationDate =>
-      getField<DateTime>('open_registration_date');
-  set openRegistrationDate(DateTime? value) =>
-      setField<DateTime>('open_registration_date', value);
+  DateTime? get openRegistrationAt =>
+      getField<DateTime>('open_registration_at');
+  set openRegistrationAt(DateTime? value) =>
+      setField<DateTime>('open_registration_at', value);
 
-  DateTime? get closeRegistrationDate =>
-      getField<DateTime>('close_registration_date');
-  set closeRegistrationDate(DateTime? value) =>
-      setField<DateTime>('close_registration_date', value);
+  DateTime? get closeRegistrationAt =>
+      getField<DateTime>('close_registration_at');
+  set closeRegistrationAt(DateTime? value) =>
+      setField<DateTime>('close_registration_at', value);
+
+  int? get groupId => getField<int>('group_id');
+  set groupId(int? value) => setField<int>('group_id', value);
+
+  String? get brief => getField<String>('brief');
+  set brief(String? value) => setField<String>('brief', value);
+
+  PostgresTime? get startTime => getField<PostgresTime>('start_time');
+  set startTime(PostgresTime? value) =>
+      setField<PostgresTime>('start_time', value);
+
+  PostgresTime? get endTime => getField<PostgresTime>('end_time');
+  set endTime(PostgresTime? value) => setField<PostgresTime>('end_time', value);
 }

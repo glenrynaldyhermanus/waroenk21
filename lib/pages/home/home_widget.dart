@@ -752,18 +752,18 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                         Text(
                                                           () {
                                                             if ((columnActivitiesRow
-                                                                        .openRegistrationDate !=
+                                                                        .openRegistrationAt !=
                                                                     null) &&
                                                                 (getCurrentTimestamp <=
                                                                     columnActivitiesRow
-                                                                        .openRegistrationDate!)) {
+                                                                        .openRegistrationAt!)) {
                                                               return 'Pendaftaran buka : ';
                                                             } else if ((columnActivitiesRow
-                                                                        .closeRegistrationDate !=
+                                                                        .closeRegistrationAt !=
                                                                     null) &&
                                                                 (getCurrentTimestamp <=
                                                                     columnActivitiesRow
-                                                                        .closeRegistrationDate!)) {
+                                                                        .closeRegistrationAt!)) {
                                                               return 'Pendaftaran tutup : ';
                                                             } else if (getCurrentTimestamp <=
                                                                 columnActivitiesRow
