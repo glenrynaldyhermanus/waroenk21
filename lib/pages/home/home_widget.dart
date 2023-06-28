@@ -635,32 +635,65 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                   FlutterFlowTheme.of(context)
                                                       .bodyLarge,
                                             ),
-                                            Text(
-                                              dateTimeFormat(
-                                                'MMMMEEEEd',
-                                                columnActivitiesRow.scheduledAt,
-                                                locale:
-                                                    FFLocalizations.of(context)
-                                                        .languageCode,
-                                              ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium,
-                                            ),
-                                            Align(
-                                              alignment: AlignmentDirectional(
-                                                  -1.0, 1.0),
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 12.0, 0.0, 0.0),
-                                                child: Text(
-                                                  columnActivitiesRow.location,
-                                                  maxLines: 1,
-                                                  style: FlutterFlowTheme.of(
+                                            Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.date_range_rounded,
+                                                  color: FlutterFlowTheme.of(
                                                           context)
-                                                      .bodySmall,
+                                                      .primary,
+                                                  size: 16.0,
                                                 ),
+                                                Expanded(
+                                                  child: Text(
+                                                    dateTimeFormat(
+                                                      'MMMMEEEEd',
+                                                      columnActivitiesRow
+                                                          .scheduledAt,
+                                                      locale:
+                                                          FFLocalizations.of(
+                                                                  context)
+                                                              .languageCode,
+                                                    ),
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall,
+                                                  ),
+                                                ),
+                                              ].divide(SizedBox(width: 4.0)),
+                                            ),
+                                            Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      0.0, 12.0, 0.0, 0.0),
+                                              child: Row(
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Icon(
+                                                    Icons.location_on_outlined,
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    size: 16.0,
+                                                  ),
+                                                  Expanded(
+                                                    child: Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              -1.0, 1.0),
+                                                      child: Text(
+                                                        columnActivitiesRow
+                                                            .location,
+                                                        maxLines: 1,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ].divide(SizedBox(width: 4.0)),
                                               ),
                                             ),
                                           ],
