@@ -49,50 +49,51 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        appBar: AppBar(
+          backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderColor: Colors.transparent,
+            borderRadius: 30.0,
+            borderWidth: 1.0,
+            buttonSize: 60.0,
+            icon: Icon(
+              Icons.arrow_back_rounded,
+              color: FlutterFlowTheme.of(context).secondaryText,
+              size: 30.0,
+            ),
+            onPressed: () async {
+              context.pop();
+            },
+          ),
+          title: Text(
+            valueOrDefault<String>(
+              widget.activity?.name,
+              'Aktivitias',
+            ),
+            style: FlutterFlowTheme.of(context).titleMedium.override(
+                  fontFamily: 'Rubik',
+                  color: FlutterFlowTheme.of(context).secondaryText,
+                ),
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 0.0,
+        ),
         body: SafeArea(
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Stack(
-                children: [
-                  Hero(
-                    tag: widget.activity!.pictureUrl!,
-                    transitionOnUserGestures: true,
-                    child: Image.network(
-                      widget.activity!.pictureUrl!,
-                      width: double.infinity,
-                      height: 256.0,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 24.0,
-                          borderWidth: 1.0,
-                          buttonSize: 48.0,
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          icon: Icon(
-                            Icons.arrow_back_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 20.0,
-                          ),
-                          onPressed: () async {
-                            context.pop();
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+              Hero(
+                tag: widget.activity!.pictureUrl!,
+                transitionOnUserGestures: true,
+                child: Image.network(
+                  widget.activity!.pictureUrl!,
+                  width: double.infinity,
+                  height: 256.0,
+                  fit: BoxFit.cover,
+                ),
               ),
               Expanded(
                 child: Padding(
@@ -316,6 +317,8 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                       0.0, 16.0, 0.0, 16.0),
                                   child: Row(
                                     mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
                                       Icon(
                                         Icons.list_alt,
