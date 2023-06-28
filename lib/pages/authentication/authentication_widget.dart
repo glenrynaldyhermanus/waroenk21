@@ -464,69 +464,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                                if (FFAppState()
-                                                        .isLoginSkipped ==
-                                                    false)
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 20.0,
-                                                                0.0, 24.0),
-                                                    child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        setState(() {
-                                                          FFAppState()
-                                                                  .isLoginSkipped =
-                                                              true;
-                                                        });
-                                                        if (Navigator.of(
-                                                                context)
-                                                            .canPop()) {
-                                                          context.pop();
-                                                        }
-                                                        context
-                                                            .pushNamed('Home');
-                                                      },
-                                                      text: 'Skip',
-                                                      options: FFButtonOptions(
-                                                        width: 170.0,
-                                                        height: 40.0,
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            Color(0x0039D2C0),
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Rubik',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBtnText,
-                                                                ),
-                                                        elevation: 0.0,
-                                                        borderSide: BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1.0,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
                                               ],
                                             ),
                                           ),
@@ -1128,69 +1065,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                     ),
                                                   ),
                                                 ),
-                                                if (FFAppState()
-                                                        .isLoginSkipped ==
-                                                    false)
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 20.0,
-                                                                0.0, 24.0),
-                                                    child: FFButtonWidget(
-                                                      onPressed: () async {
-                                                        setState(() {
-                                                          FFAppState()
-                                                                  .isLoginSkipped =
-                                                              true;
-                                                        });
-                                                        if (Navigator.of(
-                                                                context)
-                                                            .canPop()) {
-                                                          context.pop();
-                                                        }
-                                                        context
-                                                            .pushNamed('Home');
-                                                      },
-                                                      text: 'Skip',
-                                                      options: FFButtonOptions(
-                                                        width: 170.0,
-                                                        height: 40.0,
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        iconPadding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        color:
-                                                            Color(0x0039D2C0),
-                                                        textStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .titleMedium
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Rubik',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primaryBtnText,
-                                                                ),
-                                                        elevation: 0.0,
-                                                        borderSide: BorderSide(
-                                                          color: Colors
-                                                              .transparent,
-                                                          width: 1.0,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
                                               ],
                                             ),
                                           ),

@@ -71,12 +71,6 @@ class FFAppState extends ChangeNotifier {
   set selectedLocationAddress(String _value) {
     _selectedLocationAddress = _value;
   }
-
-  bool _isLoginSkipped = false;
-  bool get isLoginSkipped => _isLoginSkipped;
-  set isLoginSkipped(bool _value) {
-    _isLoginSkipped = _value;
-  }
 }
 
 LatLng? _latLngFromString(String? val) {
