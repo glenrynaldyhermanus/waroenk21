@@ -244,6 +244,8 @@ dynamic deserializeParam<T>(
             return EventRolesRow(data);
           case ActivityTypesRow:
             return ActivityTypesRow(data);
+          case AppVersionsRow:
+            return AppVersionsRow(data);
           default:
             return null;
         }

@@ -594,7 +594,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           mainAxisAlignment:
                                               MainAxisAlignment.start,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.stretch,
+                                              CrossAxisAlignment.start,
                                           children: [
                                             Text(
                                               columnActivitiesRow.name,
@@ -613,6 +613,22 @@ class _HomeWidgetState extends State<HomeWidget> {
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium,
+                                            ),
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  -1.0, 1.0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 12.0, 0.0, 0.0),
+                                                child: Text(
+                                                  columnActivitiesRow.location,
+                                                  maxLines: 1,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodySmall,
+                                                ),
+                                              ),
                                             ),
                                           ],
                                         ),
