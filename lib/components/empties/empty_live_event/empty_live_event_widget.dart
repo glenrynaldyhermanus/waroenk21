@@ -1,3 +1,4 @@
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -62,35 +63,75 @@ class _EmptyLiveEventWidgetState extends State<EmptyLiveEventWidget> {
                     color: FlutterFlowTheme.of(context).secondaryText,
                   ),
             ),
-            FFButtonWidget(
-              onPressed: () async {
-                context.pushNamed(
-                  'CreateEvent',
-                  extra: <String, dynamic>{
-                    kTransitionInfoKey: TransitionInfo(
-                      hasTransition: true,
-                      transitionType: PageTransitionType.bottomToTop,
+            FutureBuilder<List<AppConfigsRow>>(
+              future: AppConfigsTable().querySingleRow(
+                queryFn: (q) => q.eq(
+                  'name',
+                  'can_add_event',
+                ),
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: CircularProgressIndicator(
+                        color: FlutterFlowTheme.of(context).primary,
+                      ),
                     ),
-                  },
+                  );
+                }
+                List<AppConfigsRow> rowAppConfigsRowList = snapshot.data!;
+                // Return an empty Container when the item does not exist.
+                if (snapshot.data!.isEmpty) {
+                  return Container();
+                }
+                final rowAppConfigsRow = rowAppConfigsRowList.isNotEmpty
+                    ? rowAppConfigsRowList.first
+                    : null;
+                return Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (rowAppConfigsRow?.value == true)
+                      FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed(
+                            'CreateEvent',
+                            extra: <String, dynamic>{
+                              kTransitionInfoKey: TransitionInfo(
+                                hasTransition: true,
+                                transitionType: PageTransitionType.bottomToTop,
+                              ),
+                            },
+                          );
+                        },
+                        text: 'Buat Event',
+                        options: FFButtonOptions(
+                          height: 40.0,
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: FlutterFlowTheme.of(context).primaryBackground,
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Rubik',
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                          elevation: 0.0,
+                          borderSide: BorderSide(
+                            color: FlutterFlowTheme.of(context).primary,
+                            width: 2.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
+                  ],
                 );
               },
-              text: 'Buat Event',
-              options: FFButtonOptions(
-                height: 40.0,
-                padding: EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                iconPadding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                color: FlutterFlowTheme.of(context).primaryBackground,
-                textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                      fontFamily: 'Rubik',
-                      color: FlutterFlowTheme.of(context).primary,
-                    ),
-                elevation: 0.0,
-                borderSide: BorderSide(
-                  color: FlutterFlowTheme.of(context).primary,
-                  width: 2.0,
-                ),
-                borderRadius: BorderRadius.circular(8.0),
-              ),
             ),
           ].divide(SizedBox(height: 16.0)),
         ),
