@@ -227,7 +227,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                 valueOrDefault<String>(
                                                   dateTimeFormat(
                                                     'Hm',
-                                                    widget.activity?.startTime,
+                                                    widget.activity?.startTime!.time,
                                                     locale: FFLocalizations.of(
                                                             context)
                                                         .languageCode,
@@ -254,7 +254,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                 valueOrDefault<String>(
                                                   dateTimeFormat(
                                                     'Hm',
-                                                    widget.activity?.endTime,
+                                                    widget.activity?.endTime!.time,
                                                     locale: FFLocalizations.of(
                                                             context)
                                                         .languageCode,
