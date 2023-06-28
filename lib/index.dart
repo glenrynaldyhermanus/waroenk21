@@ -19,4 +19,3 @@ export '/pages/activities/activity_detail/activity_detail_widget.dart'
     show ActivityDetailWidget;
 export '/pages/activities/activity_brief/activity_brief_widget.dart'
     show ActivityBriefWidget;
-export '/test_page/test_page_widget.dart' show TestPageWidget;
