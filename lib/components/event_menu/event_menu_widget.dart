@@ -49,6 +49,7 @@ class _EventMenuWidgetState extends State<EventMenuWidget> {
 
     return Container(
       width: double.infinity,
+      height: 320.0,
       decoration: BoxDecoration(
         color: FlutterFlowTheme.of(context).secondaryBackground,
       ),
