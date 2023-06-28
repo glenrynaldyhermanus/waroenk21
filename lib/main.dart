@@ -85,7 +85,13 @@ class _MyAppState extends State<MyApp> {
       supportedLocales: const [
         Locale('id'),
       ],
-      theme: ThemeData(brightness: Brightness.light),
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: FlutterFlowTheme.of(context).primary,
+        colorScheme: ColorScheme.fromSwatch().copyWith(
+          secondary: FlutterFlowTheme.of(context).primary,
+        ),
+      ),
       themeMode: _themeMode,
       routerConfig: _router,
     );

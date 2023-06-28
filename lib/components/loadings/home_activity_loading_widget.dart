@@ -17,7 +17,7 @@ class HomeActivityLoadingWidget extends StatelessWidget {
       highlightColor: Colors.white70,
       child: // Generated code for this Column Widget...
           Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(24, 8, 24, 0),
+        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.stretch,
