@@ -178,7 +178,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                   Text(
                                     dateTimeFormat(
                                       'yMMMd',
-                                      widget.activity!.endDate!,
+                                      widget.activity!.endDate,
                                       locale: FFLocalizations.of(context)
                                           .languageCode,
                                     ),
