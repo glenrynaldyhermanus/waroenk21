@@ -1,13 +1,14 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
 import '/auth/supabase_auth/auth_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/custom_code/actions/index.dart' as actions;
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 import 'authentication_model.dart';
+
 export 'authentication_model.dart';
 
 class AuthenticationWidget extends StatefulWidget {
@@ -32,7 +33,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
     _model.emailAddressController ??= TextEditingController();
     _model.fullNameController ??= TextEditingController();
     _model.passwordController ??= TextEditingController();
-    _model.passwordConfirmController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
@@ -783,125 +783,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                 ),
                                                 Padding(
                                                   padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 12.0, 0.0, 0.0),
-                                                  child: TextFormField(
-                                                    controller: _model
-                                                        .passwordConfirmController,
-                                                    obscureText: !_model
-                                                        .passwordConfirmVisibility,
-                                                    decoration: InputDecoration(
-                                                      hintText:
-                                                          'Konfirmasi Password',
-                                                      hintStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Lexend Deca',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .tertiary,
-                                                                fontSize: 14.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .normal,
-                                                              ),
-                                                      enabledBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0x3FFCE8D4),
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      focusedBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0x80FCE8D4),
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      errorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0x00000000),
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      focusedErrorBorder:
-                                                          OutlineInputBorder(
-                                                        borderSide: BorderSide(
-                                                          color:
-                                                              Color(0x00000000),
-                                                          width: 1.0,
-                                                        ),
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(8.0),
-                                                      ),
-                                                      filled: true,
-                                                      fillColor:
-                                                          Color(0x67342F2F),
-                                                      suffixIcon: InkWell(
-                                                        onTap: () => setState(
-                                                          () => _model
-                                                                  .passwordConfirmVisibility =
-                                                              !_model
-                                                                  .passwordConfirmVisibility,
-                                                        ),
-                                                        focusNode: FocusNode(
-                                                            skipTraversal:
-                                                                true),
-                                                        child: Icon(
-                                                          _model.passwordConfirmVisibility
-                                                              ? Icons
-                                                                  .visibility_outlined
-                                                              : Icons
-                                                                  .visibility_off_outlined,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .tertiary,
-                                                          size: 20.0,
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily:
-                                                              'Lexend Deca',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .tertiary,
-                                                          fontSize: 14.0,
-                                                          fontWeight:
-                                                              FontWeight.normal,
-                                                        ),
-                                                    cursorColor:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .tertiary,
-                                                    validator: _model
-                                                        .passwordConfirmControllerValidator
-                                                        .asValidator(context),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
                                                       .fromSTEB(0.0, 120.0, 0.0,
                                                           24.0),
                                                   child: FFButtonWidget(
@@ -951,23 +832,6 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                         GoRouter.of(context)
                                                             .prepareAuthEvent(
                                                                 true);
-                                                        if (_model
-                                                                .passwordController
-                                                                .text !=
-                                                            _model
-                                                                .passwordConfirmController
-                                                                .text) {
-                                                          ScaffoldMessenger.of(
-                                                                  context)
-                                                              .showSnackBar(
-                                                            SnackBar(
-                                                              content: Text(
-                                                                'Passwords don\'t match!',
-                                                              ),
-                                                            ),
-                                                          );
-                                                          return;
-                                                        }
 
                                                         final user =
                                                             await authManager

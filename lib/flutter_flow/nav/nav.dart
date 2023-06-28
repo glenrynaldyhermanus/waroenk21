@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
@@ -28,7 +29,7 @@ class AppStateNotifier extends ChangeNotifier {
 
   BaseAuthUser? initialUser;
   BaseAuthUser? user;
-  bool showSplashImage = true;
+  bool showSplashImage = kIsWeb ? false : true;
   String? _redirectLocation;
 
   /// Determines whether the app will refresh and build again when a sign
@@ -78,13 +79,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? HomeWidget() : AuthenticationWidget(),
+          appStateNotifier.loggedIn ? HomeWidget() : HomeWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) =>
-              appStateNotifier.loggedIn ? HomeWidget() : AuthenticationWidget(),
+              appStateNotifier.loggedIn ? HomeWidget() : HomeWidget(),
         ),
         FFRoute(
           name: 'Home',

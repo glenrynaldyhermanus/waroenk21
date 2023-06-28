@@ -222,16 +222,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
                                 if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                      ),
-                                    ),
-                                  );
+                                  return HomeSectionTitleLoadingWidget();
                                 }
                                 List<AppConfigsRow> rowAppConfigsRowList =
                                     snapshot.data!;
@@ -338,20 +329,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
-                                    return Center(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 0.0, 0.0),
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: CircularProgressIndicator(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
-                                          ),
-                                        ),
-                                      ),
-                                    );
+                                    return HomeEventLoadingWidget();
                                   }
                                   List<EventsRow> rowEventsRowList =
                                       snapshot.data!;
@@ -526,16 +504,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
                                 if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                      ),
-                                    ),
-                                  );
+                                  return HomeSectionTitleLoadingWidget();
                                 }
                                 List<AppConfigsRow> rowAppConfigsRowList =
                                     snapshot.data!;
@@ -633,16 +602,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                        ),
-                                      ),
-                                    );
+                                    return HomeActivityLoadingWidget();
                                   }
                                   List<ActivitiesRow> columnActivitiesRowList =
                                       snapshot.data!;

@@ -29,10 +29,6 @@ class AuthenticationModel extends FlutterFlowModel {
   TextEditingController? passwordController;
   late bool passwordVisibility;
   String? Function(BuildContext, String?)? passwordControllerValidator;
-  // State field(s) for password_confirm widget.
-  TextEditingController? passwordConfirmController;
-  late bool passwordConfirmVisibility;
-  String? Function(BuildContext, String?)? passwordConfirmControllerValidator;
   // Stores action output result for [Custom Action - isRegistered] action in Button widget.
   bool? isEmailExists;
 
@@ -41,7 +37,6 @@ class AuthenticationModel extends FlutterFlowModel {
   void initState(BuildContext context) {
     passwordLoginVisibility = false;
     passwordVisibility = false;
-    passwordConfirmVisibility = false;
   }
 
   void dispose() {
@@ -51,7 +46,6 @@ class AuthenticationModel extends FlutterFlowModel {
     emailAddressController?.dispose();
     fullNameController?.dispose();
     passwordController?.dispose();
-    passwordConfirmController?.dispose();
   }
 
   /// Action blocks are added here.
