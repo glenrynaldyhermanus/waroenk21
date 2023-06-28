@@ -663,7 +663,21 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             .startDate) &&
                                                     (getCurrentTimestamp <=
                                                         columnActivitiesRow
-                                                            .endDate))
+                                                            .endDate) &&
+                                                    (columnActivitiesRow
+                                                                .startTime !=
+                                                            null
+                                                        ? (getCurrentTimestamp >=
+                                                            columnActivitiesRow
+                                                                .startTime!)
+                                                        : false) &&
+                                                    (columnActivitiesRow
+                                                                .endTime !=
+                                                            null
+                                                        ? (getCurrentTimestamp <=
+                                                            columnActivitiesRow
+                                                                .startTime!)
+                                                        : false))
                                                   Stack(
                                                     children: [
                                                       Shimmer.fromColors(
