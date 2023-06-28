@@ -153,37 +153,10 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                       ),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            24.0, 16.0, 24.0, 0.0),
+                            24.0, 8.0, 24.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.location_on_rounded,
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  size: 24.0,
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      widget.event?.location,
-                                      'Lokasi event',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Rubik',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                        ),
-                                  ),
-                                ),
-                              ],
-                            ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
                                   0.0, 8.0, 0.0, 8.0),
@@ -242,6 +215,33 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                                   ),
                                 ],
                               ),
+                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Icon(
+                                  Icons.location_on_rounded,
+                                  color: FlutterFlowTheme.of(context).secondary,
+                                  size: 24.0,
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      8.0, 0.0, 0.0, 0.0),
+                                  child: Text(
+                                    valueOrDefault<String>(
+                                      widget.event?.location,
+                                      'Lokasi event',
+                                    ),
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelLarge
+                                        .override(
+                                          fontFamily: 'Rubik',
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryText,
+                                        ),
+                                  ),
+                                ),
+                              ],
                             ),
                             Divider(
                               thickness: 1.0,
