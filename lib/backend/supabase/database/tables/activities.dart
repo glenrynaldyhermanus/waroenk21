@@ -38,8 +38,8 @@ class ActivitiesRow extends SupabaseDataRow {
   int? get typeId => getField<int>('type_id');
   set typeId(int? value) => setField<int>('type_id', value);
 
-  DateTime get scheduledAt => getField<DateTime>('scheduled_at')!;
-  set scheduledAt(DateTime value) => setField<DateTime>('scheduled_at', value);
+  DateTime get startDate => getField<DateTime>('start_date')!;
+  set startDate(DateTime value) => setField<DateTime>('start_date', value);
 
   int get minParticipants => getField<int>('min_participants')!;
   set minParticipants(int value) => setField<int>('min_participants', value);
@@ -58,4 +58,7 @@ class ActivitiesRow extends SupabaseDataRow {
 
   double get longitude => getField<double>('longitude')!;
   set longitude(double value) => setField<double>('longitude', value);
+
+  DateTime? get endDate => getField<DateTime>('end_date');
+  set endDate(DateTime? value) => setField<DateTime>('end_date', value);
 }

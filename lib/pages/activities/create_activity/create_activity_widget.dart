@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -645,15 +646,17 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                           'picture_url': _model.uploadedFileUrl,
                           'type_id': 1,
                           'event_id': widget.event?.id,
-                          'scheduled_at':
+                          'start_date':
                               supaSerialize<DateTime>(_model.datePicked),
                           'min_participants':
                               int.tryParse(_model.textController2.text),
                           'max_participants':
                               int.tryParse(_model.textController3.text),
-                          'location': 'Tamansari Param Office',
-                          'latitude': -6.1869096,
-                          'longitude': 106.8276708,
+                          'location': FFAppState().selectedLocationName,
+                          'latitude': functions
+                              .getLatitude(FFAppState().selectedLatLng!),
+                          'longitude': functions
+                              .getLongitude(FFAppState().selectedLatLng!),
                         });
                         _shouldSetState = true;
                         context.safePop();
