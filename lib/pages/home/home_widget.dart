@@ -677,14 +677,20 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                              child: Image.network(
-                                                columnActivitiesRow.pictureUrl!,
-                                                width: 52.0,
-                                                height: 64.0,
-                                                fit: BoxFit.cover,
+                                            Hero(
+                                              tag: columnActivitiesRow
+                                                  .pictureUrl!,
+                                              transitionOnUserGestures: true,
+                                              child: ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                                child: Image.network(
+                                                  columnActivitiesRow
+                                                      .pictureUrl!,
+                                                  width: 52.0,
+                                                  height: 64.0,
+                                                  fit: BoxFit.cover,
+                                                ),
                                               ),
                                             ),
                                             Expanded(
