@@ -351,10 +351,21 @@ class HomeActivityLoadingWidget extends StatelessWidget {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 3, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 4, 0, 0),
                           child: Container(
                             width: 148,
-                            height: 16,
+                            height: 12,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context).secondaryText,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
+                          child: Container(
+                            width: 148,
+                            height: 12,
                             decoration: BoxDecoration(
                               color: FlutterFlowTheme.of(context).secondaryText,
                               borderRadius: BorderRadius.circular(8),
