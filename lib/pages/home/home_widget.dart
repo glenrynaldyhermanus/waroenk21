@@ -619,12 +619,12 @@ class _HomeWidgetState extends State<HomeWidget> {
                               child: FutureBuilder<List<ActivitiesRow>>(
                                 future: ActivitiesTable().queryRows(
                                   queryFn: (q) => q
-                                      .gte(
-                                        'scheduled_at',
+                                      .lte(
+                                        'start_date',
                                         supaSerialize<DateTime>(
                                             getCurrentTimestamp),
                                       )
-                                      .order('scheduled_at', ascending: true),
+                                      .order('start_date', ascending: true),
                                 ),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
@@ -656,158 +656,191 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         (columnIndex) {
                                       final columnActivitiesRow =
                                           columnActivitiesRowList[columnIndex];
-                                      return Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                            child: Image.network(
-                                              columnActivitiesRow.pictureUrl!,
-                                              width: 52.0,
-                                              height: 64.0,
-                                              fit: BoxFit.cover,
+                                      return InkWell(
+                                        splashColor: Colors.transparent,
+                                        focusColor: Colors.transparent,
+                                        hoverColor: Colors.transparent,
+                                        highlightColor: Colors.transparent,
+                                        onTap: () async {
+                                          context.pushNamed(
+                                            'ActivityDetail',
+                                            queryParameters: {
+                                              'activity': serializeParam(
+                                                columnActivitiesRow,
+                                                ParamType.SupabaseRow,
+                                              ),
+                                            }.withoutNulls,
+                                          );
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                              child: Image.network(
+                                                columnActivitiesRow.pictureUrl!,
+                                                width: 52.0,
+                                                height: 64.0,
+                                                fit: BoxFit.cover,
+                                              ),
                                             ),
-                                          ),
-                                          Expanded(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 0.0, 0.0, 0.0),
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Text(
-                                                    columnActivitiesRow.name,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyLarge,
-                                                  ),
-                                                  Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    children: [
-                                                      Icon(
-                                                        Icons
-                                                            .date_range_rounded,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .primary,
-                                                        size: 16.0,
-                                                      ),
-                                                      Expanded(
-                                                        child: Text(
-                                                          dateTimeFormat(
-                                                            'MMMMEEEEd',
-                                                            columnActivitiesRow
-                                                                .scheduledAt,
-                                                            locale: FFLocalizations
-                                                                    .of(context)
-                                                                .languageCode,
-                                                          ),
-                                                          style: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .bodySmall,
-                                                        ),
-                                                      ),
-                                                    ].divide(
-                                                        SizedBox(width: 4.0)),
-                                                  ),
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 12.0,
-                                                                0.0, 0.0),
-                                                    child: Row(
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 0.0, 0.0, 0.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      columnActivitiesRow.name,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyLarge,
+                                                    ),
+                                                    Row(
                                                       mainAxisSize:
                                                           MainAxisSize.max,
                                                       children: [
                                                         Icon(
                                                           Icons
-                                                              .location_on_outlined,
+                                                              .date_range_rounded,
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primary,
                                                           size: 16.0,
                                                         ),
                                                         Expanded(
-                                                          child: Align(
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    -1.0, 1.0),
-                                                            child: Text(
+                                                          child: Text(
+                                                            dateTimeFormat(
+                                                              'MMMMEEEEd',
                                                               columnActivitiesRow
-                                                                  .location,
-                                                              maxLines: 1,
-                                                              style: FlutterFlowTheme
+                                                                  .startDate,
+                                                              locale: FFLocalizations
                                                                       .of(context)
-                                                                  .bodySmall,
+                                                                  .languageCode,
                                                             ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodySmall,
                                                           ),
                                                         ),
                                                       ].divide(
                                                           SizedBox(width: 4.0)),
                                                     ),
-                                                  ),
-                                                ],
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  12.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Icon(
+                                                            Icons
+                                                                .location_on_outlined,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            size: 16.0,
+                                                          ),
+                                                          Expanded(
+                                                            child: Align(
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      -1.0,
+                                                                      1.0),
+                                                              child: Text(
+                                                                columnActivitiesRow
+                                                                    .location,
+                                                                maxLines: 1,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ].divide(SizedBox(
+                                                            width: 4.0)),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Container(
-                                            height: 64.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryBackground,
-                                            ),
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: FFButtonWidget(
-                                              onPressed: () {
-                                                print('Button pressed ...');
-                                              },
-                                              text: 'View',
-                                              options: FFButtonOptions(
-                                                height: 32.0,
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        8.0, 0.0, 8.0, 0.0),
-                                                iconPadding:
-                                                    EdgeInsetsDirectional
-                                                        .fromSTEB(
-                                                            0.0, 0.0, 0.0, 0.0),
+                                            Container(
+                                              height: 64.0,
+                                              decoration: BoxDecoration(
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryBackground,
-                                                textStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .labelMedium
-                                                        .override(
-                                                          fontFamily: 'Rubik',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                        ),
-                                                elevation: 0.0,
-                                                borderSide: BorderSide(
+                                              ),
+                                              alignment: AlignmentDirectional(
+                                                  0.0, 0.0),
+                                              child: FFButtonWidget(
+                                                onPressed: () async {
+                                                  context.pushNamed(
+                                                    'ActivityDetail',
+                                                    queryParameters: {
+                                                      'activity':
+                                                          serializeParam(
+                                                        columnActivitiesRow,
+                                                        ParamType.SupabaseRow,
+                                                      ),
+                                                    }.withoutNulls,
+                                                  );
+                                                },
+                                                text: 'View',
+                                                options: FFButtonOptions(
+                                                  height: 32.0,
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          8.0, 0.0, 8.0, 0.0),
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
                                                   color: FlutterFlowTheme.of(
                                                           context)
-                                                      .primary,
-                                                  width: 2.0,
+                                                      .primaryBackground,
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily: 'Rubik',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                      ),
+                                                  elevation: 0.0,
+                                                  borderSide: BorderSide(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                    width: 2.0,
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          16.0),
                                                 ),
-                                                borderRadius:
-                                                    BorderRadius.circular(16.0),
                                               ),
                                             ),
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       );
                                     }).divide(SizedBox(height: 16.0)),
                                   );

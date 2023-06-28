@@ -152,6 +152,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             email: params.getParam('email', ParamType.String),
             name: params.getParam('name', ParamType.String),
           ),
+        ),
+        FFRoute(
+          name: 'ActivityDetail',
+          path: '/activityDetail',
+          requireAuth: true,
+          builder: (context, params) => ActivityDetailWidget(
+            activity: params.getParam<ActivitiesRow>(
+                'activity', ParamType.SupabaseRow),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
