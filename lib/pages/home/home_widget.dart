@@ -817,15 +817,57 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                             ),
                                                             Expanded(
                                                               child: Text(
-                                                                dateTimeFormat(
-                                                                  'MMMMEEEEd',
-                                                                  columnActivitiesRow
-                                                                      .startDate,
-                                                                  locale: FFLocalizations
-                                                                      .of(
-                                                                      context)
-                                                                      .languageCode,
-                                                                ),
+                                                                    () {
+                                                                  if ((columnActivitiesRow
+                                                                      .openRegistrationAt !=
+                                                                      null) &&
+                                                                      (getCurrentTimestamp <=
+                                                                          columnActivitiesRow
+                                                                              .openRegistrationAt!)) {
+                                                                    return dateTimeFormat(
+                                                                      'MMMEd',
+                                                                      columnActivitiesRow
+                                                                          .openRegistrationAt!,
+                                                                      locale: FFLocalizations.of(
+                                                                          context)
+                                                                          .languageCode,
+                                                                    );
+                                                                  } else if ((columnActivitiesRow
+                                                                      .closeRegistrationAt !=
+                                                                      null) &&
+                                                                      (getCurrentTimestamp <=
+                                                                          columnActivitiesRow
+                                                                              .closeRegistrationAt!)) {
+                                                                    return dateTimeFormat(
+                                                                      'MMMEd',
+                                                                      columnActivitiesRow
+                                                                          .closeRegistrationAt!,
+                                                                      locale: FFLocalizations.of(
+                                                                          context)
+                                                                          .languageCode,
+                                                                    );
+                                                                  } else if (getCurrentTimestamp <=
+                                                                      columnActivitiesRow
+                                                                          .startDate) {
+                                                                    return dateTimeFormat(
+                                                                      'MMMEd',
+                                                                      columnActivitiesRow
+                                                                          .startDate,
+                                                                      locale: FFLocalizations.of(
+                                                                          context)
+                                                                          .languageCode,
+                                                                    );
+                                                                  } else {
+                                                                    return dateTimeFormat(
+                                                                      'MMMEd',
+                                                                      columnActivitiesRow
+                                                                          .endDate,
+                                                                      locale: FFLocalizations.of(
+                                                                          context)
+                                                                          .languageCode,
+                                                                    );
+                                                                  }
+                                                                }(),
                                                                 style: FlutterFlowTheme
                                                                     .of(context)
                                                                     .bodySmall,
