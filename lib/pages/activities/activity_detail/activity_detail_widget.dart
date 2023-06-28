@@ -83,26 +83,10 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                           icon: Icon(
                             Icons.arrow_back_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 30.0,
+                            size: 20.0,
                           ),
                           onPressed: () async {
                             context.pop();
-                          },
-                        ),
-                        FlutterFlowIconButton(
-                          borderColor: Colors.transparent,
-                          borderRadius: 24.0,
-                          borderWidth: 1.0,
-                          buttonSize: 48.0,
-                          fillColor:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          icon: Icon(
-                            Icons.menu_rounded,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
-                          ),
-                          onPressed: () {
-                            print('IconButton pressed ...');
                           },
                         ),
                       ],

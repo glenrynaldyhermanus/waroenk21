@@ -85,7 +85,7 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                           icon: Icon(
                             Icons.arrow_back_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 30.0,
+                            size: 20.0,
                           ),
                           onPressed: () async {
                             context.pop();
@@ -101,7 +101,7 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                           icon: Icon(
                             Icons.menu_rounded,
                             color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 24.0,
+                            size: 20.0,
                           ),
                           onPressed: () async {
                             await showModalBottomSheet(
