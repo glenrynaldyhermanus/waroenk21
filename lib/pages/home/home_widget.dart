@@ -792,7 +792,8 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                 .bodySmall,
                                                           ),
                                                         ),
-                                                      ],
+                                                      ].divide(
+                                                          SizedBox(width: 2.0)),
                                                     ),
                                                     Padding(
                                                       padding:
