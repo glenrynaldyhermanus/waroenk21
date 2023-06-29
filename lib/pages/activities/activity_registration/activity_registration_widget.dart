@@ -444,36 +444,63 @@ class _ActivityRegistrationWidgetState
                             _model.textController.text != '') &&
                         (widget.activity?.maxTeamMember ==
                             FFAppState().myTeammates.length)) {
-                      _model.team = await ActivityTeamsTable().insert({
-                        'activity_id': widget.activity?.id,
-                        'name': _model.textController.text,
-                        'team_owner_id': FFAppState().authedProfile.id,
-                      });
+                      _model.isParticipate = await actions.isParticipated(
+                        FFAppState().authedProfile.id,
+                        widget.activity!,
+                      );
                       _shouldSetState = true;
-                      await actions.insertAllTeammates(
-                        FFAppState().myTeammates.toList(),
-                        _model.team!,
-                      );
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Pendaftaran berhasil',
-                            style: FlutterFlowTheme.of(context)
-                                .labelMedium
-                                .override(
-                                  fontFamily: 'Rubik',
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                ),
+                      if (_model.isParticipate == true) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Kamu sudah terdaftar',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                            ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).primaryText,
                           ),
-                          duration: Duration(milliseconds: 4000),
-                          backgroundColor:
-                              FlutterFlowTheme.of(context).primaryText,
-                        ),
-                      );
-                      context.safePop();
-                      if (_shouldSetState) setState(() {});
-                      return;
+                        );
+                        if (_shouldSetState) setState(() {});
+                        return;
+                      } else {
+                        _model.team = await ActivityTeamsTable().insert({
+                          'activity_id': widget.activity?.id,
+                          'name': _model.textController.text,
+                          'team_owner_id': FFAppState().authedProfile.id,
+                        });
+                        _shouldSetState = true;
+                        await actions.insertAllTeammates(
+                          FFAppState().myTeammates.toList(),
+                          _model.team!,
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              'Pendaftaran berhasil',
+                              style: FlutterFlowTheme.of(context)
+                                  .labelMedium
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
+                                  ),
+                            ),
+                            duration: Duration(milliseconds: 4000),
+                            backgroundColor:
+                                FlutterFlowTheme.of(context).primaryText,
+                          ),
+                        );
+                        context.safePop();
+                        if (_shouldSetState) setState(() {});
+                        return;
+                      }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
