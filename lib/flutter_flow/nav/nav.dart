@@ -178,7 +178,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'ActivityRegistration',
           path: '/activityRegistration',
           builder: (context, params) => ActivityRegistrationWidget(
-            event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
+            activity: params.getParam<ActivitiesRow>(
+                'activity', ParamType.SupabaseRow),
           ),
         ),
         FFRoute(

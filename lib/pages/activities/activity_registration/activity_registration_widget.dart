@@ -14,10 +14,10 @@ export 'activity_registration_model.dart';
 class ActivityRegistrationWidget extends StatefulWidget {
   const ActivityRegistrationWidget({
     Key? key,
-    this.event,
+    required this.activity,
   }) : super(key: key);
 
-  final EventsRow? event;
+  final ActivitiesRow? activity;
 
   @override
   _ActivityRegistrationWidgetState createState() =>
