@@ -12,6 +12,8 @@ export 'tables/user_stores.dart';
 export 'tables/products.dart';
 export 'tables/pre_orders.dart';
 export 'tables/transactions.dart';
+export 'tables/activity_teams.dart';
+export 'tables/activity_participants.dart';
 export 'tables/activity_groups.dart';
 export 'tables/pre_orders_products.dart';
 export 'tables/app_configs.dart';

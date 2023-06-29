@@ -147,8 +147,8 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                               children: [
                                 Icon(
                                   Icons.date_range,
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  size: 24.0,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  size: 20.0,
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
@@ -205,8 +205,8 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                               children: [
                                 Icon(
                                   Icons.location_on_rounded,
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  size: 24.0,
+                                  color: FlutterFlowTheme.of(context).primary,
+                                  size: 20.0,
                                 ),
                                 Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(

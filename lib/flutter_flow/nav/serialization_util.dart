@@ -228,6 +228,10 @@ dynamic deserializeParam<T>(
             return PreOrdersRow(data);
           case TransactionsRow:
             return TransactionsRow(data);
+          case ActivityTeamsRow:
+            return ActivityTeamsRow(data);
+          case ActivityParticipantsRow:
+            return ActivityParticipantsRow(data);
           case ActivityGroupsRow:
             return ActivityGroupsRow(data);
           case PreOrdersProductsRow:
