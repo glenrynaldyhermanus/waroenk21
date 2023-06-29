@@ -131,6 +131,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                                     m.storagePath, context))) {
                               setState(() => _model.isDataUploading = true);
                               var selectedUploadedFiles = <FFUploadedFile>[];
+
                               var downloadUrls = <String>[];
                               try {
                                 showUploadMessage(
@@ -150,7 +151,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
 
                                 downloadUrls = await uploadSupabaseStorageFiles(
                                   bucketName: 'events_bucket',
-                                  selectedMedia: selectedMedia,
+                                  selectedFiles: selectedMedia,
                                 );
                               } finally {
                                 ScaffoldMessenger.of(context)

@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -437,8 +438,64 @@ class _ActivityRegistrationWidgetState
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
+                  onPressed: () async {
+                    var _shouldSetState = false;
+                    if ((_model.textController.text != null &&
+                            _model.textController.text != '') &&
+                        (widget.activity?.maxTeamMember ==
+                            FFAppState().myTeammates.length)) {
+                      _model.team = await ActivityTeamsTable().insert({
+                        'activity_id': widget.activity?.id,
+                        'name': _model.textController.text,
+                        'team_owner_id': FFAppState().authedProfile.id,
+                      });
+                      _shouldSetState = true;
+                      await actions.insertAllTeammates(
+                        FFAppState().myTeammates.toList(),
+                      );
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Pendaftaran berhasil',
+                            style: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Rubik',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                          ),
+                          duration: Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).primaryText,
+                        ),
+                      );
+                      context.safePop();
+                      if (_shouldSetState) setState(() {});
+                      return;
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Mohon isi data dengan lengkap',
+                            style: FlutterFlowTheme.of(context)
+                                .labelMedium
+                                .override(
+                                  fontFamily: 'Rubik',
+                                  color: FlutterFlowTheme.of(context)
+                                      .secondaryBackground,
+                                ),
+                          ),
+                          duration: Duration(milliseconds: 4000),
+                          backgroundColor:
+                              FlutterFlowTheme.of(context).primaryText,
+                        ),
+                      );
+                      if (_shouldSetState) setState(() {});
+                      return;
+                    }
+
+                    if (_shouldSetState) setState(() {});
                   },
                   text: 'Daftarkan Team',
                   options: FFButtonOptions(

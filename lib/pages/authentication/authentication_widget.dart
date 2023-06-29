@@ -53,8 +53,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
         key: scaffoldKey,
         backgroundColor: Color(0xFF14181B),
         body: Container(
-          width: MediaQuery.of(context).size.width * 1.0,
-          height: MediaQuery.of(context).size.height * 1.0,
+          width: MediaQuery.sizeOf(context).width * 1.0,
+          height: MediaQuery.sizeOf(context).height * 1.0,
           decoration: BoxDecoration(
             color: Color(0xFF14181B),
             image: DecorationImage(

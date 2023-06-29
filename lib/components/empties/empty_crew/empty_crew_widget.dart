@@ -80,7 +80,7 @@ class _EmptyCrewWidgetState extends State<EmptyCrewWidget> {
                   context: context,
                   builder: (context) {
                     return Padding(
-                      padding: MediaQuery.of(context).viewInsets,
+                      padding: MediaQuery.viewInsetsOf(context),
                       child: InviteCrewWidget(
                         event: widget.event!,
                         eventRole: widget.eventRole,

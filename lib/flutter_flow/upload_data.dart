@@ -14,8 +14,8 @@ import 'flutter_flow_util.dart';
 
 const allowedFormats = {'image/png', 'image/jpeg', 'video/mp4', 'image/gif'};
 
-class SelectedMedia {
-  const SelectedMedia({
+class SelectedFile {
+  const SelectedFile({
     this.storagePath = '',
     this.filePath,
     required this.bytes,
@@ -44,7 +44,7 @@ enum MediaSource {
   camera,
 }
 
-Future<List<SelectedMedia>?> selectMediaWithSourceBottomSheet({
+Future<List<SelectedFile>?> selectMediaWithSourceBottomSheet({
   required BuildContext context,
   String? storageFolderPath,
   double? maxWidth,
@@ -149,7 +149,7 @@ Future<List<SelectedMedia>?> selectMediaWithSourceBottomSheet({
   );
 }
 
-Future<List<SelectedMedia>?> selectMedia({
+Future<List<SelectedFile>?> selectMedia({
   String? storageFolderPath,
   double? maxWidth,
   double? maxHeight,
@@ -187,7 +187,7 @@ Future<List<SelectedMedia>?> selectMedia({
               ? null
               : await _getImageBlurHash(mediaBytes)
           : null;
-      return SelectedMedia(
+      return SelectedFile(
         storagePath: path,
         filePath: media.path,
         bytes: mediaBytes,
@@ -225,7 +225,7 @@ Future<List<SelectedMedia>?> selectMedia({
           : await _getImageBlurHash(mediaBytes)
       : null;
   return [
-    SelectedMedia(
+    SelectedFile(
       storagePath: path,
       filePath: pickedMedia.path,
       bytes: mediaBytes,
@@ -247,7 +247,7 @@ bool validateFileFormat(String filePath, BuildContext context) {
   return false;
 }
 
-Future<SelectedMedia?> selectFile({
+Future<SelectedFile?> selectFile({
   String? storageFolderPath,
   List<String>? allowedExtensions,
 }) =>
@@ -257,7 +257,7 @@ Future<SelectedMedia?> selectFile({
       multiFile: false,
     ).then((value) => value?.first);
 
-Future<List<SelectedMedia>?> selectFiles({
+Future<List<SelectedFile>?> selectFiles({
   String? storageFolderPath,
   List<String>? allowedExtensions,
   bool multiFile = false,
@@ -277,7 +277,7 @@ Future<List<SelectedMedia>?> selectFiles({
       final file = e.value;
       final storagePath =
           _getStoragePath(storageFolderPath, file.name, false, index);
-      return SelectedMedia(
+      return SelectedFile(
         storagePath: storagePath,
         filePath: isWeb ? null : file.path,
         bytes: file.bytes!,
@@ -290,13 +290,33 @@ Future<List<SelectedMedia>?> selectFiles({
   }
   final storagePath = _getStoragePath(storageFolderPath, file.name, false);
   return [
-    SelectedMedia(
+    SelectedFile(
       storagePath: storagePath,
       filePath: isWeb ? null : file.path,
       bytes: file.bytes!,
     )
   ];
 }
+
+List<SelectedFile> selectedFilesFromUploadedFiles(
+  List<FFUploadedFile> uploadedFiles, {
+  String? storageFolderPath,
+  bool isMultiData = false,
+}) =>
+    uploadedFiles.asMap().entries.map(
+      (entry) {
+        final index = entry.key;
+        final file = entry.value;
+        return SelectedFile(
+            storagePath: _getStoragePath(
+              storageFolderPath != null ? storageFolderPath : null,
+              file.name!,
+              false,
+              isMultiData ? index : null,
+            ),
+            bytes: file.bytes!);
+      },
+    ).toList();
 
 Future<MediaDimensions> _getImageDimensions(Uint8List mediaBytes) async {
   final image = await decodeImageFromList(mediaBytes);

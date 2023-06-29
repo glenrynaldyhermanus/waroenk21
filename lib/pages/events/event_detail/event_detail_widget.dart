@@ -99,7 +99,7 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                       onTap: () => FocusScope.of(context)
                           .requestFocus(_model.unfocusNode),
                       child: Padding(
-                        padding: MediaQuery.of(context).viewInsets,
+                        padding: MediaQuery.viewInsetsOf(context),
                         child: EventMenuWidget(
                           event: widget.event!,
                         ),

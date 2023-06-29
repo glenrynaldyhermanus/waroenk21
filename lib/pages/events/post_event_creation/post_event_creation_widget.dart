@@ -87,7 +87,7 @@ class _PostEventCreationWidgetState extends State<PostEventCreationWidget> {
                         Expanded(
                           child: Lottie.network(
                             'https://assets9.lottiefiles.com/private_files/lf30_fup2uejx.json',
-                            width: MediaQuery.of(context).size.width * 1.0,
+                            width: MediaQuery.sizeOf(context).width * 1.0,
                             height: 130.0,
                             fit: BoxFit.fitWidth,
                             animate: true,
