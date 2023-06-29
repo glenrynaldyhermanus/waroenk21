@@ -9,14 +9,14 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future<bool> isParticipated(
+Future<bool> isUserParticipated(
   int userId,
   ActivitiesRow activity,
 ) async {
-  final result = await ActivityTeamsTable().queryRows(
+  final result = await ActivityParticipantsTable().queryRows(
     queryFn: (q) => q
         .eq(
-          'team_owner_id',
+          'user_id',
           userId,
         )
         .eq('activity_id', activity.id),

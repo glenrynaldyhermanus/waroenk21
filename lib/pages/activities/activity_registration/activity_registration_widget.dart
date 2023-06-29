@@ -282,6 +282,12 @@ class _ActivityRegistrationWidgetState
                                       onPressed: () async {
                                         context.pushNamed(
                                           'InviteTeamMember',
+                                          queryParameters: {
+                                            'activity': serializeParam(
+                                              widget.activity,
+                                              ParamType.SupabaseRow,
+                                            ),
+                                          }.withoutNulls,
                                           extra: <String, dynamic>{
                                             kTransitionInfoKey: TransitionInfo(
                                               hasTransition: true,
@@ -444,7 +450,7 @@ class _ActivityRegistrationWidgetState
                             _model.textController.text != '') &&
                         (widget.activity?.maxTeamMember ==
                             FFAppState().myTeammates.length)) {
-                      _model.isParticipate = await actions.isParticipated(
+                      _model.isParticipate = await actions.isTeamParticipated(
                         FFAppState().authedProfile.id,
                         widget.activity!,
                       );
@@ -453,7 +459,7 @@ class _ActivityRegistrationWidgetState
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                              'Kamu sudah terdaftar',
+                              'Kamu sudah pernah daftar',
                               style: FlutterFlowTheme.of(context)
                                   .labelMedium
                                   .override(

@@ -17,7 +17,7 @@ class ActivityRegistrationModel extends FlutterFlowModel {
   // State field(s) for TextField widget.
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Custom Action - isParticipated] action in Button widget.
+  // Stores action output result for [Custom Action - isTeamParticipated] action in Button widget.
   bool? isParticipate;
   // Stores action output result for [Backend Call - Insert Row] action in Button widget.
   ActivityTeamsRow? team;
