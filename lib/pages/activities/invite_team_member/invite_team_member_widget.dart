@@ -1,6 +1,5 @@
 import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
-import '/components/empties/empty_event/empty_event_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -184,11 +183,6 @@ class _InviteTeamMemberWidgetState extends State<InviteTeamMemberWidget> {
                               );
                             }
                             List<UsersRow> columnUsersRowList = snapshot.data!;
-                            if (columnUsersRowList.isEmpty) {
-                              return Center(
-                                child: EmptyEventWidget(),
-                              );
-                            }
                             return Column(
                               mainAxisSize: MainAxisSize.max,
                               crossAxisAlignment: CrossAxisAlignment.stretch,
