@@ -84,4 +84,7 @@ class ActivitiesRow extends SupabaseDataRow {
 
   PostgresTime? get endTime => getField<PostgresTime>('end_time');
   set endTime(PostgresTime? value) => setField<PostgresTime>('end_time', value);
+
+  int get maxTeamMember => getField<int>('max_team_member')!;
+  set maxTeamMember(int value) => setField<int>('max_team_member', value);
 }
