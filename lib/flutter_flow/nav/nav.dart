@@ -186,7 +186,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'InviteTeamMember',
           path: '/inviteTeamMember',
-          builder: (context, params) => InviteTeamMemberWidget(),
+          builder: (context, params) => InviteTeamMemberWidget(
+            activity: params.getParam<ActivitiesRow>(
+                'activity', ParamType.SupabaseRow),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

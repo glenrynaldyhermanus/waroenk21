@@ -4,6 +4,7 @@ import '/components/empties/empty_event/empty_event_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,12 @@ import 'invite_team_member_model.dart';
 export 'invite_team_member_model.dart';
 
 class InviteTeamMemberWidget extends StatefulWidget {
-  const InviteTeamMemberWidget({Key? key}) : super(key: key);
+  const InviteTeamMemberWidget({
+    Key? key,
+    required this.activity,
+  }) : super(key: key);
+
+  final ActivitiesRow? activity;
 
   @override
   _InviteTeamMemberWidgetState createState() => _InviteTeamMemberWidgetState();
@@ -196,15 +202,52 @@ class _InviteTeamMemberWidgetState extends State<InviteTeamMemberWidget> {
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
-                                    setState(() {
-                                      FFAppState()
-                                          .addToMyTeammates(TeammateStruct(
-                                        name: columnUsersRow.name,
-                                        email: columnUsersRow.email,
-                                        id: columnUsersRow.id,
-                                      ));
-                                    });
-                                    context.safePop();
+                                    var _shouldSetState = false;
+                                    _model.hasParticipate =
+                                        await actions.isUserParticipated(
+                                      columnUsersRow.id,
+                                      widget.activity!,
+                                    );
+                                    _shouldSetState = true;
+                                    if (_model.hasParticipate == true) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            '${columnUsersRow.name} sudah terdaftar oleh team lain',
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryBackground,
+                                                ),
+                                          ),
+                                          duration:
+                                              Duration(milliseconds: 4000),
+                                          backgroundColor:
+                                              FlutterFlowTheme.of(context)
+                                                  .primaryText,
+                                        ),
+                                      );
+                                      if (_shouldSetState) setState(() {});
+                                      return;
+                                    } else {
+                                      setState(() {
+                                        FFAppState()
+                                            .addToMyTeammates(TeammateStruct(
+                                          name: columnUsersRow.name,
+                                          email: columnUsersRow.email,
+                                          id: columnUsersRow.id,
+                                        ));
+                                      });
+                                      context.safePop();
+                                      if (_shouldSetState) setState(() {});
+                                      return;
+                                    }
+
+                                    if (_shouldSetState) setState(() {});
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
