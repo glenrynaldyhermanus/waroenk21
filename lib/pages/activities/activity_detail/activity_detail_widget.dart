@@ -41,6 +41,8 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
       _model.participants = await actions.countPersonalParticipants(
         widget.activity!,
       );
+
+      setState(() {});
     });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -224,7 +226,8 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                 valueOrDefault<String>(
                                                   dateTimeFormat(
                                                     'Hm',
-                                                    widget.activity?.startTime!.time,
+                                                    widget.activity?.startTime!
+                                                        .time,
                                                     locale: FFLocalizations.of(
                                                             context)
                                                         .languageCode,
@@ -251,7 +254,8 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                 valueOrDefault<String>(
                                                   dateTimeFormat(
                                                     'Hm',
-                                                    widget.activity?.endTime!.time,
+                                                    widget.activity?.endTime!
+                                                        .time,
                                                     locale: FFLocalizations.of(
                                                             context)
                                                         .languageCode,
