@@ -165,6 +165,15 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             activity: params.getParam<ActivitiesRow>(
                 'activity', ParamType.SupabaseRow),
           ),
+        ),
+        FFRoute(
+          name: 'ActivityByGroup',
+          path: '/activityByGroup',
+          requireAuth: true,
+          builder: (context, params) => ActivityByGroupWidget(
+            activityGroup: params.getParam<ActivityGroupsRow>(
+                'activityGroup', ParamType.SupabaseRow),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

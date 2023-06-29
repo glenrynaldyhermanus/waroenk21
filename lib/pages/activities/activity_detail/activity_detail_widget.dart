@@ -258,35 +258,40 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                 ],
                               ),
                             ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Icon(
-                                  Icons.location_on_rounded,
-                                  color: FlutterFlowTheme.of(context).secondary,
-                                  size: 24.0,
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      8.0, 0.0, 0.0, 0.0),
-                                  child: Text(
-                                    valueOrDefault<String>(
-                                      widget.activity?.location,
-                                      'Lokasi',
-                                    ),
-                                    style: FlutterFlowTheme.of(context)
-                                        .labelLarge
-                                        .override(
-                                          fontFamily: 'Rubik',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                        ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 8.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Icon(
+                                    Icons.location_on_rounded,
+                                    color:
+                                        FlutterFlowTheme.of(context).secondary,
+                                    size: 24.0,
                                   ),
-                                ),
-                              ],
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        8.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      valueOrDefault<String>(
+                                        widget.activity?.location,
+                                        'Lokasi',
+                                      ),
+                                      style: FlutterFlowTheme.of(context)
+                                          .labelLarge
+                                          .override(
+                                            fontFamily: 'Rubik',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                          ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             Divider(
-                              height: 32.0,
+                              height: 16.0,
                               thickness: 1.0,
                               color: FlutterFlowTheme.of(context).accent3,
                             ),
@@ -356,7 +361,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                               ),
                             ),
                             Divider(
-                              height: 32.0,
+                              height: 16.0,
                               thickness: 1.0,
                               color: FlutterFlowTheme.of(context).accent3,
                             ),
