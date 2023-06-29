@@ -9,14 +9,16 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-Future insertAllTeammates(List<TeammateStruct> teammates) async {
+Future insertAllTeammates(
+    List<TeammateStruct> teammates, ActivityTeamsRow team) async {
+  // Add your function code here!
   for (var teammate in teammates) {
     // Insert data into the table
     final response = await ActivityParticipantsTable().insert({
-      'name': teammate.name,
-      'email': teammate.email,
       'user_id': teammate.id,
-      'is_leader': teammate.isLeader
+      'is_leader': teammate.isLeader,
+      'activity_id': team.activityId,
+      'team_id': team.id,
     });
   }
 }
