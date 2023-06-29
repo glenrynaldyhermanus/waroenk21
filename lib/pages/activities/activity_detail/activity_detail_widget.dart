@@ -3,7 +3,9 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'activity_detail_model.dart';
@@ -30,6 +32,16 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ActivityDetailModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.teams = await actions.countTeamParticipants(
+        widget.activity!,
+      );
+      _model.participants = await actions.countPersonalParticipants(
+        widget.activity!,
+      );
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -505,9 +517,14 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                     .fromSTEB(
                                                         8.0, 0.0, 0.0, 0.0),
                                                 child: Text(
-                                                  widget.activity?.typeId == 1
-                                                      ? '1'
-                                                      : '2',
+                                                  valueOrDefault<String>(
+                                                    widget.activity?.typeId == 1
+                                                        ? _model.teams
+                                                            ?.toString()
+                                                        : _model.participants
+                                                            ?.toString(),
+                                                    '0',
+                                                  ),
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .labelLarge
