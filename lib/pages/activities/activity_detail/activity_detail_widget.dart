@@ -588,8 +588,16 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                   ),
                                 ),
                                 FFButtonWidget(
-                                  onPressed: () {
-                                    print('Button pressed ...');
+                                  onPressed: () async {
+                                    context.pushNamed(
+                                      'ActivityRegistration',
+                                      queryParameters: {
+                                        'activity': serializeParam(
+                                          widget.activity,
+                                          ParamType.SupabaseRow,
+                                        ),
+                                      }.withoutNulls,
+                                    );
                                   },
                                   text: 'Daftar',
                                   icon: Icon(
