@@ -102,16 +102,6 @@ class FFAppState extends ChangeNotifier {
   set searchKeywords(String _value) {
     _searchKeywords = _value;
   }
-
-  TeammateStruct _selectedTeammate = TeammateStruct();
-  TeammateStruct get selectedTeammate => _selectedTeammate;
-  set selectedTeammate(TeammateStruct _value) {
-    _selectedTeammate = _value;
-  }
-
-  void updateSelectedTeammateStruct(Function(TeammateStruct) updateFn) {
-    updateFn(_selectedTeammate);
-  }
 }
 
 LatLng? _latLngFromString(String? val) {

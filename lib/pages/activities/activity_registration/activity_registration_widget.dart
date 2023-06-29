@@ -102,6 +102,78 @@ class _ActivityRegistrationWidgetState
                     children: [
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              'ActivityBrief',
+                              queryParameters: {
+                                'activity': serializeParam(
+                                  widget.activity,
+                                  ParamType.SupabaseRow,
+                                ),
+                              }.withoutNulls,
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: FlutterFlowTheme.of(context)
+                                  .primaryBackground,
+                              boxShadow: [
+                                BoxShadow(
+                                  blurRadius: 4.0,
+                                  color: Color(0x33000000),
+                                  offset: Offset(0.0, 2.0),
+                                )
+                              ],
+                            ),
+                            child: Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  16.0, 16.0, 16.0, 16.0),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.list_alt,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 20.0,
+                                  ),
+                                  Expanded(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          8.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Peraturan dan Tata Tertib',
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelLarge
+                                            .override(
+                                              fontFamily: 'Rubik',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                            ),
+                                      ),
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_right_outlined,
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    size: 24.0,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
                             24.0, 32.0, 24.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController,
@@ -152,37 +224,13 @@ class _ActivityRegistrationWidgetState
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            FutureBuilder<List<AppConfigsRow>>(
-                              future: AppConfigsTable().querySingleRow(
-                                queryFn: (q) => q.eq(
-                                  'name',
-                                  'can_add_activity',
-                                ),
-                              ),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                List<AppConfigsRow> rowAppConfigsRowList =
-                                    snapshot.data!;
-                                final rowAppConfigsRow =
-                                    rowAppConfigsRowList.isNotEmpty
-                                        ? rowAppConfigsRowList.first
-                                        : null;
-                                return Row(
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Column(
                                   mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Padding(
                                       padding: EdgeInsetsDirectional.fromSTEB(
@@ -193,63 +241,90 @@ class _ActivityRegistrationWidgetState
                                             .titleMedium,
                                       ),
                                     ),
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 24.0, 0.0),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          context.pushNamed(
-                                            'InviteTeamMember',
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .bottomToTop,
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        text: 'Invite',
-                                        icon: Icon(
-                                          Icons.add,
-                                          color: FlutterFlowTheme.of(context)
-                                              .tertiary,
-                                          size: 16.0,
-                                        ),
-                                        options: FFButtonOptions(
-                                          height: 32.0,
+                                    Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 0.0, 16.0, 0.0),
-                                          iconPadding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 0.0),
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          textStyle: FlutterFlowTheme.of(
-                                                  context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Rubik',
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .tertiary,
-                                              ),
-                                          elevation: 3.0,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1.0,
+                                                  24.0, 0.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Max. ',
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelMedium,
                                           ),
-                                          borderRadius:
-                                              BorderRadius.circular(16.0),
                                         ),
-                                      ),
+                                        Text(
+                                          valueOrDefault<String>(
+                                            widget.activity?.maxTeamMember
+                                                ?.toString(),
+                                            '1',
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelMedium,
+                                        ),
+                                        Text(
+                                          ' orang',
+                                          style: FlutterFlowTheme.of(context)
+                                              .labelMedium,
+                                        ),
+                                      ],
                                     ),
                                   ],
-                                );
-                              },
+                                ),
+                                if (FFAppState().myTeammates.length <
+                                    widget.activity!.maxTeamMember)
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 24.0, 0.0),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        context.pushNamed(
+                                          'InviteTeamMember',
+                                          extra: <String, dynamic>{
+                                            kTransitionInfoKey: TransitionInfo(
+                                              hasTransition: true,
+                                              transitionType: PageTransitionType
+                                                  .bottomToTop,
+                                            ),
+                                          },
+                                        );
+                                      },
+                                      text: 'Invite',
+                                      icon: Icon(
+                                        Icons.add,
+                                        color: FlutterFlowTheme.of(context)
+                                            .tertiary,
+                                        size: 16.0,
+                                      ),
+                                      options: FFButtonOptions(
+                                        height: 32.0,
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            16.0, 0.0, 16.0, 0.0),
+                                        iconPadding:
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                0.0, 0.0, 0.0, 0.0),
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                        textStyle: FlutterFlowTheme.of(context)
+                                            .labelMedium
+                                            .override(
+                                              fontFamily: 'Rubik',
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .tertiary,
+                                            ),
+                                        elevation: 3.0,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 1.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(16.0),
+                                      ),
+                                    ),
+                                  ),
+                              ],
                             ),
                             Padding(
                               padding: EdgeInsetsDirectional.fromSTEB(
