@@ -65,7 +65,7 @@ class _CrewListWidgetState extends State<CrewListWidget> {
                   onTap: () =>
                       FocusScope.of(context).requestFocus(_model.unfocusNode),
                   child: Padding(
-                    padding: MediaQuery.of(context).viewInsets,
+                    padding: MediaQuery.viewInsetsOf(context),
                     child: InviteCrewWidget(
                       event: widget.event!,
                     ),

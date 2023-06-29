@@ -10,9 +10,11 @@ class TeammateStruct extends BaseStruct {
     String? name,
     String? email,
     bool? isLeader,
+    int? id,
   })  : _name = name,
         _email = email,
-        _isLeader = isLeader;
+        _isLeader = isLeader,
+        _id = id;
 
   // "name" field.
   String? _name;
@@ -32,10 +34,18 @@ class TeammateStruct extends BaseStruct {
   set isLeader(bool? val) => _isLeader = val;
   bool hasIsLeader() => _isLeader != null;
 
+  // "id" field.
+  int? _id;
+  int get id => _id ?? 0;
+  set id(int? val) => _id = val;
+  void incrementId(int amount) => _id = id + amount;
+  bool hasId() => _id != null;
+
   static TeammateStruct fromMap(Map<String, dynamic> data) => TeammateStruct(
         name: data['name'] as String?,
         email: data['email'] as String?,
         isLeader: data['is_leader'] as bool?,
+        id: castToType<int>(data['id']),
       );
 
   static TeammateStruct? maybeFromMap(dynamic data) =>
@@ -45,6 +55,7 @@ class TeammateStruct extends BaseStruct {
         'name': _name,
         'email': _email,
         'is_leader': _isLeader,
+        'id': _id,
       }.withoutNulls;
 
   @override
@@ -60,6 +71,10 @@ class TeammateStruct extends BaseStruct {
         'is_leader': serializeParam(
           _isLeader,
           ParamType.bool,
+        ),
+        'id': serializeParam(
+          _id,
+          ParamType.int,
         ),
       }.withoutNulls;
 
@@ -80,6 +95,11 @@ class TeammateStruct extends BaseStruct {
           ParamType.bool,
           false,
         ),
+        id: deserializeParam(
+          data['id'],
+          ParamType.int,
+          false,
+        ),
       );
 
   @override
@@ -90,20 +110,23 @@ class TeammateStruct extends BaseStruct {
     return other is TeammateStruct &&
         name == other.name &&
         email == other.email &&
-        isLeader == other.isLeader;
+        isLeader == other.isLeader &&
+        id == other.id;
   }
 
   @override
-  int get hashCode => const ListEquality().hash([name, email, isLeader]);
+  int get hashCode => const ListEquality().hash([name, email, isLeader, id]);
 }
 
 TeammateStruct createTeammateStruct({
   String? name,
   String? email,
   bool? isLeader,
+  int? id,
 }) =>
     TeammateStruct(
       name: name,
       email: email,
       isLeader: isLeader,
+      id: id,
     );

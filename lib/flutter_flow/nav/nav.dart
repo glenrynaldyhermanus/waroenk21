@@ -186,9 +186,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'InviteTeamMember',
           path: '/inviteTeamMember',
-          builder: (context, params) => InviteTeamMemberWidget(
-            event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
-          ),
+          builder: (context, params) => InviteTeamMemberWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -375,7 +373,7 @@ class FFRoute {
                   child: Center(
                     child: Image.asset(
                       'assets/images/app_logo.png',
-                      width: MediaQuery.of(context).size.width * 0.5,
+                      width: MediaQuery.sizeOf(context).width * 0.5,
                       fit: BoxFit.fitWidth,
                     ),
                   ),

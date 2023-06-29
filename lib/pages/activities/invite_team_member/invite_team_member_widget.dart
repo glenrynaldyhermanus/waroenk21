@@ -13,12 +13,7 @@ import 'invite_team_member_model.dart';
 export 'invite_team_member_model.dart';
 
 class InviteTeamMemberWidget extends StatefulWidget {
-  const InviteTeamMemberWidget({
-    Key? key,
-    this.event,
-  }) : super(key: key);
-
-  final EventsRow? event;
+  const InviteTeamMemberWidget({Key? key}) : super(key: key);
 
   @override
   _InviteTeamMemberWidgetState createState() => _InviteTeamMemberWidgetState();
@@ -206,6 +201,7 @@ class _InviteTeamMemberWidgetState extends State<InviteTeamMemberWidget> {
                                           .addToMyTeammates(TeammateStruct(
                                         name: columnUsersRow.name,
                                         email: columnUsersRow.email,
+                                        id: columnUsersRow.id,
                                       ));
                                     });
                                     context.safePop();
