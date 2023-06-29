@@ -27,3 +27,18 @@ String getNameForGreeting(String name) {
 int getLevel(String level) {
   return int.parse(level);
 }
+
+String getNameAbbrevation(String name) {
+  // Get abbrevation max 2 of string from first letter of each words
+  List<String> words = name.split(" ");
+  String abbreviation = "";
+  for (String word in words) {
+    if (word.isNotEmpty) {
+      abbreviation += word[0];
+      if (abbreviation.length == 2) {
+        break;
+      }
+    }
+  }
+  return abbreviation.toUpperCase();
+}

@@ -173,6 +173,20 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             activityGroup: params.getParam<ActivityGroupsRow>(
                 'activityGroup', ParamType.SupabaseRow),
           ),
+        ),
+        FFRoute(
+          name: 'ActivityRegistration',
+          path: '/activityRegistration',
+          builder: (context, params) => ActivityRegistrationWidget(
+            event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
+          ),
+        ),
+        FFRoute(
+          name: 'InviteTeamMember',
+          path: '/inviteTeamMember',
+          builder: (context, params) => InviteTeamMemberWidget(
+            event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

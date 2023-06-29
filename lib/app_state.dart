@@ -71,6 +71,47 @@ class FFAppState extends ChangeNotifier {
   set selectedLocationAddress(String _value) {
     _selectedLocationAddress = _value;
   }
+
+  List<TeammateStruct> _myTeammates = [];
+  List<TeammateStruct> get myTeammates => _myTeammates;
+  set myTeammates(List<TeammateStruct> _value) {
+    _myTeammates = _value;
+  }
+
+  void addToMyTeammates(TeammateStruct _value) {
+    _myTeammates.add(_value);
+  }
+
+  void removeFromMyTeammates(TeammateStruct _value) {
+    _myTeammates.remove(_value);
+  }
+
+  void removeAtIndexFromMyTeammates(int _index) {
+    _myTeammates.removeAt(_index);
+  }
+
+  void updateMyTeammatesAtIndex(
+    int _index,
+    TeammateStruct Function(TeammateStruct) updateFn,
+  ) {
+    _myTeammates[_index] = updateFn(_myTeammates[_index]);
+  }
+
+  String _searchKeywords = '';
+  String get searchKeywords => _searchKeywords;
+  set searchKeywords(String _value) {
+    _searchKeywords = _value;
+  }
+
+  TeammateStruct _selectedTeammate = TeammateStruct();
+  TeammateStruct get selectedTeammate => _selectedTeammate;
+  set selectedTeammate(TeammateStruct _value) {
+    _selectedTeammate = _value;
+  }
+
+  void updateSelectedTeammateStruct(Function(TeammateStruct) updateFn) {
+    updateFn(_selectedTeammate);
+  }
 }
 
 LatLng? _latLngFromString(String? val) {
