@@ -16,7 +16,7 @@ Future<bool> isParticipated(
   final result = await ActivityTeamsTable().queryRows(
     queryFn: (q) => q
         .eq(
-          'owner_id',
+          'team_owner_id',
           userId,
         )
         .eq('activity_id', activity.id),
