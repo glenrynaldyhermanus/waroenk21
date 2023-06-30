@@ -935,9 +935,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                                 .passwordController
                                                                 .text,
                                                           );
-                                                          if (user == null) {
-                                                            return;
-                                                          }
+
 
                                                           if (Navigator.of(
                                                                   context)
@@ -973,11 +971,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                             setState(() {});
                                                           return;
                                                         }
-
-                                                        if (_shouldSetState)
-                                                          setState(() {});
                                                       },
-                                                      text: 'Pendaftaran',
+                                                      text: 'Daftar',
                                                       options: FFButtonOptions(
                                                         width: 230.0,
                                                         height: 50.0,
