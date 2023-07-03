@@ -78,7 +78,7 @@ class _ActivationWidgetState extends State<ActivationWidget> {
                             style: FlutterFlowTheme.of(context).headlineSmall,
                           ),
                           Text(
-                            'Masukkan kode yang kami kirim ke email yang kamu',
+                            'Masukkan kode yang kami kirim ke email ',
                             textAlign: TextAlign.center,
                             style: FlutterFlowTheme.of(context)
                                 .labelMedium

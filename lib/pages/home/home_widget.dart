@@ -9,6 +9,7 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/components/empties/empty_event/empty_event_widget.dart';
 import '/components/empties/empty_live_event/empty_live_event_widget.dart';
+import '/components/menus/home_menu/home_menu_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -141,12 +142,25 @@ class _HomeWidgetState extends State<HomeWidget> {
                             hoverColor: Colors.transparent,
                             highlightColor: Colors.transparent,
                             onTap: () async {
-                              GoRouter.of(context).prepareAuthEvent();
-                              await authManager.signOut();
-                              GoRouter.of(context).clearRedirectLocation();
-
-                              context.goNamedAuth(
-                                  'Authentication', context.mounted);
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                context: context,
+                                builder: (context) {
+                                  return GestureDetector(
+                                    onTap: () => FocusScope.of(context)
+                                        .requestFocus(_model.unfocusNode),
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: Container(
+                                        height: 128.0,
+                                        child: HomeMenuWidget(),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
                             },
                             child: Container(
                               width: 32.0,
