@@ -668,72 +668,106 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                             FFButtonWidget(
                                               onPressed: () async {
                                                 if (functions
-                                                    .isActivityRegistrationOpen(
+                                                    .isActivityRegistrationAlreadyOpen(
                                                         widget.activity!
                                                             .openRegistrationAt!,
                                                         widget.activity!
                                                             .closeRegistrationAt!)) {
-                                                  if (functions.isActivityRegistrationHasSlot(
-                                                      functions.countParticipants(
-                                                          widget
-                                                              .activity!.isTeam,
-                                                          containerActivityTeamsRowList
-                                                              .length,
-                                                          containerActivityParticipantsRowList
-                                                              .length),
+                                                  if (!functions.isActivityRegistrationAlreadyClose(
                                                       widget.activity!
-                                                          .maxParticipants)) {
-                                                    if (functions.hasParticipated(
-                                                        containerActivityParticipantsRowList
-                                                            .toList(),
-                                                        FFAppState()
-                                                            .authedProfile
-                                                            .id)) {
-                                                      if (functions
-                                                          .isBelowMaximumActivitiesPerEvent(
-                                                              containerActivityParticipantsRowList
-                                                                  .toList(),
-                                                              _model.event)) {
-                                                        setState(() {
+                                                          .openRegistrationAt!,
+                                                      widget.activity!
+                                                          .closeRegistrationAt!)) {
+                                                    if (functions.isActivityRegistrationHasSlot(
+                                                        functions.countParticipants(
+                                                            widget.activity!
+                                                                .isTeam,
+                                                            containerActivityTeamsRowList
+                                                                .length,
+                                                            containerActivityParticipantsRowList
+                                                                .length),
+                                                        widget.activity!
+                                                            .maxParticipants)) {
+                                                      if (functions.hasParticipated(
+                                                          containerActivityParticipantsRowList
+                                                              .toList(),
                                                           FFAppState()
-                                                              .myTeammates = [];
-                                                        });
-                                                        setState(() {
-                                                          FFAppState()
-                                                              .addToMyTeammates(
-                                                                  TeammateStruct(
-                                                            name: FFAppState()
-                                                                .authedProfile
-                                                                .name,
-                                                            email:
-                                                                currentUserEmail,
-                                                            isLeader: false,
-                                                            id: FFAppState()
-                                                                .authedProfile
-                                                                .id,
-                                                          ));
-                                                        });
+                                                              .authedProfile
+                                                              .id)) {
+                                                        if (functions
+                                                            .isBelowMaximumActivitiesPerEvent(
+                                                                containerActivityParticipantsRowList
+                                                                    .toList(),
+                                                                _model.event)) {
+                                                          setState(() {
+                                                            FFAppState()
+                                                                .myTeammates = [];
+                                                          });
+                                                          setState(() {
+                                                            FFAppState()
+                                                                .addToMyTeammates(
+                                                                    TeammateStruct(
+                                                              name: FFAppState()
+                                                                  .authedProfile
+                                                                  .name,
+                                                              email:
+                                                                  currentUserEmail,
+                                                              isLeader: false,
+                                                              id: FFAppState()
+                                                                  .authedProfile
+                                                                  .id,
+                                                            ));
+                                                          });
 
-                                                        context.pushNamed(
-                                                          'ActivityRegistration',
-                                                          queryParameters: {
-                                                            'activity':
-                                                                serializeParam(
-                                                              widget.activity,
-                                                              ParamType
-                                                                  .SupabaseRow,
+                                                          context.pushNamed(
+                                                            'ActivityRegistration',
+                                                            queryParameters: {
+                                                              'activity':
+                                                                  serializeParam(
+                                                                widget.activity,
+                                                                ParamType
+                                                                    .SupabaseRow,
+                                                              ),
+                                                            }.withoutNulls,
+                                                          );
+
+                                                          return;
+                                                        } else {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Kamu sudah mengikuti jumlah maximal lomba yang diperbolehkan',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Rubik',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                    ),
+                                                              ),
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
                                                             ),
-                                                          }.withoutNulls,
-                                                        );
-
-                                                        return;
+                                                          );
+                                                          return;
+                                                        }
                                                       } else {
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
                                                           SnackBar(
                                                             content: Text(
-                                                              'Kamu sudah mengikuti jumlah maximal lomba yang diperbolehkan',
+                                                              'Kamu sudah mendaftar di acara ini',
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .labelMedium
@@ -762,7 +796,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                           .showSnackBar(
                                                         SnackBar(
                                                           content: Text(
-                                                            'Kamu sudah mendaftar di acara ini',
+                                                            'Pendaftaran sudah penuh',
                                                             style: FlutterFlowTheme
                                                                     .of(context)
                                                                 .labelMedium
@@ -791,7 +825,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                         .showSnackBar(
                                                       SnackBar(
                                                         content: Text(
-                                                          'Pendaftaran sudah penuh',
+                                                          'Pendaftaran sudah tutup',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .labelMedium
@@ -818,7 +852,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                       .showSnackBar(
                                                     SnackBar(
                                                       content: Text(
-                                                        'Pendaftaran sudah tutup',
+                                                        'Pendaftaran belum dibuka',
                                                         style:
                                                             FlutterFlowTheme.of(
                                                                     context)

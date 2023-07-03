@@ -79,6 +79,15 @@ bool hasParticipated(
   return false;
 }
 
+bool isActivityRegistrationAlreadyClose(
+  DateTime openAt,
+  DateTime closeAt,
+) {
+  // return true if now between openAt and closeAt
+  final now = DateTime.now();
+  return now.isAfter(closeAt);
+}
+
 bool isActivityRegistrationOpen(
   DateTime openAt,
   DateTime closeAt,
@@ -86,6 +95,15 @@ bool isActivityRegistrationOpen(
   // return true if now between openAt and closeAt
   final now = DateTime.now();
   return now.isAfter(openAt) && now.isBefore(closeAt);
+}
+
+bool isActivityRegistrationAlreadyOpen(
+  DateTime openAt,
+  DateTime closeAt,
+) {
+  // return true if now between openAt and closeAt
+  final now = DateTime.now();
+  return now.isAfter(openAt);
 }
 
 bool isBelowMaximumActivitiesPerEvent(
