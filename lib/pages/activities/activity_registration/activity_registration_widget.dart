@@ -249,7 +249,7 @@ class _ActivityRegistrationWidgetState
                                               EdgeInsetsDirectional.fromSTEB(
                                                   24.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'Max. ',
+                                            '1 team = ',
                                             style: FlutterFlowTheme.of(context)
                                                 .labelMedium,
                                           ),
