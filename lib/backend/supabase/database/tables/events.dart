@@ -53,4 +53,8 @@ class EventsRow extends SupabaseDataRow {
   String? get locationAddress => getField<String>('location_address');
   set locationAddress(String? value) =>
       setField<String>('location_address', value);
+
+  int get maxActivitiesPerUser => getField<int>('max_activities_per_user')!;
+  set maxActivitiesPerUser(int value) =>
+      setField<int>('max_activities_per_user', value);
 }

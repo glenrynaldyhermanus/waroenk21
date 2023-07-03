@@ -645,7 +645,6 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                         _model.activity = await ActivitiesTable().insert({
                           'name': _model.textController1.text,
                           'picture_url': _model.uploadedFileUrl,
-                          'type_id': 1,
                           'event_id': widget.event?.id,
                           'start_date':
                               supaSerialize<DateTime>(_model.datePicked),
@@ -660,6 +659,7 @@ class _CreateActivityWidgetState extends State<CreateActivityWidget> {
                               .getLongitude(FFAppState().selectedLatLng!),
                           'end_date':
                               supaSerialize<DateTime>(_model.datePicked),
+                          'is_team': false,
                         });
                         _shouldSetState = true;
                         context.safePop();

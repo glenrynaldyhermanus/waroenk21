@@ -35,9 +35,6 @@ class ActivitiesRow extends SupabaseDataRow {
   String? get pictureUrl => getField<String>('picture_url');
   set pictureUrl(String? value) => setField<String>('picture_url', value);
 
-  int? get typeId => getField<int>('type_id');
-  set typeId(int? value) => setField<int>('type_id', value);
-
   DateTime get startDate => getField<DateTime>('start_date')!;
   set startDate(DateTime value) => setField<DateTime>('start_date', value);
 
@@ -87,4 +84,7 @@ class ActivitiesRow extends SupabaseDataRow {
 
   int get maxTeamMember => getField<int>('max_team_member')!;
   set maxTeamMember(int value) => setField<int>('max_team_member', value);
+
+  bool get isTeam => getField<bool>('is_team')!;
+  set isTeam(bool value) => setField<bool>('is_team', value);
 }
