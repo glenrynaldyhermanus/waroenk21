@@ -42,3 +42,16 @@ String getNameAbbrevation(String name) {
   }
   return abbreviation.toUpperCase();
 }
+
+int countParticipants(
+  bool isTeam,
+  int teamCounts,
+  int individualCounts,
+) {
+  // if isTeam return teamCounts or else return individualCounts
+  if (isTeam) {
+    return teamCounts;
+  } else {
+    return individualCounts;
+  }
+}
