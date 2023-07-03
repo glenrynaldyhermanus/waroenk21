@@ -421,10 +421,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                           snapshot.data!;
                                       return Container(
                                         width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                        ),
+                                        decoration: BoxDecoration(),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
@@ -659,85 +656,272 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                 ),
                                               ),
                                             ),
-                                            if (functions.countParticipants(
-                                                    widget.activity!.isTeam,
-                                                    containerActivityTeamsRowList
-                                                        .length,
-                                                    containerActivityParticipantsRowList
-                                                        .length) <
-                                                widget
-                                                    .activity!.maxParticipants)
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  setState(() {
-                                                    FFAppState().myTeammates =
-                                                        [];
-                                                  });
-                                                  setState(() {
-                                                    FFAppState()
-                                                        .addToMyTeammates(
-                                                            TeammateStruct(
-                                                      name: FFAppState()
-                                                          .authedProfile
-                                                          .name,
-                                                      email: currentUserEmail,
-                                                      isLeader: false,
-                                                      id: FFAppState()
-                                                          .authedProfile
-                                                          .id,
-                                                    ));
-                                                  });
-
-                                                  context.pushNamed(
-                                                    'ActivityRegistration',
-                                                    queryParameters: {
-                                                      'activity':
-                                                          serializeParam(
-                                                        widget.activity,
-                                                        ParamType.SupabaseRow,
-                                                      ),
-                                                    }.withoutNulls,
-                                                  );
-                                                },
-                                                text: 'Daftar',
-                                                icon: Icon(
-                                                  Icons.person_add,
-                                                  size: 16.0,
+                                            FutureBuilder<List<EventsRow>>(
+                                              future:
+                                                  EventsTable().querySingleRow(
+                                                queryFn: (q) => q.eq(
+                                                  'id',
+                                                  widget.activity?.eventId,
                                                 ),
-                                                options: FFButtonOptions(
-                                                  height: 32.0,
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 16.0, 0.0),
-                                                  iconPadding:
-                                                      EdgeInsetsDirectional
-                                                          .fromSTEB(16.0, 0.0,
-                                                              0.0, 0.0),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryBackground,
-                                                  textStyle: FlutterFlowTheme
-                                                          .of(context)
-                                                      .labelMedium
-                                                      .override(
-                                                        fontFamily: 'Rubik',
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      child:
+                                                          CircularProgressIndicator(
                                                         color:
                                                             FlutterFlowTheme.of(
                                                                     context)
                                                                 .primary,
                                                       ),
-                                                  elevation: 0.0,
-                                                  borderSide: BorderSide(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                    width: 2.0,
+                                                    ),
+                                                  );
+                                                }
+                                                List<EventsRow>
+                                                    containerEventsRowList =
+                                                    snapshot.data!;
+                                                final containerEventsRow =
+                                                    containerEventsRowList
+                                                            .isNotEmpty
+                                                        ? containerEventsRowList
+                                                            .first
+                                                        : null;
+                                                return Container(
+                                                  decoration: BoxDecoration(),
+                                                  child: FFButtonWidget(
+                                                    onPressed: () async {
+                                                      if (functions
+                                                          .isActivityRegistrationOpen(
+                                                              widget.activity!
+                                                                  .openRegistrationAt!,
+                                                              widget.activity!
+                                                                  .closeRegistrationAt!)) {
+                                                        if (functions.isActivityRegistrationHasSlot(
+                                                            functions.countParticipants(
+                                                                widget.activity!
+                                                                    .isTeam,
+                                                                containerActivityTeamsRowList
+                                                                    .length,
+                                                                containerActivityParticipantsRowList
+                                                                    .length),
+                                                            widget.activity!
+                                                                .maxParticipants)) {
+                                                          if (functions.hasParticipated(
+                                                              containerActivityParticipantsRowList
+                                                                  .toList(),
+                                                              FFAppState()
+                                                                  .authedProfile
+                                                                  .id)) {
+                                                            if (functions.isBelowMaximumActivitiesPerEvent(
+                                                                containerActivityParticipantsRowList
+                                                                    .toList(),
+                                                                containerEventsRow!)) {
+                                                              setState(() {
+                                                                FFAppState()
+                                                                    .myTeammates = [];
+                                                              });
+                                                              setState(() {
+                                                                FFAppState()
+                                                                    .addToMyTeammates(
+                                                                        TeammateStruct(
+                                                                  name: FFAppState()
+                                                                      .authedProfile
+                                                                      .name,
+                                                                  email:
+                                                                      currentUserEmail,
+                                                                  isLeader:
+                                                                      false,
+                                                                  id: FFAppState()
+                                                                      .authedProfile
+                                                                      .id,
+                                                                ));
+                                                              });
+
+                                                              context.pushNamed(
+                                                                'ActivityRegistration',
+                                                                queryParameters:
+                                                                    {
+                                                                  'activity':
+                                                                      serializeParam(
+                                                                    widget
+                                                                        .activity,
+                                                                    ParamType
+                                                                        .SupabaseRow,
+                                                                  ),
+                                                                }.withoutNulls,
+                                                              );
+
+                                                              return;
+                                                            } else {
+                                                              ScaffoldMessenger
+                                                                      .of(context)
+                                                                  .showSnackBar(
+                                                                SnackBar(
+                                                                  content: Text(
+                                                                    'Kamu sudah mengikuti jumlah maximal lomba yang diperbolehkan',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .labelMedium
+                                                                        .override(
+                                                                          fontFamily:
+                                                                              'Rubik',
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                        ),
+                                                                  ),
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          4000),
+                                                                  backgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primaryText,
+                                                                ),
+                                                              );
+                                                              return;
+                                                            }
+                                                          } else {
+                                                            ScaffoldMessenger
+                                                                    .of(context)
+                                                                .showSnackBar(
+                                                              SnackBar(
+                                                                content: Text(
+                                                                  'Kamu sudah mendaftar di acara ini',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .labelMedium
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            'Rubik',
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryBackground,
+                                                                      ),
+                                                                ),
+                                                                duration: Duration(
+                                                                    milliseconds:
+                                                                        4000),
+                                                                backgroundColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primaryText,
+                                                              ),
+                                                            );
+                                                            return;
+                                                          }
+                                                        } else {
+                                                          ScaffoldMessenger.of(
+                                                                  context)
+                                                              .showSnackBar(
+                                                            SnackBar(
+                                                              content: Text(
+                                                                'Pendaftaran sudah penuh',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelMedium
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Rubik',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                    ),
+                                                              ),
+                                                              duration: Duration(
+                                                                  milliseconds:
+                                                                      4000),
+                                                              backgroundColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                            ),
+                                                          );
+                                                          return;
+                                                        }
+                                                      } else {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                          SnackBar(
+                                                            content: Text(
+                                                              'Pendaftaran sudah tutup',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelMedium
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Rubik',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryBackground,
+                                                                  ),
+                                                            ),
+                                                            duration: Duration(
+                                                                milliseconds:
+                                                                    4000),
+                                                            backgroundColor:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primaryText,
+                                                          ),
+                                                        );
+                                                        return;
+                                                      }
+                                                    },
+                                                    text: 'Daftar',
+                                                    icon: Icon(
+                                                      Icons.person_add,
+                                                      size: 16.0,
+                                                    ),
+                                                    options: FFButtonOptions(
+                                                      height: 32.0,
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  0.0,
+                                                                  16.0,
+                                                                  0.0),
+                                                      iconPadding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  16.0,
+                                                                  0.0,
+                                                                  0.0,
+                                                                  0.0),
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .primaryBackground,
+                                                      textStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Rubik',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .primary,
+                                                              ),
+                                                      elevation: 0.0,
+                                                      borderSide: BorderSide(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                        width: 2.0,
+                                                      ),
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              16.0),
+                                                    ),
                                                   ),
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          16.0),
-                                                ),
-                                              ),
+                                                );
+                                              },
+                                            ),
                                           ],
                                         ),
                                       );

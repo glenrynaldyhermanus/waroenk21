@@ -592,6 +592,7 @@ class _CreateEventWidgetState extends State<CreateEventWidget> {
                               .getLongitude(FFAppState().selectedLatLng!),
                           'location_address':
                               FFAppState().selectedLocationAddress,
+                          'max_activities_per_user': 3,
                         });
                         _shouldSetState = true;
                         _model.eventRoles = await EventRolesTable().insert({

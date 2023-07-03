@@ -55,3 +55,49 @@ int countParticipants(
     return individualCounts;
   }
 }
+
+bool isActivityRegistrationHasSlot(
+  int participants,
+  int maxPariticpants,
+) {
+  if (participants < maxPariticpants) {
+    return true;
+  }
+  return false;
+}
+
+bool hasParticipated(
+  List<ActivityParticipantsRow> participants,
+  int userId,
+) {
+  // return if participants contains userId
+  for (final participant in participants) {
+    if (participant.userId == userId) {
+      return true;
+    }
+  }
+  return false;
+}
+
+bool isActivityRegistrationOpen(
+  DateTime openAt,
+  DateTime closeAt,
+) {
+  // return true if now between openAt and closeAt
+  final now = DateTime.now();
+  return now.isAfter(openAt) && now.isBefore(closeAt);
+}
+
+bool isBelowMaximumActivitiesPerEvent(
+  List<ActivityParticipantsRow> participants,
+  EventsRow event,
+) {
+  // return true if participant per event below max_activities_per_event
+  int participation = 0;
+  for (ActivityParticipantsRow participant in participants) {
+    if (participant.eventId == event.id) {
+      participation += 1;
+    }
+  }
+  return participation < event.maxActivitiesPerUser;
+}

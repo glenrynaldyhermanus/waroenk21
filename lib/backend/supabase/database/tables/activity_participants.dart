@@ -32,4 +32,7 @@ class ActivityParticipantsRow extends SupabaseDataRow {
 
   int? get teamId => getField<int>('team_id');
   set teamId(int? value) => setField<int>('team_id', value);
+
+  int? get eventId => getField<int>('event_id');
+  set eventId(int? value) => setField<int>('event_id', value);
 }

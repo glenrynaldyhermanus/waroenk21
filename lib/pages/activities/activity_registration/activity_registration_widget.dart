@@ -479,6 +479,7 @@ class _ActivityRegistrationWidgetState
                         await actions.insertAllTeammates(
                           FFAppState().myTeammates.toList(),
                           _model.team!,
+                          widget.activity!,
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
