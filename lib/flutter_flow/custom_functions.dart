@@ -90,8 +90,12 @@ bool isActivityRegistrationOpen(
 
 bool isBelowMaximumActivitiesPerEvent(
   List<ActivityParticipantsRow> participants,
-  EventsRow event,
+  EventsRow? event,
 ) {
+  if (event == null) {
+    return true;
+  }
+
   // return true if participant per event below max_activities_per_event
   int participation = 0;
   for (ActivityParticipantsRow participant in participants) {
