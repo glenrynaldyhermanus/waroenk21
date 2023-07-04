@@ -106,7 +106,7 @@ class _InviteTeamMemberWidgetState extends State<InviteTeamMemberWidget> {
                           controller: _model.textController,
                           onChanged: (_) => EasyDebounce.debounce(
                             '_model.textController',
-                            Duration(milliseconds: 2000),
+                            Duration(milliseconds: 0),
                             () async {
                               setState(() {
                                 FFAppState().searchKeywords =
@@ -164,10 +164,7 @@ class _InviteTeamMemberWidgetState extends State<InviteTeamMemberWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: FutureBuilder<List<UsersRow>>(
                           future: UsersTable().queryRows(
-                            queryFn: (q) => q.ilike(
-                              'name',
-                              '%${_model.textController.text}%',
-                            ),
+                            queryFn: (q) => q.or('name.ilike.%${_model.textController.text}%,email.ilike.%${_model.textController.text}%'),
                           ),
                           builder: (context, snapshot) {
                             // Customize what your widget looks like when it's loading.
