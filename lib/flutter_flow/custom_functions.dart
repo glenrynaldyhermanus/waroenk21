@@ -115,11 +115,20 @@ bool isBelowMaximumActivitiesPerEvent(
   }
 
   // return true if participant per event below max_activities_per_event
+  print("OUT >>");
+  print(participants.length);
   int participation = 0;
   for (ActivityParticipantsRow participant in participants) {
-    if (participant.eventId == event.id) {
+    print(participant.eventId);
+    print("OUT >>"+event.id.toString());
+    if (participant.eventId.toString() == event.id.toString()) {
+      print("Add");
       participation += 1;
     }
   }
+
+
+  print(participation);
+  print(event.maxActivitiesPerUser);
   return participation < event.maxActivitiesPerUser;
 }
