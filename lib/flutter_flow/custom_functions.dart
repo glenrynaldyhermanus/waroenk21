@@ -116,3 +116,16 @@ bool isBelowMaximumActivitiesPerEvent(
 
   return participateCount < event.maxActivitiesPerUser;
 }
+
+bool isUserAlreadySelected(
+  UsersRow user,
+  List<TeammateStruct> selectedTeammate,
+) {
+  // return true if user already in selectedTeammate
+  for (TeammateStruct teammate in selectedTeammate) {
+    if (teammate.id == user.id) {
+      return true;
+    }
+  }
+  return false;
+}

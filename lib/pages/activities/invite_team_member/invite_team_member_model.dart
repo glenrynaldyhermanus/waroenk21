@@ -19,6 +19,8 @@ class InviteTeamMemberModel extends FlutterFlowModel {
   String? Function(BuildContext, String?)? textControllerValidator;
   // Stores action output result for [Custom Action - isUserParticipated] action in Container widget.
   bool? hasParticipate;
+  // Stores action output result for [Custom Action - isUserParticipatedInMaxAvailableActivities] action in Container widget.
+  bool? hasParticipateInMaxAvailableActs;
 
   /// Initialization and disposal methods.
 
