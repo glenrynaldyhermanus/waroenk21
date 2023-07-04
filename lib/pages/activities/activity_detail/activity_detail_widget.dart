@@ -380,7 +380,10 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                             ),
                             FutureBuilder<List<ActivityParticipantsRow>>(
                               future: ActivityParticipantsTable().queryRows(
-                                queryFn: (q) => q,
+                                queryFn: (q) => q.eq(
+                                  'activity_id',
+                                  widget.activity?.id,
+                                ),
                               ),
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
@@ -397,15 +400,13 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                   );
                                 }
                                 List<ActivityParticipantsRow>
-                                    allParticipantsContainerActivityParticipantsRowList =
+                                    thisActivityParticipantsContainerActivityParticipantsRowList =
                                     snapshot.data!;
                                 return Container(
                                   width: double.infinity,
                                   decoration: BoxDecoration(),
-                                  child: FutureBuilder<
-                                      List<ActivityParticipantsRow>>(
-                                    future:
-                                        ActivityParticipantsTable().queryRows(
+                                  child: FutureBuilder<List<ActivityTeamsRow>>(
+                                    future: ActivityTeamsTable().queryRows(
                                       queryFn: (q) => q.eq(
                                         'activity_id',
                                         widget.activity?.id,
@@ -426,48 +427,34 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                           ),
                                         );
                                       }
-                                      List<ActivityParticipantsRow>
-                                          thisActivityParticipantsContainerActivityParticipantsRowList =
+                                      List<ActivityTeamsRow>
+                                          thisActivityTeamsActivityTeamsRowList =
                                           snapshot.data!;
                                       return Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(),
-                                        child: FutureBuilder<
-                                            List<ActivityTeamsRow>>(
-                                          future:
-                                              ActivityTeamsTable().queryRows(
-                                            queryFn: (q) => q.eq(
-                                              'activity_id',
-                                              widget.activity?.id,
-                                            ),
-                                          ),
-                                          builder: (context, snapshot) {
-                                            // Customize what your widget looks like when it's loading.
-                                            if (!snapshot.hasData) {
-                                              return Center(
-                                                child: SizedBox(
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  child:
-                                                      CircularProgressIndicator(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primary,
-                                                  ),
-                                                ),
-                                              );
-                                            }
-                                            List<ActivityTeamsRow>
-                                                thisActivityTeamsActivityTeamsRowList =
-                                                snapshot.data!;
-                                            return Container(
-                                              width: double.infinity,
-                                              decoration: BoxDecoration(),
-                                              child: Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
-                                                    child: Padding(
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Expanded(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 8.0, 0.0, 0.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      'Pendaftaran',
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleMedium,
+                                                    ),
+                                                    Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
                                                               .fromSTEB(
@@ -475,66 +462,81 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                   8.0,
                                                                   0.0,
                                                                   0.0),
-                                                      child: Column(
+                                                      child: Row(
                                                         mainAxisSize:
                                                             MainAxisSize.max,
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
-                                                                .start,
+                                                                .center,
                                                         children: [
-                                                          Text(
-                                                            'Pendaftaran',
-                                                            style: FlutterFlowTheme
+                                                          Icon(
+                                                            Icons.date_range,
+                                                            color: FlutterFlowTheme
                                                                     .of(context)
-                                                                .titleMedium,
+                                                                .primary,
+                                                            size: 20.0,
                                                           ),
                                                           Padding(
                                                             padding:
                                                                 EdgeInsetsDirectional
                                                                     .fromSTEB(
-                                                                        0.0,
                                                                         8.0,
                                                                         0.0,
+                                                                        0.0,
                                                                         0.0),
-                                                            child: Row(
+                                                            child: Column(
                                                               mainAxisSize:
                                                                   MainAxisSize
                                                                       .max,
                                                               crossAxisAlignment:
                                                                   CrossAxisAlignment
-                                                                      .center,
+                                                                      .start,
                                                               children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .date_range,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  size: 20.0,
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Column(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Text(
+                                                                      dateTimeFormat(
+                                                                        'yMMMd',
+                                                                        widget
+                                                                            .activity!
+                                                                            .openRegistrationAt!,
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Rubik',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                          ),
+                                                                    ),
+                                                                    if (widget
+                                                                            .activity
+                                                                            ?.startDate !=
+                                                                        widget
+                                                                            .activity
+                                                                            ?.endDate)
                                                                       Row(
                                                                         mainAxisSize:
                                                                             MainAxisSize.max,
                                                                         children: [
                                                                           Text(
+                                                                            ' - ',
+                                                                            style: FlutterFlowTheme.of(context).labelLarge.override(
+                                                                                  fontFamily: 'Rubik',
+                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                ),
+                                                                          ),
+                                                                          Text(
                                                                             dateTimeFormat(
                                                                               'yMMMd',
-                                                                              widget.activity!.openRegistrationAt!,
+                                                                              widget.activity!.closeRegistrationAt!,
                                                                               locale: FFLocalizations.of(context).languageCode,
                                                                             ),
                                                                             style: FlutterFlowTheme.of(context).labelLarge.override(
@@ -542,138 +544,9 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                                   color: FlutterFlowTheme.of(context).secondaryText,
                                                                                 ),
                                                                           ),
-                                                                          if (widget.activity?.startDate !=
-                                                                              widget.activity?.endDate)
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Text(
-                                                                                  ' - ',
-                                                                                  style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                                                        fontFamily: 'Rubik',
-                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                      ),
-                                                                                ),
-                                                                                Text(
-                                                                                  dateTimeFormat(
-                                                                                    'yMMMd',
-                                                                                    widget.activity!.closeRegistrationAt!,
-                                                                                    locale: FFLocalizations.of(context).languageCode,
-                                                                                  ),
-                                                                                  style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                                                        fontFamily: 'Rubik',
-                                                                                        color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
                                                                         ],
                                                                       ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        4.0,
-                                                                        0.0,
-                                                                        8.0),
-                                                            child: Row(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              children: [
-                                                                Icon(
-                                                                  Icons
-                                                                      .people_sharp,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                                  size: 20.0,
-                                                                ),
-                                                                Padding(
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          8.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  child: Text(
-                                                                    valueOrDefault<
-                                                                        String>(
-                                                                      functions
-                                                                          .countParticipants(
-                                                                              widget.activity!.isTeam,
-                                                                              thisActivityTeamsActivityTeamsRowList.length,
-                                                                              thisActivityParticipantsContainerActivityParticipantsRowList.length)
-                                                                          .toString(),
-                                                                      '0',
-                                                                    ),
-                                                                    style: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .labelLarge
-                                                                        .override(
-                                                                          fontFamily:
-                                                                              'Rubik',
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).secondaryText,
-                                                                        ),
-                                                                  ),
-                                                                ),
-                                                                Text(
-                                                                  ' / ',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelLarge
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Rubik',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                      ),
-                                                                ),
-                                                                Text(
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                    widget
-                                                                        .activity
-                                                                        ?.maxParticipants
-                                                                        ?.toString(),
-                                                                    '0',
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelLarge
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Rubik',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                      ),
-                                                                ),
-                                                                Text(
-                                                                  widget.activity
-                                                                              ?.isTeam ==
-                                                                          true
-                                                                      ? ' team'
-                                                                      : ' peserta',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .labelLarge
-                                                                      .override(
-                                                                        fontFamily:
-                                                                            'Rubik',
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                      ),
+                                                                  ],
                                                                 ),
                                                               ],
                                                             ),
@@ -681,8 +554,163 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                         ],
                                                       ),
                                                     ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0.0,
+                                                                  4.0,
+                                                                  0.0,
+                                                                  8.0),
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.people_sharp,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                            size: 20.0,
+                                                          ),
+                                                          Padding(
+                                                            padding:
+                                                                EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        8.0,
+                                                                        0.0,
+                                                                        0.0,
+                                                                        0.0),
+                                                            child: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                functions
+                                                                    .countParticipants(
+                                                                        widget
+                                                                            .activity!
+                                                                            .isTeam,
+                                                                        thisActivityTeamsActivityTeamsRowList
+                                                                            .length,
+                                                                        thisActivityParticipantsContainerActivityParticipantsRowList
+                                                                            .length)
+                                                                    .toString(),
+                                                                '0',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelLarge
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Rubik',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                          Text(
+                                                            ' / ',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Rubik',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                ),
+                                                          ),
+                                                          Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              widget.activity
+                                                                  ?.maxParticipants
+                                                                  ?.toString(),
+                                                              '0',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Rubik',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                ),
+                                                          ),
+                                                          Text(
+                                                            widget.activity
+                                                                        ?.isTeam ==
+                                                                    true
+                                                                ? ' team'
+                                                                : ' peserta',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .labelLarge
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Rubik',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            FutureBuilder<
+                                                List<ActivityParticipantsRow>>(
+                                              future:
+                                                  ActivityParticipantsTable()
+                                                      .queryRows(
+                                                queryFn: (q) => q
+                                                    .eq(
+                                                      'user_id',
+                                                      FFAppState()
+                                                          .authedProfile
+                                                          .id,
+                                                    )
+                                                    .eq(
+                                                      'event_id',
+                                                      widget.activity?.eventId,
+                                                    ),
+                                              ),
+                                              builder: (context, snapshot) {
+                                                // Customize what your widget looks like when it's loading.
+                                                if (!snapshot.hasData) {
+                                                  return Center(
+                                                    child: SizedBox(
+                                                      width: 50.0,
+                                                      height: 50.0,
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primary,
+                                                      ),
+                                                    ),
+                                                  );
+                                                }
+                                                List<ActivityParticipantsRow>
+                                                    containerActivityParticipantsRowList =
+                                                    snapshot.data!;
+                                                return Container(
+                                                  decoration: BoxDecoration(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .secondaryBackground,
                                                   ),
-                                                  FFButtonWidget(
+                                                  child: FFButtonWidget(
                                                     onPressed: () async {
                                                       if (functions
                                                           .isActivityRegistrationAlreadyOpen(
@@ -713,8 +741,8 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                     .authedProfile
                                                                     .id)) {
                                                               if (functions.isBelowMaximumActivitiesPerEvent(
-                                                                  allParticipantsContainerActivityParticipantsRowList
-                                                                      .toList(),
+                                                                  containerActivityParticipantsRowList
+                                                                      .length,
                                                                   _model
                                                                       .event)) {
                                                                 setState(() {
@@ -945,10 +973,10 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                               16.0),
                                                     ),
                                                   ),
-                                                ],
-                                              ),
-                                            );
-                                          },
+                                                );
+                                              },
+                                            ),
+                                          ],
                                         ),
                                       );
                                     },

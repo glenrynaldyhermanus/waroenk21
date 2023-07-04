@@ -107,28 +107,12 @@ bool isActivityRegistrationAlreadyOpen(
 }
 
 bool isBelowMaximumActivitiesPerEvent(
-  List<ActivityParticipantsRow> participants,
+  int participateCount,
   EventsRow? event,
 ) {
   if (event == null) {
     return true;
   }
 
-  // return true if participant per event below max_activities_per_event
-  print("OUT >>");
-  print(participants.length);
-  int participation = 0;
-  for (ActivityParticipantsRow participant in participants) {
-    print(participant.eventId);
-    print("OUT >>"+event.id.toString());
-    if (participant.eventId.toString() == event.id.toString()) {
-      print("Add");
-      participation += 1;
-    }
-  }
-
-
-  print(participation);
-  print(event.maxActivitiesPerUser);
-  return participation < event.maxActivitiesPerUser;
+  return participateCount < event.maxActivitiesPerUser;
 }
