@@ -101,7 +101,7 @@ class _InviteTeamMemberWidgetState extends State<InviteTeamMemberWidget> {
                     children: [
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            24.0, 0.0, 24.0, 0.0),
+                            24.0, 16.0, 24.0, 0.0),
                         child: TextFormField(
                           controller: _model.textController,
                           onChanged: (_) => EasyDebounce.debounce(
