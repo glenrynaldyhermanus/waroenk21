@@ -16,9 +16,11 @@ class InviteTeamMemberWidget extends StatefulWidget {
   const InviteTeamMemberWidget({
     Key? key,
     required this.activity,
+    required this.event,
   }) : super(key: key);
 
   final ActivitiesRow? activity;
+  final EventsRow? event;
 
   @override
   _InviteTeamMemberWidgetState createState() => _InviteTeamMemberWidgetState();
@@ -228,17 +230,82 @@ class _InviteTeamMemberWidgetState extends State<InviteTeamMemberWidget> {
                                       if (_shouldSetState) setState(() {});
                                       return;
                                     } else {
-                                      setState(() {
-                                        FFAppState()
-                                            .addToMyTeammates(TeammateStruct(
-                                          name: columnUsersRow.name,
-                                          email: columnUsersRow.email,
-                                          id: columnUsersRow.id,
-                                        ));
-                                      });
-                                      context.safePop();
-                                      if (_shouldSetState) setState(() {});
-                                      return;
+                                      if (functions.isUserAlreadySelected(
+                                          columnUsersRow,
+                                          FFAppState().myTeammates.toList())) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              '${columnUsersRow.name} sudah di dalam daftar team',
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily: 'Rubik',
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                      ),
+                                            ),
+                                            duration:
+                                                Duration(milliseconds: 4000),
+                                            backgroundColor:
+                                                FlutterFlowTheme.of(context)
+                                                    .primaryText,
+                                          ),
+                                        );
+                                        if (_shouldSetState) setState(() {});
+                                        return;
+                                      } else {
+                                        _model.hasParticipateInMaxAvailableActs =
+                                            await actions
+                                                .isUserParticipatedInMaxAvailableActivities(
+                                          widget.event,
+                                          columnUsersRow,
+                                        );
+                                        _shouldSetState = true;
+                                        if (_model
+                                                .hasParticipateInMaxAvailableActs ==
+                                            true) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                '${columnUsersRow.name} sudah mengikuti max acara yang diperbolehkan',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryBackground,
+                                                        ),
+                                              ),
+                                              duration:
+                                                  Duration(milliseconds: 4000),
+                                              backgroundColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                            ),
+                                          );
+                                          if (_shouldSetState) setState(() {});
+                                          return;
+                                        } else {
+                                          setState(() {
+                                            FFAppState().addToMyTeammates(
+                                                TeammateStruct(
+                                              name: columnUsersRow.name,
+                                              email: columnUsersRow.email,
+                                              id: columnUsersRow.id,
+                                            ));
+                                          });
+                                          context.safePop();
+                                          if (_shouldSetState) setState(() {});
+                                          return;
+                                        }
+                                      }
                                     }
 
                                     if (_shouldSetState) setState(() {});

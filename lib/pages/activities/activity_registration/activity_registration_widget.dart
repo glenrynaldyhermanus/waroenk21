@@ -15,9 +15,11 @@ class ActivityRegistrationWidget extends StatefulWidget {
   const ActivityRegistrationWidget({
     Key? key,
     required this.activity,
+    required this.event,
   }) : super(key: key);
 
   final ActivitiesRow? activity;
+  final EventsRow? event;
 
   @override
   _ActivityRegistrationWidgetState createState() =>
@@ -284,6 +286,10 @@ class _ActivityRegistrationWidgetState
                                           queryParameters: {
                                             'activity': serializeParam(
                                               widget.activity,
+                                              ParamType.SupabaseRow,
+                                            ),
+                                            'event': serializeParam(
+                                              widget.event,
                                               ParamType.SupabaseRow,
                                             ),
                                           }.withoutNulls,

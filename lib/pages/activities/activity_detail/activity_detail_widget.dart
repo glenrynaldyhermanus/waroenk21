@@ -776,6 +776,13 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                       ParamType
                                                                           .SupabaseRow,
                                                                     ),
+                                                                    'event':
+                                                                        serializeParam(
+                                                                      _model
+                                                                          .event,
+                                                                      ParamType
+                                                                          .SupabaseRow,
+                                                                    ),
                                                                   }.withoutNulls,
                                                                 );
 
