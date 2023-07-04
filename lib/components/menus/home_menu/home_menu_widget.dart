@@ -86,6 +86,8 @@ class _HomeMenuWidgetState extends State<HomeMenuWidget> {
               await authManager.signOut();
               GoRouter.of(context).clearRedirectLocation();
 
+              Navigator.pop(context);
+
               context.pushNamedAuth('Authentication', context.mounted);
             },
             child: Container(

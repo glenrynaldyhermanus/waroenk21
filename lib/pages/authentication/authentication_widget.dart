@@ -474,7 +474,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                           return;
                                                         }
 
-                                                        context.goNamedAuth(
+                                                        context.pushNamedAuth(
                                                             'Home',
                                                             context.mounted);
                                                       },
