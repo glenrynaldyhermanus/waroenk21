@@ -107,19 +107,12 @@ bool isActivityRegistrationAlreadyOpen(
 }
 
 bool isBelowMaximumActivitiesPerEvent(
-  List<ActivityParticipantsRow> participants,
+  int participateCount,
   EventsRow? event,
 ) {
   if (event == null) {
     return true;
   }
 
-  // return true if participant per event below max_activities_per_event
-  int participation = 0;
-  for (ActivityParticipantsRow participant in participants) {
-    if (participant.eventId == event.id) {
-      participation += 1;
-    }
-  }
-  return participation < event.maxActivitiesPerUser;
+  return participateCount < event.maxActivitiesPerUser;
 }
