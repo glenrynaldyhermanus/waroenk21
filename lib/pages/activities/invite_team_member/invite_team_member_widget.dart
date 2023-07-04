@@ -164,9 +164,9 @@ class _InviteTeamMemberWidgetState extends State<InviteTeamMemberWidget> {
                             EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
                         child: FutureBuilder<List<UsersRow>>(
                           future: UsersTable().queryRows(
-                            queryFn: (q) => q.eq(
+                            queryFn: (q) => q.ilike(
                               'name',
-                              _model.textController.text,
+                              '%${_model.textController.text}%',
                             ),
                           ),
                           builder: (context, snapshot) {
