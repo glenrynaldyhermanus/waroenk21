@@ -688,12 +688,13 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                 .length),
                                                         widget.activity!
                                                             .maxParticipants)) {
-                                                      if (functions.hasParticipated(
-                                                          containerActivityParticipantsRowList
-                                                              .toList(),
-                                                          FFAppState()
-                                                              .authedProfile
-                                                              .id)) {
+                                                      if (!functions
+                                                          .hasParticipated(
+                                                              containerActivityParticipantsRowList
+                                                                  .toList(),
+                                                              FFAppState()
+                                                                  .authedProfile
+                                                                  .id)) {
                                                         if (functions
                                                             .isBelowMaximumActivitiesPerEvent(
                                                                 containerActivityParticipantsRowList
