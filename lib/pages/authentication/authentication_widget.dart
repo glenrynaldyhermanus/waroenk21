@@ -452,11 +452,8 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                   Padding(
                                                     padding:
                                                         EdgeInsetsDirectional
-                                                            .fromSTEB(
-                                                                0.0,
-                                                                120.0,
-                                                                0.0,
-                                                                24.0),
+                                                            .fromSTEB(0.0, 48.0,
+                                                                0.0, 24.0),
                                                     child: FFButtonWidget(
                                                       onPressed: () async {
                                                         GoRouter.of(context)
@@ -889,7 +886,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                         EdgeInsetsDirectional
                                                             .fromSTEB(
                                                                 0.0,
-                                                                120.0,
+                                                                48.0,
                                                                 0.0,
                                                                 24.0),
                                                     child: FFButtonWidget(
