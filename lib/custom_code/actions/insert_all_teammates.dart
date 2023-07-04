@@ -24,7 +24,8 @@ Future insertAllTeammates(List<TeammateStruct> teammates, ActivityTeamsRow team,
       'event_id': activity.eventId,
     });
   }
-  final response = await SupaFlow.client.from('activity_participants')
+  final response = await SupaFlow.client
+      .from('activity_participants')
       .insert(participantsRows)
       .select();
 }
