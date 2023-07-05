@@ -347,10 +347,14 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     context.pushNamed(
-                                      'ActivityBrief',
+                                      'ActivityGroupBrief',
                                       queryParameters: {
                                         'activity': serializeParam(
                                           widget.activity,
+                                          ParamType.SupabaseRow,
+                                        ),
+                                        'activityGroup': serializeParam(
+                                          containerActivityGroupsRow,
                                           ParamType.SupabaseRow,
                                         ),
                                       }.withoutNulls,
@@ -449,7 +453,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'Peraturan dan Tata Tertib Lomba',
+                                            'Peraturan & Tata Tertib Lomba',
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(
@@ -661,41 +665,108 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                   4.0,
                                                                   0.0,
                                                                   8.0),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Icon(
-                                                            Icons.people_sharp,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .primary,
-                                                            size: 20.0,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        8.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
+                                                      child: InkWell(
+                                                        splashColor:
+                                                            Colors.transparent,
+                                                        focusColor:
+                                                            Colors.transparent,
+                                                        hoverColor:
+                                                            Colors.transparent,
+                                                        highlightColor:
+                                                            Colors.transparent,
+                                                        onTap: () async {
+                                                          context.pushNamed(
+                                                            'RegisteredTeam',
+                                                            queryParameters: {
+                                                              'activity':
+                                                                  serializeParam(
+                                                                widget.activity,
+                                                                ParamType
+                                                                    .SupabaseRow,
+                                                              ),
+                                                            }.withoutNulls,
+                                                            extra: <String,
+                                                                dynamic>{
+                                                              kTransitionInfoKey:
+                                                                  TransitionInfo(
+                                                                hasTransition:
+                                                                    true,
+                                                                transitionType:
+                                                                    PageTransitionType
+                                                                        .bottomToTop,
+                                                              ),
+                                                            },
+                                                          );
+                                                        },
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Icon(
+                                                              Icons
+                                                                  .people_sharp,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              size: 20.0,
+                                                            ),
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                              child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  functions
+                                                                      .countParticipants(
+                                                                          widget
+                                                                              .activity!
+                                                                              .isTeam,
+                                                                          thisActivityTeamsActivityTeamsRowList
+                                                                              .length,
+                                                                          thisActivityParticipantsContainerActivityParticipantsRowList
+                                                                              .length)
+                                                                      .toString(),
+                                                                  '0',
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .labelLarge
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          'Rubik',
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .primary,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                            Text(
+                                                              ' / ',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelLarge
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Rubik',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
+                                                            ),
+                                                            Text(
                                                               valueOrDefault<
                                                                   String>(
-                                                                functions
-                                                                    .countParticipants(
-                                                                        widget
-                                                                            .activity!
-                                                                            .isTeam,
-                                                                        thisActivityTeamsActivityTeamsRowList
-                                                                            .length,
-                                                                        thisActivityParticipantsContainerActivityParticipantsRowList
-                                                                            .length)
-                                                                    .toString(),
+                                                                widget.activity
+                                                                    ?.maxParticipants
+                                                                    ?.toString(),
                                                                 '0',
                                                               ),
                                                               style: FlutterFlowTheme
@@ -706,60 +777,36 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                         'Rubik',
                                                                     color: FlutterFlowTheme.of(
                                                                             context)
-                                                                        .secondaryText,
+                                                                        .primary,
                                                                   ),
                                                             ),
-                                                          ),
-                                                          Text(
-                                                            ' / ',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Rubik',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                ),
-                                                          ),
-                                                          Text(
-                                                            valueOrDefault<
-                                                                String>(
+                                                            Text(
                                                               widget.activity
-                                                                  ?.maxParticipants
-                                                                  ?.toString(),
-                                                              '0',
+                                                                          ?.isTeam ==
+                                                                      true
+                                                                  ? ' team'
+                                                                  : ' peserta',
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .labelLarge
+                                                                  .override(
+                                                                    fontFamily:
+                                                                        'Rubik',
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                  ),
                                                             ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Rubik',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                ),
-                                                          ),
-                                                          Text(
-                                                            widget.activity
-                                                                        ?.isTeam ==
-                                                                    true
-                                                                ? ' team'
-                                                                : ' peserta',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .labelLarge
-                                                                .override(
-                                                                  fontFamily:
-                                                                      'Rubik',
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                ),
-                                                          ),
-                                                        ],
+                                                            Icon(
+                                                              Icons
+                                                                  .keyboard_arrow_right_outlined,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              size: 24.0,
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
