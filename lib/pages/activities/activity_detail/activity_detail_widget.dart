@@ -308,6 +308,105 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                               thickness: 1.0,
                               color: FlutterFlowTheme.of(context).accent3,
                             ),
+                            FutureBuilder<List<ActivityGroupsRow>>(
+                              future: ActivityGroupsTable().querySingleRow(
+                                queryFn: (q) => q.eq(
+                                  'id',
+                                  widget.activity?.id,
+                                ),
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: CircularProgressIndicator(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primary,
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<ActivityGroupsRow>
+                                    containerActivityGroupsRowList =
+                                    snapshot.data!;
+                                // Return an empty Container when the item does not exist.
+                                if (snapshot.data!.isEmpty) {
+                                  return Container();
+                                }
+                                final containerActivityGroupsRow =
+                                    containerActivityGroupsRowList.isNotEmpty
+                                        ? containerActivityGroupsRowList.first
+                                        : null;
+                                return InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed(
+                                      'ActivityBrief',
+                                      queryParameters: {
+                                        'activity': serializeParam(
+                                          widget.activity,
+                                          ParamType.SupabaseRow,
+                                        ),
+                                      }.withoutNulls,
+                                    );
+                                  },
+                                  child: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 16.0, 0.0, 16.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Icon(
+                                            Icons.list_alt,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 20.0,
+                                          ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(8.0, 0.0, 0.0, 0.0),
+                                              child: Text(
+                                                'Peraturan & Tata Tertib Umum',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelLarge
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .secondaryText,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                          Icon(
+                                            Icons.keyboard_arrow_right_outlined,
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            size: 24.0,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
                             InkWell(
                               splashColor: Colors.transparent,
                               focusColor: Colors.transparent,
@@ -350,7 +449,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'Peraturan dan Tata Tertib',
+                                            'Peraturan dan Tata Tertib Lomba',
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(

@@ -25,3 +25,5 @@ export '/pages/activities/activity_registration/activity_registration_widget.dar
     show ActivityRegistrationWidget;
 export '/pages/activities/invite_team_member/invite_team_member_widget.dart'
     show InviteTeamMemberWidget;
+export '/pages/activities/activity_group_brief/activity_group_brief_widget.dart'
+    show ActivityGroupBriefWidget;
