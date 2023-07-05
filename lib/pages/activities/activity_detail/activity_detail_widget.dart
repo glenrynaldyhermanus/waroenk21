@@ -345,8 +345,12 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     context.pushNamed(
-                                      'ActivityBrief',
+                                      'ActivityGroupBrief',
                                       queryParameters: {
+                                        'activityGroup': serializeParam(
+                                          containerActivityGroupsRow,
+                                          ParamType.SupabaseRow,
+                                        ),
                                         'activity': serializeParam(
                                           widget.activity,
                                           ParamType.SupabaseRow,
