@@ -201,6 +201,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             activity: params.getParam<ActivitiesRow>(
                 'activity', ParamType.SupabaseRow),
           ),
+        ),
+        FFRoute(
+          name: 'EventDetailCopy',
+          path: '/eventDetailCopy',
+          requireAuth: true,
+          builder: (context, params) => EventDetailCopyWidget(
+            event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
