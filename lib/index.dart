@@ -29,3 +29,7 @@ export '/pages/activities/activity_group_brief/activity_group_brief_widget.dart'
     show ActivityGroupBriefWidget;
 export '/pages/events/event_detail_copy/event_detail_copy_widget.dart'
     show EventDetailCopyWidget;
+export '/pages/activities/registered_team/registered_team_widget.dart'
+    show RegisteredTeamWidget;
+export '/pages/activities/registered_team_member/registered_team_member_widget.dart'
+    show RegisteredTeamMemberWidget;
