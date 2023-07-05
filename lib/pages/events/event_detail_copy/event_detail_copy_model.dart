@@ -1,5 +1,6 @@
 import '/backend/supabase/supabase.dart';
 import '/components/empties/empty_activity/empty_activity_widget.dart';
+import '/components/menus/event_menu/event_menu_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class EventDetailModel extends FlutterFlowModel {
+class EventDetailCopyModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

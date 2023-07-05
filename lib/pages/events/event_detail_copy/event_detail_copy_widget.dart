@@ -1,16 +1,17 @@
 import '/backend/supabase/supabase.dart';
 import '/components/empties/empty_activity/empty_activity_widget.dart';
+import '/components/menus/event_menu/event_menu_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'event_detail_model.dart';
-export 'event_detail_model.dart';
+import 'event_detail_copy_model.dart';
+export 'event_detail_copy_model.dart';
 
-class EventDetailWidget extends StatefulWidget {
-  const EventDetailWidget({
+class EventDetailCopyWidget extends StatefulWidget {
+  const EventDetailCopyWidget({
     Key? key,
     required this.event,
   }) : super(key: key);
@@ -18,18 +19,18 @@ class EventDetailWidget extends StatefulWidget {
   final EventsRow? event;
 
   @override
-  _EventDetailWidgetState createState() => _EventDetailWidgetState();
+  _EventDetailCopyWidgetState createState() => _EventDetailCopyWidgetState();
 }
 
-class _EventDetailWidgetState extends State<EventDetailWidget> {
-  late EventDetailModel _model;
+class _EventDetailCopyWidgetState extends State<EventDetailCopyWidget> {
+  late EventDetailCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => EventDetailModel());
+    _model = createModel(context, () => EventDetailCopyModel());
 
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
@@ -77,7 +78,38 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                   color: FlutterFlowTheme.of(context).secondaryText,
                 ),
           ),
-          actions: [],
+          actions: [
+            FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.menu_outlined,
+                color: FlutterFlowTheme.of(context).secondaryText,
+                size: 30.0,
+              ),
+              onPressed: () async {
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  builder: (context) {
+                    return GestureDetector(
+                      onTap: () => FocusScope.of(context)
+                          .requestFocus(_model.unfocusNode),
+                      child: Padding(
+                        padding: MediaQuery.viewInsetsOf(context),
+                        child: EventMenuWidget(
+                          event: widget.event!,
+                        ),
+                      ),
+                    );
+                  },
+                ).then((value) => setState(() {}));
+              },
+            ),
+          ],
           centerTitle: true,
           elevation: 0.0,
         ),

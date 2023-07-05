@@ -552,7 +552,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                           child: Text(
                                             '1 orang hanya bisa mengikuti max. 3 lomba',
                                             style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
+                                                .titleMedium,
                                           ),
                                         ),
                                       ],
