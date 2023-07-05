@@ -161,80 +161,57 @@ class _InviteTeamMemberWidgetState extends State<InviteTeamMemberWidget> {
                               .asValidator(context),
                         ),
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 16.0, 0.0, 0.0),
-                        child: FutureBuilder<List<UsersRow>>(
-                          future: UsersTable().queryRows(
-                            queryFn: (q) => q.or('name.ilike.%${_model.textController.text}%,email.ilike.%${_model.textController.text}%'),
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: CircularProgressIndicator(
-                                    color: FlutterFlowTheme.of(context).primary,
+                      if (_model.textController.text != null &&
+                          _model.textController.text != '')
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 16.0, 0.0, 0.0),
+                          child: FutureBuilder<List<UsersRow>>(
+                            future: UsersTable().queryRows(
+                              queryFn: (q) => q.or('name.ilike.%${_model.textController.text}%,email.ilike.%${_model.textController.text}%'),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      color:
+                                          FlutterFlowTheme.of(context).primary,
+                                    ),
                                   ),
-                                ),
-                              );
-                            }
-                            List<UsersRow> columnUsersRowList = snapshot.data!;
-                            return Column(
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: List.generate(columnUsersRowList.length,
-                                  (columnIndex) {
-                                final columnUsersRow =
-                                    columnUsersRowList[columnIndex];
-                                return InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    var _shouldSetState = false;
-                                    _model.hasParticipate =
-                                        await actions.isUserParticipated(
-                                      columnUsersRow.id,
-                                      widget.activity!,
-                                    );
-                                    _shouldSetState = true;
-                                    if (_model.hasParticipate == true) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                          content: Text(
-                                            '${columnUsersRow.name} sudah terdaftar oleh team lain',
-                                            style: FlutterFlowTheme.of(context)
-                                                .labelMedium
-                                                .override(
-                                                  fontFamily: 'Rubik',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryBackground,
-                                                ),
-                                          ),
-                                          duration:
-                                              Duration(milliseconds: 4000),
-                                          backgroundColor:
-                                              FlutterFlowTheme.of(context)
-                                                  .primaryText,
-                                        ),
+                                );
+                              }
+                              List<UsersRow> columnUsersRowList =
+                                  snapshot.data!;
+                              return Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: List.generate(
+                                    columnUsersRowList.length, (columnIndex) {
+                                  final columnUsersRow =
+                                      columnUsersRowList[columnIndex];
+                                  return InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      var _shouldSetState = false;
+                                      _model.hasParticipate =
+                                          await actions.isUserParticipated(
+                                        columnUsersRow.id,
+                                        widget.activity!,
                                       );
-                                      if (_shouldSetState) setState(() {});
-                                      return;
-                                    } else {
-                                      if (functions.isUserAlreadySelected(
-                                          columnUsersRow,
-                                          FFAppState().myTeammates.toList())) {
+                                      _shouldSetState = true;
+                                      if (_model.hasParticipate == true) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
                                           SnackBar(
                                             content: Text(
-                                              '${columnUsersRow.name} sudah di dalam daftar team',
+                                              '${columnUsersRow.name} sudah terdaftar oleh team lain',
                                               style:
                                                   FlutterFlowTheme.of(context)
                                                       .labelMedium
@@ -255,21 +232,16 @@ class _InviteTeamMemberWidgetState extends State<InviteTeamMemberWidget> {
                                         if (_shouldSetState) setState(() {});
                                         return;
                                       } else {
-                                        _model.hasParticipateInMaxAvailableActs =
-                                            await actions
-                                                .isUserParticipatedInMaxAvailableActivities(
-                                          widget.event,
-                                          columnUsersRow,
-                                        );
-                                        _shouldSetState = true;
-                                        if (_model
-                                                .hasParticipateInMaxAvailableActs ==
-                                            true) {
+                                        if (functions.isUserAlreadySelected(
+                                            columnUsersRow,
+                                            FFAppState()
+                                                .myTeammates
+                                                .toList())) {
                                           ScaffoldMessenger.of(context)
                                               .showSnackBar(
                                             SnackBar(
                                               content: Text(
-                                                '${columnUsersRow.name} sudah mengikuti max acara yang diperbolehkan',
+                                                '${columnUsersRow.name} sudah di dalam daftar team',
                                                 style:
                                                     FlutterFlowTheme.of(context)
                                                         .labelMedium
@@ -290,97 +262,135 @@ class _InviteTeamMemberWidgetState extends State<InviteTeamMemberWidget> {
                                           if (_shouldSetState) setState(() {});
                                           return;
                                         } else {
-                                          setState(() {
-                                            FFAppState().addToMyTeammates(
-                                                TeammateStruct(
-                                              name: columnUsersRow.name,
-                                              email: columnUsersRow.email,
-                                              id: columnUsersRow.id,
-                                            ));
-                                          });
-                                          context.safePop();
-                                          if (_shouldSetState) setState(() {});
-                                          return;
+                                          _model.hasParticipateInMaxAvailableActs =
+                                              await actions
+                                                  .isUserParticipatedInMaxAvailableActivities(
+                                            widget.event,
+                                            columnUsersRow,
+                                          );
+                                          _shouldSetState = true;
+                                          if (_model
+                                                  .hasParticipateInMaxAvailableActs ==
+                                              true) {
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(
+                                              SnackBar(
+                                                content: Text(
+                                                  '${columnUsersRow.name} sudah mengikuti max acara yang diperbolehkan',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .labelMedium
+                                                      .override(
+                                                        fontFamily: 'Rubik',
+                                                        color: FlutterFlowTheme
+                                                                .of(context)
+                                                            .secondaryBackground,
+                                                      ),
+                                                ),
+                                                duration: Duration(
+                                                    milliseconds: 4000),
+                                                backgroundColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                              ),
+                                            );
+                                            if (_shouldSetState)
+                                              setState(() {});
+                                            return;
+                                          } else {
+                                            setState(() {
+                                              FFAppState().addToMyTeammates(
+                                                  TeammateStruct(
+                                                name: columnUsersRow.name,
+                                                email: columnUsersRow.email,
+                                                id: columnUsersRow.id,
+                                              ));
+                                            });
+                                            context.safePop();
+                                            if (_shouldSetState)
+                                              setState(() {});
+                                            return;
+                                          }
                                         }
                                       }
-                                    }
 
-                                    if (_shouldSetState) setState(() {});
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryBackground,
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 16.0, 24.0, 16.0),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            width: 32.0,
-                                            height: 32.0,
-                                            decoration: BoxDecoration(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primary,
-                                              shape: BoxShape.circle,
-                                            ),
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Align(
+                                      if (_shouldSetState) setState(() {});
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: FlutterFlowTheme.of(context)
+                                            .primaryBackground,
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 16.0, 24.0, 16.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                              width: 32.0,
+                                              height: 32.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                shape: BoxShape.circle,
+                                              ),
                                               alignment: AlignmentDirectional(
                                                   0.0, 0.0),
-                                              child: Text(
-                                                functions.getNameAbbrevation(
-                                                    columnUsersRow.name!),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Rubik',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .tertiary,
-                                                          fontSize: 12.0,
-                                                        ),
+                                              child: Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Text(
+                                                  functions.getNameAbbrevation(
+                                                      columnUsersRow.name!),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        fontFamily: 'Rubik',
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .tertiary,
+                                                        fontSize: 12.0,
+                                                      ),
+                                                ),
                                               ),
                                             ),
-                                          ),
-                                          Expanded(
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  columnUsersRow.name!,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .titleSmall,
-                                                ),
-                                                Text(
-                                                  columnUsersRow.email,
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodySmall,
-                                                ),
-                                              ],
+                                            Expanded(
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    columnUsersRow.name!,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .titleSmall,
+                                                  ),
+                                                  Text(
+                                                    columnUsersRow.email,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodySmall,
+                                                  ),
+                                                ],
+                                              ),
                                             ),
-                                          ),
-                                        ].divide(SizedBox(width: 8.0)),
+                                          ].divide(SizedBox(width: 8.0)),
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                );
-                              }),
-                            );
-                          },
+                                  );
+                                }),
+                              );
+                            },
+                          ),
                         ),
-                      ),
                     ],
                   ),
                 ),
