@@ -71,10 +71,7 @@ class _ActivityGroupBriefWidgetState extends State<ActivityGroupBriefWidget> {
             },
           ),
           title: Text(
-            valueOrDefault<String>(
-              widget.activity?.name,
-              'Activity Name',
-            ),
+            'Tata Tertib Umum',
             style: FlutterFlowTheme.of(context).titleMedium.override(
                   fontFamily: 'Rubik',
                   color: FlutterFlowTheme.of(context).secondaryText,
