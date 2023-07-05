@@ -345,10 +345,14 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
                                     context.pushNamed(
-                                      'ActivityBrief',
+                                      'ActivityGroupBrief',
                                       queryParameters: {
                                         'activity': serializeParam(
                                           widget.activity,
+                                          ParamType.SupabaseRow,
+                                        ),
+                                        'activityGroup': serializeParam(
+                                          containerActivityGroupsRow,
                                           ParamType.SupabaseRow,
                                         ),
                                       }.withoutNulls,
@@ -447,7 +451,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                               EdgeInsetsDirectional.fromSTEB(
                                                   8.0, 0.0, 0.0, 0.0),
                                           child: Text(
-                                            'Peraturan dan Tata Tertib Lomba',
+                                            'Peraturan & Tata Tertib Lomba',
                                             style: FlutterFlowTheme.of(context)
                                                 .labelLarge
                                                 .override(
