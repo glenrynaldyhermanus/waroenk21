@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -409,24 +410,30 @@ class _ActivityRegistrationWidgetState
                                               ],
                                             ),
                                           ),
-                                          FlutterFlowIconButton(
-                                            borderColor:
-                                                FlutterFlowTheme.of(context)
-                                                    .primary,
-                                            borderRadius: 20.0,
-                                            borderWidth: 2.0,
-                                            buttonSize: 32.0,
-                                            icon: Icon(
-                                              Icons.close,
-                                              color:
+                                          if (teammatesItem.id !=
+                                              FFAppState().authedProfile.id)
+                                            FlutterFlowIconButton(
+                                              borderColor:
                                                   FlutterFlowTheme.of(context)
                                                       .primary,
-                                              size: 16.0,
+                                              borderRadius: 20.0,
+                                              borderWidth: 2.0,
+                                              buttonSize: 32.0,
+                                              icon: Icon(
+                                                Icons.close,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primary,
+                                                size: 16.0,
+                                              ),
+                                              onPressed: () async {
+                                                setState(() {
+                                                  FFAppState()
+                                                      .removeFromMyTeammates(
+                                                          teammatesItem);
+                                                });
+                                              },
                                             ),
-                                            onPressed: () {
-                                              print('IconButton pressed ...');
-                                            },
-                                          ),
                                         ].divide(SizedBox(width: 8.0)),
                                       );
                                     }).divide(SizedBox(height: 16.0)),
