@@ -246,6 +246,8 @@ dynamic deserializeParam<T>(
             return CategoriesRow(data);
           case SectionsRow:
             return SectionsRow(data);
+          case AnnouncementsRow:
+            return AnnouncementsRow(data);
           case EventRolesRow:
             return EventRolesRow(data);
           case ActivityTypesRow:

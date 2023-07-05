@@ -21,6 +21,7 @@ export 'tables/users.dart';
 export 'tables/promotions.dart';
 export 'tables/categories.dart';
 export 'tables/sections.dart';
+export 'tables/announcements.dart';
 export 'tables/event_roles.dart';
 export 'tables/activity_types.dart';
 export 'tables/app_versions.dart';

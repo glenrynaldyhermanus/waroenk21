@@ -495,6 +495,105 @@ class _HomeWidgetState extends State<HomeWidget> {
                       ),
                       Padding(
                         padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 0.0, 0.0),
+                              child: FutureBuilder<List<AnnouncementsRow>>(
+                                future: AnnouncementsTable().queryRows(
+                                  queryFn: (q) => q.eq(
+                                    'is_active',
+                                    true,
+                                  ),
+                                ),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            24.0, 0.0, 0.0, 0.0),
+                                        child: SizedBox(
+                                          width: 50.0,
+                                          height: 50.0,
+                                          child: CircularProgressIndicator(
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  List<AnnouncementsRow>
+                                      rowAnnouncementsRowList = snapshot.data!;
+                                  if (rowAnnouncementsRowList.isEmpty) {
+                                    return EmptyLiveEventWidget();
+                                  }
+                                  return SingleChildScrollView(
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: List.generate(
+                                              rowAnnouncementsRowList.length,
+                                              (rowIndex) {
+                                        final rowAnnouncementsRow =
+                                            rowAnnouncementsRowList[rowIndex];
+                                        return Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 24.0),
+                                          child: Container(
+                                            width: 320.0,
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFFF0ACAC),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  blurRadius: 4.0,
+                                                  color: Color(0x19000000),
+                                                  offset: Offset(0.0, 2.0),
+                                                )
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(8.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      24.0, 24.0, 24.0, 24.0),
+                                              child: Text(
+                                                rowAnnouncementsRow.text!,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primaryText,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                        ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      })
+                                          .divide(SizedBox(width: 24.0))
+                                          .around(SizedBox(width: 24.0)),
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 0.0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
@@ -532,32 +631,14 @@ class _HomeWidgetState extends State<HomeWidget> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Column(
-                                      mainAxisSize: MainAxisSize.max,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 0.0, 0.0),
-                                          child: Text(
-                                            'Aktivitas',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleMedium,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 0.0, 0.0, 0.0),
-                                          child: Text(
-                                            '1 orang hanya bisa mengikuti max. 3 lomba',
-                                            style: FlutterFlowTheme.of(context)
-                                                .titleMedium,
-                                          ),
-                                        ),
-                                      ],
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 0.0, 0.0),
+                                      child: Text(
+                                        'Aktivitas',
+                                        style: FlutterFlowTheme.of(context)
+                                            .titleMedium,
+                                      ),
                                     ),
                                     if (rowAppConfigsRow?.value == true)
                                       Padding(
