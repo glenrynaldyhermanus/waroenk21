@@ -499,104 +499,93 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 8.0, 0.0, 0.0),
-                              child: FutureBuilder<List<AnnouncementsRow>>(
-                                future: AnnouncementsTable().queryRows(
-                                  queryFn: (q) => q.eq(
-                                    'is_active',
-                                    true,
-                                  ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 0.0),
+                            child: FutureBuilder<List<AnnouncementsRow>>(
+                              future: AnnouncementsTable().queryRows(
+                                queryFn: (q) => q.eq(
+                                  'is_active',
+                                  true,
                                 ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            24.0, 0.0, 0.0, 0.0),
-                                        child: SizedBox(
-                                          width: 50.0,
-                                          height: 50.0,
-                                          child: CircularProgressIndicator(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primary,
+                              ),
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 0.0, 0.0),
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<AnnouncementsRow>
+                                    columnAnnouncementsRowList = snapshot.data!;
+                                if (columnAnnouncementsRowList.isEmpty) {
+                                  return EmptyLiveEventWidget();
+                                }
+                                return Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: List.generate(
+                                      columnAnnouncementsRowList.length,
+                                      (columnIndex) {
+                                    final columnAnnouncementsRow =
+                                        columnAnnouncementsRowList[columnIndex];
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          24.0, 0.0, 24.0, 16.0),
+                                      child: Container(
+                                        width: double.infinity,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFF0ACAC),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              blurRadius: 4.0,
+                                              color: Color(0x19000000),
+                                              offset: Offset(0.0, 2.0),
+                                            )
+                                          ],
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  24.0, 24.0, 24.0, 24.0),
+                                          child: Text(
+                                            columnAnnouncementsRow.text!,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Rubik',
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryText,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
                                           ),
                                         ),
                                       ),
                                     );
-                                  }
-                                  List<AnnouncementsRow>
-                                      rowAnnouncementsRowList = snapshot.data!;
-                                  if (rowAnnouncementsRowList.isEmpty) {
-                                    return EmptyLiveEventWidget();
-                                  }
-                                  return SingleChildScrollView(
-                                    scrollDirection: Axis.horizontal,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: List.generate(
-                                              rowAnnouncementsRowList.length,
-                                              (rowIndex) {
-                                        final rowAnnouncementsRow =
-                                            rowAnnouncementsRowList[rowIndex];
-                                        return Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 0.0, 24.0),
-                                          child: Container(
-                                            width: 320.0,
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFFF0ACAC),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 4.0,
-                                                  color: Color(0x19000000),
-                                                  offset: Offset(0.0, 2.0),
-                                                )
-                                              ],
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      24.0, 24.0, 24.0, 24.0),
-                                              child: Text(
-                                                rowAnnouncementsRow.text!,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .override(
-                                                          fontFamily: 'Rubik',
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primaryText,
-                                                          fontWeight:
-                                                              FontWeight.w600,
-                                                        ),
-                                              ),
-                                            ),
-                                          ),
-                                        );
-                                      })
-                                          .divide(SizedBox(width: 24.0))
-                                          .around(SizedBox(width: 24.0)),
-                                    ),
-                                  );
-                                },
-                              ),
+                                  }),
+                                );
+                              },
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                       Padding(
                         padding:
