@@ -1,5 +1,6 @@
 import '/backend/supabase/supabase.dart';
 import '/components/empties/empty_activity/empty_activity_widget.dart';
+import '/components/menus/event_menu/event_menu_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -77,7 +78,38 @@ class _EventDetailWidgetState extends State<EventDetailWidget> {
                   color: FlutterFlowTheme.of(context).secondaryText,
                 ),
           ),
-          actions: [],
+          actions: [
+            FlutterFlowIconButton(
+              borderColor: Colors.transparent,
+              borderRadius: 30.0,
+              borderWidth: 1.0,
+              buttonSize: 60.0,
+              icon: Icon(
+                Icons.menu_outlined,
+                color: FlutterFlowTheme.of(context).secondaryText,
+                size: 30.0,
+              ),
+              onPressed: () async {
+                await showModalBottomSheet(
+                  isScrollControlled: true,
+                  backgroundColor: Colors.transparent,
+                  context: context,
+                  builder: (context) {
+                    return GestureDetector(
+                      onTap: () => FocusScope.of(context)
+                          .requestFocus(_model.unfocusNode),
+                      child: Padding(
+                        padding: MediaQuery.viewInsetsOf(context),
+                        child: EventMenuWidget(
+                          event: widget.event!,
+                        ),
+                      ),
+                    );
+                  },
+                ).then((value) => setState(() {}));
+              },
+            ),
+          ],
           centerTitle: true,
           elevation: 0.0,
         ),
