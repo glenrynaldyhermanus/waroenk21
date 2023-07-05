@@ -310,7 +310,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                               future: ActivityGroupsTable().querySingleRow(
                                 queryFn: (q) => q.eq(
                                   'id',
-                                  widget.activity?.id,
+                                  widget.activity?.groupId,
                                 ),
                               ),
                               builder: (context, snapshot) {
