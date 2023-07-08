@@ -76,7 +76,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.safePop();
             },
           ),
           title: Text(
