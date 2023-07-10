@@ -1260,10 +1260,10 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                       ),
                                       FFButtonWidget(
                                         onPressed: () async {
-                                          await actions.sendWhatsApp(
-                                            widget.activity!.picPhone!,
-                                            widget.activity!.name,
-                                          );
+                                          await launchURL(
+                                              functions.generateWhatsappUrl(
+                                                  widget.activity!.picPhone!,
+                                                  widget.activity!.name)!);
                                         },
                                         text: 'Hubungi',
                                         options: FFButtonOptions(
