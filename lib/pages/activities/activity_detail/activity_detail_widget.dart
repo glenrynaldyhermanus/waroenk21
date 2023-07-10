@@ -570,7 +570,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                             MainAxisSize.max,
                                                         crossAxisAlignment:
                                                             CrossAxisAlignment
-                                                                .center,
+                                                                .start,
                                                         children: [
                                                           Icon(
                                                             Icons.date_range,
@@ -601,6 +601,18 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                           .max,
                                                                   children: [
                                                                     Text(
+                                                                      'Buka : ',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Rubik',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                          ),
+                                                                    ),
+                                                                    Text(
                                                                       dateTimeFormat(
                                                                         'yMMMd',
                                                                         widget
@@ -619,36 +631,106 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                                 FlutterFlowTheme.of(context).secondaryText,
                                                                           ),
                                                                     ),
-                                                                    if (widget
-                                                                            .activity
-                                                                            ?.startDate !=
+                                                                    Text(
+                                                                      ' - ',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Rubik',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                          ),
+                                                                    ),
+                                                                    Text(
+                                                                      dateTimeFormat(
+                                                                        'Hm',
                                                                         widget
-                                                                            .activity
-                                                                            ?.endDate)
-                                                                      Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        children: [
-                                                                          Text(
-                                                                            ' - ',
-                                                                            style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                                                  fontFamily: 'Rubik',
-                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                ),
-                                                                          ),
-                                                                          Text(
-                                                                            dateTimeFormat(
-                                                                              'yMMMd',
-                                                                              widget.activity!.closeRegistrationAt!,
-                                                                              locale: FFLocalizations.of(context).languageCode,
-                                                                            ),
-                                                                            style: FlutterFlowTheme.of(context).labelLarge.override(
-                                                                                  fontFamily: 'Rubik',
-                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                ),
-                                                                          ),
-                                                                        ],
+                                                                            .activity!
+                                                                            .openRegistrationAt!,
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
                                                                       ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Rubik',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                          ),
+                                                                    ),
+                                                                  ],
+                                                                ),
+                                                                Row(
+                                                                  mainAxisSize:
+                                                                      MainAxisSize
+                                                                          .max,
+                                                                  children: [
+                                                                    Text(
+                                                                      'Tutup : ',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Rubik',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                          ),
+                                                                    ),
+                                                                    Text(
+                                                                      dateTimeFormat(
+                                                                        'yMMMd',
+                                                                        widget
+                                                                            .activity!
+                                                                            .closeRegistrationAt!,
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Rubik',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                          ),
+                                                                    ),
+                                                                    Text(
+                                                                      ' - ',
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Rubik',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                          ),
+                                                                    ),
+                                                                    Text(
+                                                                      dateTimeFormat(
+                                                                        'Hm',
+                                                                        widget
+                                                                            .activity!
+                                                                            .closeRegistrationAt!,
+                                                                        locale:
+                                                                            FFLocalizations.of(context).languageCode,
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .labelLarge
+                                                                          .override(
+                                                                            fontFamily:
+                                                                                'Rubik',
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryText,
+                                                                          ),
+                                                                    ),
                                                                   ],
                                                                 ),
                                                               ],
@@ -1136,6 +1218,86 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                   ),
                                 );
                               },
+                            ),
+                            Divider(
+                              height: 16.0,
+                              thickness: 1.0,
+                              color: FlutterFlowTheme.of(context).accent3,
+                            ),
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 8.0, 0.0, 8.0),
+                              child: Container(
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFF0ACAC),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 4.0,
+                                      color: Color(0x19000000),
+                                      offset: Offset(0.0, 2.0),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      16.0, 16.0, 16.0, 16.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'Ada pertanyaan seputar detail atau teknis perlombaan? Silahkan hubungi PIC kami.',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Rubik',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                        ),
+                                      ),
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          await actions.sendWhatsApp(
+                                            widget.activity!.picPhone!,
+                                            widget.activity!.name,
+                                          );
+                                        },
+                                        text: 'Hubungi',
+                                        options: FFButtonOptions(
+                                          height: 40.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 16.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmall
+                                                  .override(
+                                                    fontFamily: 'Rubik',
+                                                    color: Colors.white,
+                                                  ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(32.0),
+                                        ),
+                                      ),
+                                    ].divide(SizedBox(width: 8.0)),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),

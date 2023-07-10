@@ -87,4 +87,7 @@ class ActivitiesRow extends SupabaseDataRow {
 
   bool get isTeam => getField<bool>('is_team')!;
   set isTeam(bool value) => setField<bool>('is_team', value);
+
+  String? get picPhone => getField<String>('pic_phone');
+  set picPhone(String? value) => setField<String>('pic_phone', value);
 }
