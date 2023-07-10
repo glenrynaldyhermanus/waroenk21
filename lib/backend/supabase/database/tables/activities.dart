@@ -90,4 +90,12 @@ class ActivitiesRow extends SupabaseDataRow {
 
   String? get picPhone => getField<String>('pic_phone');
   set picPhone(String? value) => setField<String>('pic_phone', value);
+
+  bool get isNeedRegistration => getField<bool>('is_need_registration')!;
+  set isNeedRegistration(bool value) =>
+      setField<bool>('is_need_registration', value);
+
+  bool get isScheduleTentative => getField<bool>('is_schedule_tentative')!;
+  set isScheduleTentative(bool value) =>
+      setField<bool>('is_schedule_tentative', value);
 }
