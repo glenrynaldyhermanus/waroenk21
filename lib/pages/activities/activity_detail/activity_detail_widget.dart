@@ -1246,7 +1246,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          'Ada pertanyaan seputar detail dan teknis perlombaan? Hubungi kami!',
+                                          'Ada pertanyaan seputar detail atau teknis perlombaan? Silahkan hubungi PIC kami.',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
