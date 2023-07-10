@@ -129,3 +129,12 @@ bool isUserAlreadySelected(
   }
   return false;
 }
+
+String? generateWhatsappUrl(
+  String phone,
+  String activityName,
+) {
+  String message = "Halo min, mau tanya tentang acara " + activityName;
+  // generate whatsapp url from given phone and add some text
+  return "https://wa.me/$phone/?text=${Uri.encodeFull(message)}";
+}

@@ -95,21 +95,21 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Hero(
-                tag: widget.activity!.pictureUrl!,
-                transitionOnUserGestures: true,
-                child: Image.network(
-                  widget.activity!.pictureUrl!,
-                  width: double.infinity,
-                  height: 256.0,
-                  fit: BoxFit.cover,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Hero(
+                  tag: widget.activity!.pictureUrl!,
+                  transitionOnUserGestures: true,
+                  child: Image.network(
+                    widget.activity!.pictureUrl!,
+                    width: double.infinity,
+                    height: 256.0,
+                    fit: BoxFit.cover,
+                  ),
                 ),
-              ),
-              Expanded(
-                child: Padding(
+                Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
@@ -1262,10 +1262,10 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                       ),
                                       FFButtonWidget(
                                         onPressed: () async {
-                                          await actions.sendWhatsApp(
-                                            widget.activity!.picPhone!,
-                                            widget.activity!.name,
-                                          );
+                                          await launchURL(
+                                              functions.generateWhatsappUrl(
+                                                  widget.activity!.picPhone!,
+                                                  widget.activity!.name)!);
                                         },
                                         text: 'Hubungi',
                                         options: FFButtonOptions(
@@ -1305,8 +1305,8 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                     ],
                   ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
