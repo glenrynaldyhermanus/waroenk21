@@ -138,3 +138,18 @@ String? generateWhatsappUrl(
   // generate whatsapp url from given phone and add some text
   return "https://wa.me/$phone/?text=${Uri.encodeFull(message)}";
 }
+
+DateTime timePlusTimezome(DateTime dateTime) {
+  // return date time plus timezone
+  final timeZoneOffset = dateTime.timeZoneOffset;
+  final timeZoneHours = timeZoneOffset.inHours;
+  final timeZoneMinutes = timeZoneOffset.inMinutes % 60;
+  final newDateTime =
+      dateTime.add(Duration(hours: timeZoneHours, minutes: timeZoneMinutes));
+  return newDateTime;
+}
+
+DateTime timePlus7(DateTime dateTime) {
+  // return date time plus seven hour
+  return dateTime.add(Duration(hours: 7));
+}

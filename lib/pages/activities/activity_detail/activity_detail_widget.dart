@@ -701,7 +701,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                                 Text(
                                                                                   dateTimeFormat(
                                                                                     'Hm',
-                                                                                    widget.activity!.openRegistrationAt!,
+                                                                                    functions.timePlus7(widget.activity!.openRegistrationAt!),
                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                   ),
                                                                                   style: FlutterFlowTheme.of(context).labelLarge.override(
@@ -742,7 +742,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                                 Text(
                                                                                   dateTimeFormat(
                                                                                     'Hm',
-                                                                                    widget.activity!.closeRegistrationAt!,
+                                                                                    functions.timePlus7(widget.activity!.closeRegistrationAt!),
                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                   ),
                                                                                   style: FlutterFlowTheme.of(context).labelLarge.override(
@@ -1633,7 +1633,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                                 Text(
                                                                                   dateTimeFormat(
                                                                                     'Hm',
-                                                                                    widget.activity!.openRegistrationAt!,
+                                                                                    functions.timePlus7(widget.activity!.openRegistrationAt!),
                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                   ),
                                                                                   style: FlutterFlowTheme.of(context).labelLarge.override(
@@ -1674,7 +1674,7 @@ class _ActivityDetailWidgetState extends State<ActivityDetailWidget> {
                                                                                 Text(
                                                                                   dateTimeFormat(
                                                                                     'Hm',
-                                                                                    widget.activity!.closeRegistrationAt!,
+                                                                                    functions.timePlus7(widget.activity!.closeRegistrationAt!),
                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                   ),
                                                                                   style: FlutterFlowTheme.of(context).labelLarge.override(
