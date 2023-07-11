@@ -24,6 +24,9 @@ class AuthenticationModel extends FlutterFlowModel {
   // State field(s) for emailAddress widget.
   TextEditingController? emailAddressController;
   String? Function(BuildContext, String?)? emailAddressControllerValidator;
+  // State field(s) for phoneWA widget.
+  TextEditingController? phoneWAController;
+  String? Function(BuildContext, String?)? phoneWAControllerValidator;
   // State field(s) for fullName widget.
   TextEditingController? fullNameController;
   String? Function(BuildContext, String?)? fullNameControllerValidator;
@@ -51,6 +54,7 @@ class AuthenticationModel extends FlutterFlowModel {
     emailAddressLoginController?.dispose();
     passwordLoginController?.dispose();
     emailAddressController?.dispose();
+    phoneWAController?.dispose();
     fullNameController?.dispose();
     passwordController?.dispose();
     passwordConfirmController?.dispose();
