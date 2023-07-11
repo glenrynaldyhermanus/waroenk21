@@ -147,6 +147,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ActivationWidget(
             email: params.getParam('email', ParamType.String),
             name: params.getParam('name', ParamType.String),
+            phoneWA: params.getParam('phoneWA', ParamType.String),
           ),
         ),
         FFRoute(
