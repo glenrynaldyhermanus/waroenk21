@@ -98,4 +98,7 @@ class ActivitiesRow extends SupabaseDataRow {
   bool get isScheduleTentative => getField<bool>('is_schedule_tentative')!;
   set isScheduleTentative(bool value) =>
       setField<bool>('is_schedule_tentative', value);
+
+  int get typeId => getField<int>('type_id')!;
+  set typeId(int value) => setField<int>('type_id', value);
 }
