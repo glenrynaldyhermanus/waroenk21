@@ -15,10 +15,12 @@ class ActivationWidget extends StatefulWidget {
     Key? key,
     required this.email,
     required this.name,
+    required this.phoneWA,
   }) : super(key: key);
 
   final String? email;
   final String? name;
+  final String? phoneWA;
 
   @override
   _ActivationWidgetState createState() => _ActivationWidgetState();
@@ -161,6 +163,7 @@ class _ActivationWidgetState extends State<ActivationWidget> {
                                   'user_uuid': currentUserUid,
                                   'name': widget.name,
                                   'email': widget.email,
+                                  'phone': widget.phoneWA,
                                 });
                                 if (Navigator.of(context).canPop()) {
                                   context.pop();

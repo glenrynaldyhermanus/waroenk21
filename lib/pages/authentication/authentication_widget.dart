@@ -1227,6 +1227,14 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                                 ParamType
                                                                     .String,
                                                               ),
+                                                              'phoneWA':
+                                                                  serializeParam(
+                                                                _model
+                                                                    .phoneWAController
+                                                                    .text,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
                                                             }.withoutNulls,
                                                             ignoreRedirect:
                                                                 true,
