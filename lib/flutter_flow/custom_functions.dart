@@ -166,3 +166,16 @@ int getIndexOfCart(
   }
   return -1;
 }
+
+int getQuantityFromCart(
+  List<CartProductStruct> cart,
+  int productId,
+) {
+  // return quantity if cart is productId
+  for (var item in cart) {
+    if (item.productId == productId) {
+      return item.quantity;
+    }
+  }
+  return 0;
+}

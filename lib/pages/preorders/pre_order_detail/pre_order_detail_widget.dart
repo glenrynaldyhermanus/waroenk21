@@ -521,14 +521,13 @@ class _PreOrderDetailWidgetState extends State<PreOrderDetailWidget> {
                                                                 },
                                                               ),
                                                               Text(
-                                                                FFAppState()
-                                                                    .cart
-                                                                    .where((e) =>
-                                                                        e.productId ==
-                                                                        containerProductsRow
-                                                                            ?.id)
-                                                                    .toList()
-                                                                    .length
+                                                                functions
+                                                                    .getQuantityFromCart(
+                                                                        FFAppState()
+                                                                            .cart
+                                                                            .toList(),
+                                                                        containerProductsRow!
+                                                                            .id)
                                                                     .toString(),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
