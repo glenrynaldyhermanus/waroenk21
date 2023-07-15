@@ -448,13 +448,73 @@ class _PreOrderDetailWidgetState extends State<PreOrderDetailWidget> {
                                                                 .bodyMedium,
                                                           ),
                                                         ),
-                                                        Icon(
-                                                          Icons
-                                                              .keyboard_arrow_right,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .primary,
-                                                          size: 24.0,
+                                                        Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        24.0),
+                                                            border: Border.all(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .primary,
+                                                              width: 2.0,
+                                                            ),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              FlutterFlowIconButton(
+                                                                borderRadius:
+                                                                    20.0,
+                                                                borderWidth:
+                                                                    0.0,
+                                                                buttonSize:
+                                                                    32.0,
+                                                                icon: Icon(
+                                                                  Icons.remove,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  size: 16.0,
+                                                                ),
+                                                                onPressed: () {
+                                                                  print(
+                                                                      'IconButton pressed ...');
+                                                                },
+                                                              ),
+                                                              Text(
+                                                                '0',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium,
+                                                              ),
+                                                              FlutterFlowIconButton(
+                                                                borderColor: Colors
+                                                                    .transparent,
+                                                                borderRadius:
+                                                                    20.0,
+                                                                borderWidth:
+                                                                    0.0,
+                                                                buttonSize:
+                                                                    32.0,
+                                                                icon: Icon(
+                                                                  Icons.add,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                  size: 16.0,
+                                                                ),
+                                                                onPressed: () {
+                                                                  print(
+                                                                      'IconButton pressed ...');
+                                                                },
+                                                              ),
+                                                            ],
+                                                          ),
                                                         ),
                                                       ],
                                                     ),
