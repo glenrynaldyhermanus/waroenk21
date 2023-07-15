@@ -33,3 +33,5 @@ export '/pages/activities/registered_team/registered_team_widget.dart'
     show RegisteredTeamWidget;
 export '/pages/activities/registered_team_member/registered_team_member_widget.dart'
     show RegisteredTeamMemberWidget;
+export '/pages/preorders/pre_order_detail/pre_order_detail_widget.dart'
+    show PreOrderDetailWidget;
