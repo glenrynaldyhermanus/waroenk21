@@ -29,6 +29,20 @@ class FFAppState extends ChangeNotifier {
         }
       }
     });
+    await _safeInitAsync(() async {
+      _cart = (await secureStorage.getStringList('ff_cart'))
+              ?.map((x) {
+                try {
+                  return CartProductStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _cart;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -101,6 +115,45 @@ class FFAppState extends ChangeNotifier {
   String get searchKeywords => _searchKeywords;
   set searchKeywords(String _value) {
     _searchKeywords = _value;
+  }
+
+  List<CartProductStruct> _cart = [];
+  List<CartProductStruct> get cart => _cart;
+  set cart(List<CartProductStruct> _value) {
+    _cart = _value;
+    secureStorage.setStringList(
+        'ff_cart', _value.map((x) => x.serialize()).toList());
+  }
+
+  void deleteCart() {
+    secureStorage.delete(key: 'ff_cart');
+  }
+
+  void addToCart(CartProductStruct _value) {
+    _cart.add(_value);
+    secureStorage.setStringList(
+        'ff_cart', _cart.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromCart(CartProductStruct _value) {
+    _cart.remove(_value);
+    secureStorage.setStringList(
+        'ff_cart', _cart.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromCart(int _index) {
+    _cart.removeAt(_index);
+    secureStorage.setStringList(
+        'ff_cart', _cart.map((x) => x.serialize()).toList());
+  }
+
+  void updateCartAtIndex(
+    int _index,
+    CartProductStruct Function(CartProductStruct) updateFn,
+  ) {
+    _cart[_index] = updateFn(_cart[_index]);
+    secureStorage.setStringList(
+        'ff_cart', _cart.map((x) => x.serialize()).toList());
   }
 }
 

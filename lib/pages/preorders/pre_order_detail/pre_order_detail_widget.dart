@@ -1,3 +1,4 @@
+import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -487,7 +488,15 @@ class _PreOrderDetailWidgetState extends State<PreOrderDetailWidget> {
                                                                 },
                                                               ),
                                                               Text(
-                                                                '0',
+                                                                FFAppState()
+                                                                    .cart
+                                                                    .where((e) =>
+                                                                        e.productId ==
+                                                                        containerProductsRow
+                                                                            ?.id)
+                                                                    .toList()
+                                                                    .length
+                                                                    .toString(),
                                                                 style: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium,
@@ -508,9 +517,52 @@ class _PreOrderDetailWidgetState extends State<PreOrderDetailWidget> {
                                                                       .primary,
                                                                   size: 16.0,
                                                                 ),
-                                                                onPressed: () {
-                                                                  print(
-                                                                      'IconButton pressed ...');
+                                                                onPressed:
+                                                                    () async {
+                                                                  if (FFAppState()
+                                                                          .cart
+                                                                          .where((e) =>
+                                                                              e.productId ==
+                                                                              containerProductsRow?.id)
+                                                                          .toList()
+                                                                          .length >
+                                                                      0) {
+                                                                    setState(
+                                                                        () {
+                                                                      FFAppState()
+                                                                          .updateCartAtIndex(
+                                                                        FFAppState()
+                                                                            .cart
+                                                                            .where((e) =>
+                                                                                e.productId ==
+                                                                                containerProductsRow?.id)
+                                                                            .toList()
+                                                                            .first
+                                                                            .productId,
+                                                                        (e) => e
+                                                                          ..incrementQuantity(
+                                                                              1),
+                                                                      );
+                                                                    });
+                                                                    return;
+                                                                  } else {
+                                                                    setState(
+                                                                        () {
+                                                                      FFAppState()
+                                                                          .addToCart(
+                                                                              CartProductStruct(
+                                                                        productId:
+                                                                            containerProductsRow?.id,
+                                                                        quantity:
+                                                                            1,
+                                                                        productName:
+                                                                            containerProductsRow?.name,
+                                                                        price: containerProductsRow
+                                                                            ?.price,
+                                                                      ));
+                                                                    });
+                                                                    return;
+                                                                  }
                                                                 },
                                                               ),
                                                             ],
