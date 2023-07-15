@@ -3,6 +3,7 @@ import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/flutter_flow/custom_functions.dart' as functions;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -482,9 +483,41 @@ class _PreOrderDetailWidgetState extends State<PreOrderDetailWidget> {
                                                                       .primary,
                                                                   size: 16.0,
                                                                 ),
-                                                                onPressed: () {
-                                                                  print(
-                                                                      'IconButton pressed ...');
+                                                                onPressed:
+                                                                    () async {
+                                                                  if (FFAppState()
+                                                                          .cart
+                                                                          .where((e) =>
+                                                                              e.productId ==
+                                                                              containerProductsRow?.id)
+                                                                          .toList()
+                                                                          .length ==
+                                                                      1) {
+                                                                    setState(
+                                                                        () {
+                                                                      FFAppState().removeAtIndexFromCart(functions.getIndexOfCart(
+                                                                          FFAppState()
+                                                                              .cart
+                                                                              .toList(),
+                                                                          containerProductsRow!
+                                                                              .id));
+                                                                    });
+                                                                    return;
+                                                                  } else {
+                                                                    setState(
+                                                                        () {
+                                                                      FFAppState()
+                                                                          .updateCartAtIndex(
+                                                                        functions.getIndexOfCart(
+                                                                            FFAppState().cart.toList(),
+                                                                            containerProductsRow!.id),
+                                                                        (e) => e
+                                                                          ..incrementQuantity(
+                                                                              -1),
+                                                                      );
+                                                                    });
+                                                                    return;
+                                                                  }
                                                                 },
                                                               ),
                                                               Text(
@@ -531,14 +564,9 @@ class _PreOrderDetailWidgetState extends State<PreOrderDetailWidget> {
                                                                         () {
                                                                       FFAppState()
                                                                           .updateCartAtIndex(
-                                                                        FFAppState()
-                                                                            .cart
-                                                                            .where((e) =>
-                                                                                e.productId ==
-                                                                                containerProductsRow?.id)
-                                                                            .toList()
-                                                                            .first
-                                                                            .productId,
+                                                                        functions.getIndexOfCart(
+                                                                            FFAppState().cart.toList(),
+                                                                            containerProductsRow!.id),
                                                                         (e) => e
                                                                           ..incrementQuantity(
                                                                               1),
