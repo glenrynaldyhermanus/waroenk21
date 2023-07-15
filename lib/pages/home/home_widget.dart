@@ -503,15 +503,221 @@ class _HomeWidgetState extends State<HomeWidget> {
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          Text(
+                            'Selamat datang',
+                            style: FlutterFlowTheme.of(context).titleLarge,
+                          ),
+                          if (loggedIn)
+                            Text(
+                              functions.getNameForGreeting(
+                                  FFAppState().authedProfile.name),
+                              style: FlutterFlowTheme.of(context)
+                                  .titleLarge
+                                  .override(
+                                    fontFamily: 'Rubik',
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 24.0, 0.0),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            if (loggedIn == true) {
+                              await showModalBottomSheet(
+                                isScrollControlled: true,
+                                backgroundColor: Colors.transparent,
+                                enableDrag: false,
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: Container(
+                                      height: 128.0,
+                                      child: HomeMenuWidget(),
+                                    ),
+                                  );
+                                },
+                              ).then((value) => setState(() {}));
+
+                              return;
+                            } else {
+                              context.pushNamed(
+                                'Authentication',
+                                extra: <String, dynamic>{
+                                  kTransitionInfoKey: TransitionInfo(
+                                    hasTransition: true,
+                                    transitionType:
+                                        PageTransitionType.bottomToTop,
+                                  ),
+                                },
+                              );
+
+                              return;
+                            }
+                          },
+                          child: Container(
+                            width: 32.0,
+                            height: 32.0,
+                            clipBehavior: Clip.antiAlias,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                            ),
+                            child: Image.network(
+                              valueOrDefault<String>(
+                                FFAppState().authedProfile.pictureUrl,
+                                'https://i.ibb.co/wMKW8G4/user-placeholder.png',
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 24.0, 0.0, 0.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          FutureBuilder<List<AppConfigsRow>>(
+                            future: AppConfigsTable().querySingleRow(
+                              queryFn: (q) => q.eq(
+                                'name',
+                                'can_add_event',
+                              ),
+                            ),
+                            builder: (context, snapshot) {
+                              // Customize what your widget looks like when it's loading.
+                              if (!snapshot.hasData) {
+                                return Center(
+                                  child: SizedBox(
+                                    width: 50.0,
+                                    height: 50.0,
+                                    child: CircularProgressIndicator(
+                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                        FlutterFlowTheme.of(context).primary,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }
+                              List<AppConfigsRow> rowAppConfigsRowList =
+                                  snapshot.data!;
+                              final rowAppConfigsRow =
+                                  rowAppConfigsRowList.isNotEmpty
+                                      ? rowAppConfigsRowList.first
+                                      : null;
+                              return Row(
+                                mainAxisSize: MainAxisSize.max,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        24.0, 0.0, 0.0, 0.0),
+                                    child: Text(
+                                      'Event Berlangsung',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleMedium,
+                                    ),
+                                  ),
+                                  if (rowAppConfigsRow?.value == true)
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 24.0, 0.0),
+                                      child: FFButtonWidget(
+                                        onPressed: () async {
+                                          context.pushNamed(
+                                            'CreateEvent',
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType
+                                                        .bottomToTop,
+                                              ),
+                                            },
+                                          );
+                                        },
+                                        text: 'Event',
+                                        icon: Icon(
+                                          Icons.add,
+                                          color: FlutterFlowTheme.of(context)
+                                              .tertiary,
+                                          size: 16.0,
+                                        ),
+                                        options: FFButtonOptions(
+                                          height: 32.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 0.0, 16.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .labelMedium
+                                              .override(
+                                                fontFamily: 'Rubik',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .tertiary,
+                                              ),
+                                          elevation: 3.0,
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
+                                          ),
+                                          borderRadius:
+                                              BorderRadius.circular(16.0),
+                                        ),
+                                      ),
+                                    ),
+                                ],
+                              );
+                            },
+                          ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
-                            child: FutureBuilder<List<AnnouncementsRow>>(
-                              future: AnnouncementsTable().queryRows(
-                                queryFn: (q) => q.eq(
-                                  'is_active',
-                                  true,
-                                ),
+                            child: FutureBuilder<List<EventsRow>>(
+                              future: EventsTable().queryRows(
+                                queryFn: (q) => q
+                                    .gte(
+                                      'end_date',
+                                      supaSerialize<DateTime>(
+                                          getCurrentTimestamp),
+                                    )
+                                    .eq(
+                                      'is_active',
+                                      true,
+                                    )
+                                    .order('end_date', ascending: true),
                               ),
                               builder: (context, snapshot) {
                                 // Customize what your widget looks like when it's loading.
@@ -524,63 +730,159 @@ class _HomeWidgetState extends State<HomeWidget> {
                                         width: 50.0,
                                         height: 50.0,
                                         child: CircularProgressIndicator(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
                                         ),
                                       ),
                                     ),
                                   );
                                 }
-                                List<AnnouncementsRow>
-                                    columnAnnouncementsRowList = snapshot.data!;
-                                if (columnAnnouncementsRowList.isEmpty) {
+                                List<EventsRow> rowEventsRowList =
+                                    snapshot.data!;
+                                if (rowEventsRowList.isEmpty) {
                                   return EmptyLiveEventWidget();
                                 }
-                                return Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: List.generate(
-                                      columnAnnouncementsRowList.length,
-                                      (columnIndex) {
-                                    final columnAnnouncementsRow =
-                                        columnAnnouncementsRowList[columnIndex];
-                                    return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          24.0, 0.0, 24.0, 16.0),
-                                      child: Container(
-                                        width: double.infinity,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xFFF0ACAC),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              blurRadius: 4.0,
-                                              color: Color(0x19000000),
-                                              offset: Offset(0.0, 2.0),
-                                            )
-                                          ],
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                        ),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  24.0, 24.0, 24.0, 24.0),
-                                          child: Text(
-                                            columnAnnouncementsRow.text!,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium
-                                                .override(
-                                                  fontFamily: 'Rubik',
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  fontWeight: FontWeight.w600,
+                                return SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children:
+                                        List.generate(rowEventsRowList.length,
+                                                (rowIndex) {
+                                      final rowEventsRow =
+                                          rowEventsRowList[rowIndex];
+                                      return Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 0.0, 0.0, 24.0),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              'EventDetail',
+                                              queryParameters: {
+                                                'event': serializeParam(
+                                                  rowEventsRow,
+                                                  ParamType.SupabaseRow,
                                                 ),
+                                              }.withoutNulls,
+                                            );
+                                          },
+                                          child: Container(
+                                            width: 320.0,
+                                            height: 188.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryBackground,
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  blurRadius: 4.0,
+                                                  color: Color(0x19000000),
+                                                  offset: Offset(0.0, 2.0),
+                                                )
+                                              ],
+                                              borderRadius:
+                                                  BorderRadius.circular(16.0),
+                                            ),
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Expanded(
+                                                  child: Hero(
+                                                    tag: rowEventsRow
+                                                        .pictureUrl!,
+                                                    transitionOnUserGestures:
+                                                        true,
+                                                    child: ClipRRect(
+                                                      borderRadius:
+                                                          BorderRadius.only(
+                                                        bottomLeft:
+                                                            Radius.circular(
+                                                                0.0),
+                                                        bottomRight:
+                                                            Radius.circular(
+                                                                0.0),
+                                                        topLeft:
+                                                            Radius.circular(
+                                                                16.0),
+                                                        topRight:
+                                                            Radius.circular(
+                                                                16.0),
+                                                      ),
+                                                      child: Image.network(
+                                                        rowEventsRow
+                                                            .pictureUrl!,
+                                                        width: double.infinity,
+                                                        height: 200.0,
+                                                        fit: BoxFit.cover,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(16.0, 16.0,
+                                                          16.0, 16.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.end,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .stretch,
+                                                    children: [
+                                                      Text(
+                                                        rowEventsRow.name,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Rubik',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                                ),
+                                                      ),
+                                                      Text(
+                                                        valueOrDefault<String>(
+                                                          rowEventsRow.location,
+                                                          'Lokasi',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Rubik',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primaryText,
+                                                                ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    );
-                                  }),
+                                      );
+                                    })
+                                            .divide(SizedBox(width: 24.0))
+                                            .around(SizedBox(width: 24.0)),
+                                  ),
                                 );
                               },
                             ),
@@ -685,9 +987,217 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             borderRadius:
                                             BorderRadius.circular(16.0),
                                           ),
-                                        ),
+                                          Expanded(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(
+                                                      16.0, 0.0, 0.0, 0.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    columnActivitiesRow.name,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .bodyLarge,
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        () {
+                                                          if ((columnActivitiesRow
+                                                                      .openRegistrationAt !=
+                                                                  null) &&
+                                                              (getCurrentTimestamp <=
+                                                                  columnActivitiesRow
+                                                                      .openRegistrationAt!)) {
+                                                            return 'Pendaftaran buka : ';
+                                                          } else if ((columnActivitiesRow
+                                                                      .closeRegistrationAt !=
+                                                                  null) &&
+                                                              (getCurrentTimestamp <=
+                                                                  columnActivitiesRow
+                                                                      .closeRegistrationAt!)) {
+                                                            return 'Pendaftaran tutup : ';
+                                                          } else if (getCurrentTimestamp <=
+                                                              columnActivitiesRow
+                                                                  .startDate) {
+                                                            return 'Mulai : ';
+                                                          } else {
+                                                            return 'Berakhir :';
+                                                          }
+                                                        }(),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodySmall,
+                                                      ),
+                                                      Expanded(
+                                                        child: Text(
+                                                          () {
+                                                            if ((columnActivitiesRow
+                                                                        .openRegistrationAt !=
+                                                                    null) &&
+                                                                (getCurrentTimestamp <=
+                                                                    columnActivitiesRow
+                                                                        .openRegistrationAt!)) {
+                                                              return dateTimeFormat(
+                                                                'MMMEd',
+                                                                columnActivitiesRow
+                                                                    .openRegistrationAt!,
+                                                                locale: FFLocalizations.of(
+                                                                        context)
+                                                                    .languageCode,
+                                                              );
+                                                            } else if ((columnActivitiesRow
+                                                                        .closeRegistrationAt !=
+                                                                    null) &&
+                                                                (getCurrentTimestamp <=
+                                                                    columnActivitiesRow
+                                                                        .closeRegistrationAt!)) {
+                                                              return dateTimeFormat(
+                                                                'MMMEd',
+                                                                columnActivitiesRow
+                                                                    .closeRegistrationAt!,
+                                                                locale: FFLocalizations.of(
+                                                                        context)
+                                                                    .languageCode,
+                                                              );
+                                                            } else if (getCurrentTimestamp <=
+                                                                columnActivitiesRow
+                                                                    .startDate) {
+                                                              return dateTimeFormat(
+                                                                'MMMEd',
+                                                                columnActivitiesRow
+                                                                    .startDate,
+                                                                locale: FFLocalizations.of(
+                                                                        context)
+                                                                    .languageCode,
+                                                              );
+                                                            } else {
+                                                              return dateTimeFormat(
+                                                                'MMMEd',
+                                                                columnActivitiesRow
+                                                                    .endDate,
+                                                                locale: FFLocalizations.of(
+                                                                        context)
+                                                                    .languageCode,
+                                                              );
+                                                            }
+                                                          }(),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall,
+                                                        ),
+                                                      ),
+                                                    ].divide(
+                                                        SizedBox(width: 2.0)),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 12.0,
+                                                                0.0, 0.0),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .location_on_outlined,
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          size: 16.0,
+                                                        ),
+                                                        Expanded(
+                                                          child: Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    -1.0, 1.0),
+                                                            child: Text(
+                                                              columnActivitiesRow
+                                                                  .location,
+                                                              maxLines: 1,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodySmall,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ].divide(
+                                                          SizedBox(width: 4.0)),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                          Container(
+                                            height: 64.0,
+                                            decoration: BoxDecoration(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryBackground,
+                                            ),
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                context.pushNamed(
+                                                  'ActivityDetail',
+                                                  queryParameters: {
+                                                    'activity': serializeParam(
+                                                      columnActivitiesRow,
+                                                      ParamType.SupabaseRow,
+                                                    ),
+                                                  }.withoutNulls,
+                                                );
+                                              },
+                                              text: 'View',
+                                              options: FFButtonOptions(
+                                                height: 32.0,
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        8.0, 0.0, 8.0, 0.0),
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryBackground,
+                                                textStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelMedium
+                                                        .override(
+                                                          fontFamily: 'Rubik',
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                        ),
+                                                elevation: 0.0,
+                                                borderSide: BorderSide(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                  width: 2.0,
+                                                ),
+                                                borderRadius:
+                                                    BorderRadius.circular(16.0),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
-                                  ],
+                                    );
+                                  }).divide(SizedBox(height: 16.0)),
                                 );
                               },
                             ),
@@ -1112,15 +1622,15 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 },
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

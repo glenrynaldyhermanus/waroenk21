@@ -483,37 +483,85 @@ class _ActivityRegistrationWidgetState
                         if (_shouldSetState) setState(() {});
                         return;
                       } else {
-                        _model.team = await ActivityTeamsTable().insert({
-                          'activity_id': widget.activity?.id,
-                          'name': _model.textController.text,
-                          'team_owner_id': FFAppState().authedProfile.id,
-                        });
-                        _shouldSetState = true;
-                        await actions.insertAllTeammates(
-                          FFAppState().myTeammates.toList(),
-                          _model.team!,
-                          widget.activity!,
-                        );
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              'Pendaftaran berhasil',
-                              style: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    fontFamily: 'Rubik',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryBackground,
-                                  ),
+                        if (functions.isActivityRegistrationAlreadyOpen(
+                            widget.activity!.openRegistrationAt!,
+                            widget.activity!.closeRegistrationAt!)) {
+                          if (!functions.isActivityRegistrationAlreadyClose(
+                              widget.activity!.openRegistrationAt!,
+                              widget.activity!.closeRegistrationAt!)) {
+                            _model.team = await ActivityTeamsTable().insert({
+                              'activity_id': widget.activity?.id,
+                              'name': _model.textController.text,
+                              'team_owner_id': FFAppState().authedProfile.id,
+                            });
+                            _shouldSetState = true;
+                            await actions.insertAllTeammates(
+                              FFAppState().myTeammates.toList(),
+                              _model.team!,
+                              widget.activity!,
+                            );
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Pendaftaran berhasil',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Rubik',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                ),
+                                duration: Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            );
+                            context.safePop();
+                            if (_shouldSetState) setState(() {});
+                            return;
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Pendaftaran sudah ditutup',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Rubik',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
+                                      ),
+                                ),
+                                duration: Duration(milliseconds: 4000),
+                                backgroundColor:
+                                    FlutterFlowTheme.of(context).primaryText,
+                              ),
+                            );
+                            if (_shouldSetState) setState(() {});
+                            return;
+                          }
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'Pendaftaran belum dibuka',
+                                style: FlutterFlowTheme.of(context)
+                                    .labelMedium
+                                    .override(
+                                      fontFamily: 'Rubik',
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryBackground,
+                                    ),
+                              ),
+                              duration: Duration(milliseconds: 4000),
+                              backgroundColor:
+                                  FlutterFlowTheme.of(context).primaryText,
                             ),
-                            duration: Duration(milliseconds: 4000),
-                            backgroundColor:
-                                FlutterFlowTheme.of(context).primaryText,
-                          ),
-                        );
-                        context.safePop();
-                        if (_shouldSetState) setState(() {});
-                        return;
+                          );
+                          if (_shouldSetState) setState(() {});
+                          return;
+                        }
                       }
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(

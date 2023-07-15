@@ -20,9 +20,6 @@ class PreOrdersRow extends SupabaseDataRow {
   DateTime? get createdAt => getField<DateTime>('created_at');
   set createdAt(DateTime? value) => setField<DateTime>('created_at', value);
 
-  String? get uuid => getField<String>('uuid');
-  set uuid(String? value) => setField<String>('uuid', value);
-
   String? get name => getField<String>('name');
   set name(String? value) => setField<String>('name', value);
 
