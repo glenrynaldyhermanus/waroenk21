@@ -1115,6 +1115,168 @@ class _HomeWidgetState extends State<HomeWidget> {
                           ],
                         ),
                       ),
+                      // Generated code for this ListView Widget...
+                      FutureBuilder<List<PreOrdersRow>>(
+                        future: PreOrdersTable().queryRows(
+                          queryFn: (q) => q,
+                        ),
+                        builder: (context, snapshot) {
+                          // Customize what your widget looks like when it's loading.
+                          if (!snapshot.hasData) {
+                            return Center(
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: CircularProgressIndicator(
+                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                    FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          List<PreOrdersRow> listViewPreOrdersRowList = snapshot.data!;
+                          return ListView.separated(
+                            padding: EdgeInsets.symmetric(horizontal: 24),
+                            primary: false,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemCount: listViewPreOrdersRowList.length,
+                            separatorBuilder: (_, __) => SizedBox(width: 24),
+                            itemBuilder: (context, listViewIndex) {
+                              final listViewPreOrdersRow = listViewPreOrdersRowList[listViewIndex];
+                              return Container(
+                                width: 270,
+                                height: 100,
+                                decoration: BoxDecoration(
+                                  color: FlutterFlowTheme.of(context).secondaryBackground,
+                                  boxShadow: [
+                                    BoxShadow(
+                                      blurRadius: 8,
+                                      color: Color(0x230F1113),
+                                      offset: Offset(0, 4),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(12),
+                                  border: Border.all(
+                                    color: FlutterFlowTheme.of(context).primaryBackground,
+                                    width: 1,
+                                  ),
+                                ),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.only(
+                                        bottomLeft: Radius.circular(0),
+                                        bottomRight: Radius.circular(0),
+                                        topLeft: Radius.circular(12),
+                                        topRight: Radius.circular(12),
+                                      ),
+                                      child: Image.network(
+                                        listViewPreOrdersRow.pictureUrl!,
+                                        width: double.infinity,
+                                        height: 110,
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 12),
+                                      child: FutureBuilder<List<UserStoresRow>>(
+                                        future: UserStoresTable().querySingleRow(
+                                          queryFn: (q) => q.eq(
+                                            'id',
+                                            listViewPreOrdersRow.storeId,
+                                          ),
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50,
+                                                height: 50,
+                                                child: CircularProgressIndicator(
+                                                  valueColor: AlwaysStoppedAnimation<Color>(
+                                                    FlutterFlowTheme.of(context).primary,
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          List<UserStoresRow> rowUserStoresRowList = snapshot.data!;
+                                          // Return an empty Container when the item does not exist.
+                                          if (snapshot.data!.isEmpty) {
+                                            return Container();
+                                          }
+                                          final rowUserStoresRow = rowUserStoresRowList.isNotEmpty
+                                              ? rowUserStoresRowList.first
+                                              : null;
+                                          return Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    listViewPreOrdersRow.name!,
+                                                    style: FlutterFlowTheme.of(context).bodyLarge,
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                    EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+                                                    child: Row(
+                                                      mainAxisSize: MainAxisSize.max,
+                                                      children: [
+                                                        Text(
+                                                          rowUserStoresRow!.name!,
+                                                          style: FlutterFlowTheme.of(context)
+                                                              .bodySmall,
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              Container(
+                                                height: 32,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(16),
+                                                  border: Border.all(
+                                                    color: FlutterFlowTheme.of(context).primary,
+                                                    width: 2,
+                                                  ),
+                                                ),
+                                                alignment: AlignmentDirectional(0, 0),
+                                                child: Padding(
+                                                  padding:
+                                                  EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                                                  child: Text(
+                                                    'Pre-Order',
+                                                    style: FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                      fontFamily: 'Rubik',
+                                                      color:
+                                                      FlutterFlowTheme.of(context).primary,
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        },
+                      )
                     ],
                   ),
                 ),
