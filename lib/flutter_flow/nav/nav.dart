@@ -227,6 +227,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             team: params.getParam<ActivityTeamsRow>(
                 'team', ParamType.SupabaseRow),
           ),
+        ),
+        FFRoute(
+          name: 'PreOrderDetail',
+          path: '/preOrderDetail',
+          builder: (context, params) => PreOrderDetailWidget(
+            preorder: params.getParam<PreOrdersRow>(
+                'preorder', ParamType.SupabaseRow),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
