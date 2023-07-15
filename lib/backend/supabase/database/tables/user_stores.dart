@@ -20,9 +20,6 @@ class UserStoresRow extends SupabaseDataRow {
   DateTime? get createdAt => getField<DateTime>('created_at');
   set createdAt(DateTime? value) => setField<DateTime>('created_at', value);
 
-  String? get userUuid => getField<String>('user_uuid');
-  set userUuid(String? value) => setField<String>('user_uuid', value);
-
   String? get name => getField<String>('name');
   set name(String? value) => setField<String>('name', value);
 
@@ -43,4 +40,7 @@ class UserStoresRow extends SupabaseDataRow {
 
   DateTime? get updatedAt => getField<DateTime>('updated_at');
   set updatedAt(DateTime? value) => setField<DateTime>('updated_at', value);
+
+  int get userId => getField<int>('user_id')!;
+  set userId(int value) => setField<int>('user_id', value);
 }

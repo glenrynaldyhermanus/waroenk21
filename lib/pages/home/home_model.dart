@@ -18,7 +18,6 @@ import 'package:provider/provider.dart';
 class HomeModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
-  final unfocusNode = FocusNode();
   // Stores action output result for [Custom Action - getProfile] action in Home widget.
   ProfileStruct? profile;
 
@@ -26,9 +25,7 @@ class HomeModel extends FlutterFlowModel {
 
   void initState(BuildContext context) {}
 
-  void dispose() {
-    unfocusNode.dispose();
-  }
+  void dispose() {}
 
   /// Action blocks are added here.
 
