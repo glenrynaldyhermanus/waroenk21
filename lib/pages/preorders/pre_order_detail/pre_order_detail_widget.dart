@@ -485,14 +485,12 @@ class _PreOrderDetailWidgetState extends State<PreOrderDetailWidget> {
                                                                 ),
                                                                 onPressed:
                                                                     () async {
-                                                                  if (FFAppState()
-                                                                          .cart
-                                                                          .where((e) =>
-                                                                              e.productId ==
-                                                                              containerProductsRow?.id)
-                                                                          .toList()
-                                                                          .length ==
-                                                                      1) {
+                                                                  if (functions
+                                                                          .getQuantityFromCart(
+                                                                              FFAppState().cart.toList(),
+                                                                              containerProductsRow!.id)
+                                                                          .toString() ==
+                                                                      '1') {
                                                                     setState(
                                                                         () {
                                                                       FFAppState().removeAtIndexFromCart(functions.getIndexOfCart(
