@@ -1078,7 +1078,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                 0.0, 8.0, 0.0, 16.0),
                             child: Container(
                               width: double.infinity,
-                              height: 200.0,
+                              height: 180.0,
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
@@ -1124,7 +1124,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                                             0.0, 0.0, 0.0, 8.0),
                                         child: Container(
                                           width: 270.0,
-                                          height: 100.0,
+                                          height: 88.0,
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
                                                 .secondaryBackground,
@@ -1221,29 +1221,24 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                           MainAxisAlignment
                                                               .spaceBetween,
                                                       children: [
-                                                        Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Text(
-                                                              listViewPreOrdersRow
-                                                                  .name!,
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyLarge,
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          8.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Row(
+                                                        Expanded(
+                                                          child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                listViewPreOrdersRow
+                                                                    .name!,
+                                                                maxLines: 1,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyLarge,
+                                                              ),
+                                                              Row(
                                                                 mainAxisSize:
                                                                     MainAxisSize
                                                                         .max,
@@ -1251,14 +1246,15 @@ class _HomeWidgetState extends State<HomeWidget> {
                                                                   Text(
                                                                     rowUserStoresRow!
                                                                         .name!,
+                                                                    maxLines: 1,
                                                                     style: FlutterFlowTheme.of(
                                                                             context)
                                                                         .bodySmall,
                                                                   ),
                                                                 ],
                                                               ),
-                                                            ),
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
                                                         Container(
                                                           height: 32.0,
