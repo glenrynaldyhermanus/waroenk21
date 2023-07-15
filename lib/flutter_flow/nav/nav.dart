@@ -147,6 +147,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => ActivationWidget(
             email: params.getParam('email', ParamType.String),
             name: params.getParam('name', ParamType.String),
+            phoneWA: params.getParam('phoneWA', ParamType.String),
           ),
         ),
         FFRoute(
@@ -209,6 +210,22 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           requireAuth: true,
           builder: (context, params) => EventDetailCopyWidget(
             event: params.getParam<EventsRow>('event', ParamType.SupabaseRow),
+          ),
+        ),
+        FFRoute(
+          name: 'RegisteredTeam',
+          path: '/registeredTeam',
+          builder: (context, params) => RegisteredTeamWidget(
+            activity: params.getParam<ActivitiesRow>(
+                'activity', ParamType.SupabaseRow),
+          ),
+        ),
+        FFRoute(
+          name: 'RegisteredTeamMember',
+          path: '/registeredTeamMember',
+          builder: (context, params) => RegisteredTeamMemberWidget(
+            team: params.getParam<ActivityTeamsRow>(
+                'team', ParamType.SupabaseRow),
           ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),

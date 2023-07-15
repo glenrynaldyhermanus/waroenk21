@@ -47,6 +47,7 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
     _model.emailAddressLoginController ??= TextEditingController();
     _model.passwordLoginController ??= TextEditingController();
     _model.emailAddressController ??= TextEditingController();
+    _model.phoneWAController ??= TextEditingController();
     _model.fullNameController ??= TextEditingController();
     _model.passwordController ??= TextEditingController();
     WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
@@ -654,6 +655,109 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                                 0.0, 0.0),
                                                     child: TextFormField(
                                                       controller: _model
+                                                          .phoneWAController,
+                                                      obscureText: false,
+                                                      decoration:
+                                                          InputDecoration(
+                                                        hintText:
+                                                            'No WhatsApp Aktif',
+                                                        hintStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Rubik',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .tertiary,
+                                                                ),
+                                                        enabledBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Color(
+                                                                0x3FFCE8D4),
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        focusedBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Color(
+                                                                0x80FCE8D4),
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        errorBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Color(
+                                                                0x00000000),
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        focusedErrorBorder:
+                                                            OutlineInputBorder(
+                                                          borderSide:
+                                                              BorderSide(
+                                                            color: Color(
+                                                                0x00000000),
+                                                            width: 1.0,
+                                                          ),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
+                                                        filled: true,
+                                                        fillColor:
+                                                            Color(0x67342F2F),
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                fontFamily:
+                                                                    'Rubik',
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiary,
+                                                              ),
+                                                      maxLines: null,
+                                                      keyboardType:
+                                                          TextInputType.phone,
+                                                      cursorColor:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .tertiary,
+                                                      validator: _model
+                                                          .phoneWAControllerValidator
+                                                          .asValidator(context),
+                                                    ),
+                                                  ),
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 12.0,
+                                                                0.0, 0.0),
+                                                    child: TextFormField(
+                                                      controller: _model
                                                           .fullNameController,
                                                       obscureText: false,
                                                       decoration:
@@ -971,6 +1075,14 @@ class _AuthenticationWidgetState extends State<AuthenticationWidget> {
                                                                   serializeParam(
                                                                 _model
                                                                     .emailAddressController
+                                                                    .text,
+                                                                ParamType
+                                                                    .String,
+                                                              ),
+                                                              'phoneWA':
+                                                                  serializeParam(
+                                                                _model
+                                                                    .phoneWAController
                                                                     .text,
                                                                 ParamType
                                                                     .String,
