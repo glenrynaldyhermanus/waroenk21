@@ -153,3 +153,16 @@ DateTime timePlus7(DateTime dateTime) {
   // return date time plus seven hour
   return dateTime.add(Duration(hours: 7));
 }
+
+int getIndexOfCart(
+  List<CartProductStruct> cart,
+  int productId,
+) {
+  // return index if cart product id equals to productId
+  for (int i = 0; i < cart.length; i++) {
+    if (productId == cart[i].productId) {
+      return i;
+    }
+  }
+  return -1;
+}
