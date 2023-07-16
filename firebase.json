@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "activexxi",
+    "site": "waroenk21",
     "public": "build/web",
     "ignore": [
       "firebase.json",

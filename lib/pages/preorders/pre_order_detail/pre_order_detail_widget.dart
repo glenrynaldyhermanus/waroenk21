@@ -488,8 +488,7 @@ class _PreOrderDetailWidgetState extends State<PreOrderDetailWidget> {
                                                                   if (functions
                                                                           .getQuantityFromCart(
                                                                               FFAppState().cart.toList(),
-                                                                              containerProductsRow!.id)
-                                                                          .toString() ==
+                                                                              containerProductsRow!.id) ==
                                                                       '1') {
                                                                     setState(
                                                                         () {

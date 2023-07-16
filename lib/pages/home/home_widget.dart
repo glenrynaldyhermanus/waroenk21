@@ -109,7 +109,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Selamat datang',
+                              'Selamats datangs',
                               style: FlutterFlowTheme
                                   .of(context)
                                   .titleLarge,
